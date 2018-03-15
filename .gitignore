@@ -1,0 +1,4 @@
+.*
+!.gitignore
+target
+src/test/resources/temp
