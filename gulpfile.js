@@ -126,6 +126,27 @@ gulp.task('build:clean', function(callback) {
   ], callback);
 });
 
+gulp.task('fixclosure', function(callback) {
+  var root = 'src/main/webapp/js/plaintext';
+  var provideRoots = 'plaintext,goog';
+  var namespaceMethods = ["goog.async.nextTick","goog.async.throwException",
+    "goog.async.run","goog.async.AnimationDelay","goog.async.Delay",
+    "goog.async.ConditionalDelay","goog.async.Throttle"].join(',');
+
+  var source = 'src/main/webapp/js/plaintext/*.js';
+  var cmd = util.format('find . -name "*.js" | xargs fixclosure -f' +
+      ' --provideRoots %s' +
+      ' --namespaceMethods %s', provideRoots, namespaceMethods);
+  exec(cmd, {cwd: root}, function(error, stdout, stderr) {
+      console.log(stdout);
+      console.error(stderr);
+      if (error) {
+        console.error(error);
+      }
+      callback();
+    });
+});
+
 gulp.task('build:build', ['build:clean'], function(callback) {
   var root = config.path.src.javascript.base;
   var cmd = util.format('python %s/closure/bin/calcdeps.py' +
