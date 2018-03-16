@@ -1,19 +1,16 @@
 goog.provide('plaintext.View');
+goog.provide('plaintext.View.ComponentConstructor');
 goog.provide('plaintext.View.EventType');
 
 goog.require('goog.array');
 goog.require('goog.asserts');
-goog.require('goog.async');
+goog.require('goog.async.nextTick');
 goog.require('goog.dom');
 goog.require('goog.dom.dataset');
 goog.require('goog.events.Event');
 goog.require('goog.events.EventTarget');
 goog.require('goog.structs.Map');
 goog.require('goog.ui.Component');
-goog.require('wap.core.log.LoggerFactory');
-goog.require('wap.core.net');
-goog.require('wap.core.performance');
-goog.require('wap.core.performance.app.view');
 goog.require('plaintext.util.UidMap');
 
 /**
@@ -232,7 +229,6 @@ goog.scope(function() {
    * @param {?Element} root
    */
   plaintext.View.prototype.decorateAll = function(defaultParams, root) {
-    wap.core.performance.app.view.methodStart('decorateAll');
     /**
      * @const
      * @type {!Array.<!{ element: !Element, component: !goog.ui.Component }>}
@@ -278,10 +274,6 @@ goog.scope(function() {
       var element = entry['element'];
       var component = entry['component'];
 
-      var performanceMark = wap.core.performance.app.view.methodStartWithInfo('decorateAll', {
-        'componentId' : element.id
-      });
-
       if (goog.dom.dataset.get(element, 'lazy') === 'client') {
         lazyComponents.push(entry);
         return;
@@ -290,11 +282,9 @@ goog.scope(function() {
       component.decorate(element);
       this.undecoratedComponents_.remove(component);
 
-      wap.core.performance.app.view.methodEndWithInfo(performanceMark);
     }, this);
 
     this.lazyDecorate(lazyComponents);
-    wap.core.performance.app.view.methodEnd('decorateAll');
   };
 
   /**
@@ -383,7 +373,6 @@ goog.scope(function() {
    *          this function decorates.
    */
   plaintext.View.prototype.decorateChildren = function(container) {
-    wap.core.performance.app.view.methodStart('decorateChildren');
     if (!container.hasChildren()) {
       // Hot fix lazy decorate
       var $element = container.getContentElement() || container.getElement();
@@ -399,10 +388,6 @@ goog.scope(function() {
     container.forEachChild(function(child) {
       var elem = this.undecoratedComponents_.get(child);
       if (elem) {
-        var performanceMark = wap.core.performance.app.view.methodStartWithInfo('decorateChildren', {
-          'componentId' : elem.id,
-          'childCount' : container.getChildCount()
-        });
         // the `decorate` method will check inDocument_ flag
         // first.
         if (goog.dom.dataset.get(elem, 'lazy') === 'client') {
@@ -414,11 +399,9 @@ goog.scope(function() {
         }
         child.decorate(elem);
         this.undecoratedComponents_.remove(child);
-        wap.core.performance.app.view.methodEndWithInfo(performanceMark);
       }
     }, this);
     this.lazyDecorate(lazyComponents);
-    wap.core.performance.app.view.methodEnd('decorateChildren');
   };
 
   /**

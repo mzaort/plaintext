@@ -1,18 +1,9 @@
 goog.provide('plaintext.Page');
 
 goog.require('goog.Disposable');
-goog.require('goog.Uri');
-goog.require('goog.dom');
-goog.require('goog.dom.classlist');
-goog.require('goog.events');
 goog.require('goog.events.EventHandler');
-goog.require('goog.events.EventType');
 goog.require('goog.log');
-goog.require('goog.net.XhrIo');
-goog.require('goog.net.cookies');
-goog.require('goog.userAgent');
-goog.require('goog.userAgent.product');
-goog.require('goog.userAgent.product.isVersion');
+goog.require('plaintext.View');
 
 /**
  * This class is the base class for all pages, used to initialize all

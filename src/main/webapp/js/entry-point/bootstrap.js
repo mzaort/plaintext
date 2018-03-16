@@ -1,3 +1,6 @@
+goog.require('plaintext.Page');
+
+
 function startup() {
   window.app = new plaintext.Page();
   window.app.initializeExternal();
