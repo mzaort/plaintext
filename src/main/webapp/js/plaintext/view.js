@@ -80,6 +80,15 @@ plaintext.View.Classes = {
 };
 
 /**
+ * @type {Array}
+ */
+plaintext.View.metaKeyList = [ 'label', 'hint', 'visible', 'readonly', 'disabled', 'required', 'dateType', 'maxlength',
+    'minlength', 'maxdecimal', 'maxval', 'minval', 'maxdate', 'mindate', 'pattern', 'charset', 'enable-chars',
+    'disable-chars', 'example', 'validationMsgJson', 'useAutoComplete', 'autoCompleteEntity',
+    'autoCompleteConditionFields', 'autoCompleteFetchFields', 'autoCompleteHintFields', 'autoCompleteUrl',
+    'divisionList', 'autofocus', 'defaultValue' ];
+
+/**
  * Register a new component.
  * 
  * @param {string} name JS class name to trigger instantiation of the component.
@@ -568,6 +577,20 @@ goog.scope(function() {
     this.decorateAll({}, $componentElement);
     var newComponent = this.getComponent($componentElement);
     return newComponent;
+  };
+
+  /**
+   * @param {Object} option
+   * @param {Object} data
+   * @private
+   */
+  View.prototype.handleComponentOptions_ = function(option, data) {
+    goog.array.forEach(View.metaKeyList, function(metaKey) {
+      if (option[metaKey] !== undefined && option[metaKey] !== null) {
+        data[metaKey] = option[metaKey];
+        option[metaKey] = metaKey;
+      }
+    });
   };
 
 }); // goog.scope
