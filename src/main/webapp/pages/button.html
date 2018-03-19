@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <!--
 Copyright 2010 The Closure Library Authors. All Rights Reserved.
 
@@ -73,8 +73,9 @@ See the COPYING file for details.
     </label>
     <br/>
     <br/>
-    <input type="button" id="b2" title="Tooltip extracted from title"
-        value="My Button" disabled="true"/><br/>
+    <input >
+    <input th:replace="~{component::#component-input-button}()" th:with="id='b2', title='Tooltip extracted from title', value='My Button', disabled=true" type="button" id="b2" title="Tooltip extracted from title"
+        value="My " disabled/><br/>
     <label>Enable button:<input type="checkbox" id="b2_enable"/></label>
     <br/>
   </fieldset>
