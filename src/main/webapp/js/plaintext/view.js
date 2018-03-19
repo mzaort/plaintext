@@ -1,4 +1,5 @@
 goog.provide('plaintext.View');
+goog.provide('plaintext.View.Classes');
 goog.provide('plaintext.View.ComponentConstructor');
 goog.provide('plaintext.View.EventType');
 
@@ -6,11 +7,14 @@ goog.require('goog.array');
 goog.require('goog.asserts');
 goog.require('goog.async.nextTick');
 goog.require('goog.dom');
+goog.require('goog.dom.classlist');
 goog.require('goog.dom.dataset');
 goog.require('goog.events');
 goog.require('goog.events.Event');
 goog.require('goog.events.EventTarget');
+goog.require('goog.string');
 goog.require('goog.structs.Map');
+goog.require('goog.ui.Button');
 goog.require('goog.ui.Component');
 goog.require('plaintext.util.UidMap');
 
@@ -68,6 +72,14 @@ goog.addSingletonGetter(plaintext.View);
 plaintext.View.ComponentConstructor;
 
 /**
+ * @enum {string}
+ */
+plaintext.View.Classes = {
+  COMPONENT : 'component',
+  COMPONENT_PREFIX : 'component-'
+};
+
+/**
  * Register a new component.
  * 
  * @param {string} name JS class name to trigger instantiation of the component.
@@ -104,6 +116,8 @@ plaintext.View.componentDispose_ = function() {
 
 goog.scope(function() {
 
+  var View = plaintext.View;
+
   /**
    * Get the component instance generated for the given element / the element
    * with the given id.
@@ -111,7 +125,7 @@ goog.scope(function() {
    * @param {string|!Element|null} idOrElement
    * @return {?goog.ui.Component} the component with the given id
    */
-  plaintext.View.prototype.getComponent = function(idOrElement) {
+  View.prototype.getComponent = function(idOrElement) {
     var element = goog.dom.getElement(idOrElement);
     if (!element) {
       return null;
@@ -128,7 +142,7 @@ goog.scope(function() {
    * @param {!Function} constructor
    * @return {boolean}
    */
-  plaintext.View.prototype.hasComponent = function(element, ctor) {
+  View.prototype.hasComponent = function(element, ctor) {
     if (this.componentInstances_.containsKey(element)) {
       if (!ctor) {
         return true;
@@ -157,7 +171,7 @@ goog.scope(function() {
    * @param {!Object} defaultParams
    * @return {plaintext.util.UidMap}
    */
-  plaintext.View.prototype.createComponentInstances_ = function(root, defaultParams) {
+  View.prototype.createComponentInstances_ = function(root, defaultParams) {
     var filterParentElement = root ? (root.parentElement ? root.parentElement : root) : goog.dom.getDocument();
     var result = new plaintext.util.UidMap();
     this.componentConstructors_.forEach(function(ctor, name) {
@@ -190,12 +204,71 @@ goog.scope(function() {
    * @param {Object=} opt_defaultParams This parameter is for legacy use only.
    *          DO NOT USE.
    */
-  plaintext.View.prototype.initialize = function(opt_defaultParams) {
+  View.prototype.initialize = function(opt_defaultParams) {
     goog.ui.Component.setDefaultRightToLeft(false);
     this.dispatchEvent(new goog.events.Event(plaintext.View.EventType.START_INITIALIZE, this));
+    this.registerLabeledComponents();
     this.decorateAll(!!opt_defaultParams ? opt_defaultParams : {}, null);
     this.dispatchEvent(new goog.events.Event(plaintext.View.EventType.FINISH_INITIALIZE, this));
     this.finishInitialize_ = true;
+  };
+
+  /**
+   * Register directly create a component based its class setting.
+   */
+  View.prototype.registerLabeledComponents = function() {
+    var elements = goog.dom.getElementsByClass(plaintext.View.Classes.COMPONENT);
+    if (goog.isArrayLike(elements)) {
+      goog.array.forEach(elements, function(element) {
+        this.registerLabeledElement(element);
+      }, this);
+    }
+  };
+
+  /**
+   * Get the registered class info to its component constructor
+   * @param {!Element} element
+   * @return {boolean}
+   */
+  View.prototype.registerLabeledElement = function(element) {
+    if (goog.dom.classlist.contains(element, plaintext.View.Classes.COMPONENT)) {
+      var componentNames = this.getLabelsOfElement(element);
+      if (componentNames.length !== 1) {
+        return false;
+      } else {
+        View.registerComponent(componentNames[0], this.getComponentBuilder(componentNames[0]));
+        return true;
+      }
+    }
+  };
+
+  /**
+   * Get the registered class info to its component constructor
+   * @param {!Element} element
+   * @return {!Array}
+   */
+  View.prototype.getLabelsOfElement = function(element) {
+    return goog.array.filter(goog.dom.classlist.get(element) || [], function(className) {
+      return goog.string.startsWith(className, plaintext.View.Classes.COMPONENT_PREFIX)
+          && goog.isDefAndNotNull(this.getComponentBuilder(className));
+    }, this);
+  };
+
+  /**
+   * Get the constructor of a component from its className
+   * 
+   * @param {!string} className
+   * @return {Function}
+   */
+  View.prototype.getComponentBuilder = function(className) {
+    if (goog.string.isEmptySafe(className))
+      return null;
+    switch (className) {
+    case 'component-button':
+      return goog.ui.Button;
+    default:
+      return null;
+    }
   };
 
   /**
@@ -203,7 +276,7 @@ goog.scope(function() {
    * 
    * @return {boolean}
    */
-  plaintext.View.prototype.isFinishInitialize = function() {
+  View.prototype.isFinishInitialize = function() {
     return this.finishInitialize_;
   };
 
@@ -214,11 +287,11 @@ goog.scope(function() {
    *          the component.
    * @return {?plaintext.View.ComponentConstructor}
    */
-  plaintext.View.prototype.getComponentConstructor = function(componentJsClass) {
+  View.prototype.getComponentConstructor = function(componentJsClass) {
     return this.componentConstructors_.get(componentJsClass);
   };
 
-  plaintext.View.prototype.getComponentGenerator = function(componentJsClass) {
+  View.prototype.getComponentGenerator = function(componentJsClass) {
     return this.componentGenerators_.get(componentJsClass);
   };
 
@@ -229,7 +302,7 @@ goog.scope(function() {
    * @param {!Object} defaultParams
    * @param {?Element} root
    */
-  plaintext.View.prototype.decorateAll = function(defaultParams, root) {
+  View.prototype.decorateAll = function(defaultParams, root) {
     /**
      * @const
      * @type {!Array.<!{ element: !Element, component: !goog.ui.Component }>}
@@ -292,7 +365,7 @@ goog.scope(function() {
    * @param {!Object} defaultParams
    * @param {?Element} root
    */
-  plaintext.View.prototype.decorateComponentsUnderRoot = function(defaultParams, root) {
+  View.prototype.decorateComponentsUnderRoot = function(defaultParams, root) {
     /**
      * @const
      * @type {!Array.<!{ element: !Element, component: !goog.ui.Component }>}
@@ -344,7 +417,7 @@ goog.scope(function() {
    * @param {Array. <{component:goog.ui.Component,element:Element}>}
    *          lazyComponents
    */
-  plaintext.View.prototype.lazyDecorate = function(lazyComponents) {
+  View.prototype.lazyDecorate = function(lazyComponents) {
     if (lazyComponents.length === 0) {
       return;
     }
@@ -366,7 +439,7 @@ goog.scope(function() {
    * @param {!goog.ui.Component} container A container component whose children
    *          this function decorates.
    */
-  plaintext.View.prototype.decorateChildren = function(container) {
+  View.prototype.decorateChildren = function(container) {
     if (!container.hasChildren()) {
       // Hot fix lazy decorate
       var $element = container.getContentElement() || container.getElement();
@@ -403,7 +476,7 @@ goog.scope(function() {
    * 
    * @return Array of container instances
    */
-  plaintext.View.prototype.getComponents = function() {
+  View.prototype.getComponents = function() {
     var arr = [];
     goog.array.forEach(this.componentInstances_.getValues(), function(instance) {
       arr.push(instance);
@@ -417,7 +490,7 @@ goog.scope(function() {
    * @param {function} Constructor of instance.
    * @return {Array.<goog.ui.Component>} Array of container instances
    */
-  plaintext.View.prototype.getComponentsByType = function(instanceType) {
+  View.prototype.getComponentsByType = function(instanceType) {
     var arr = this.componentInstances_.getValues();
     return goog.array.filter(arr, function(component) {
       return component instanceof instanceType;
@@ -436,7 +509,7 @@ goog.scope(function() {
    *          component will be inserted into
    * @return {goog.ui.Component} Newly created component
    */
-  plaintext.View.prototype.insertComponentInto = function(componentName, option, data, parentComponent) {
+  View.prototype.insertComponentInto = function(componentName, option, data, parentComponent) {
     return this.insertComponent_(componentName, option, data, parentComponent, false);
   };
 
@@ -452,7 +525,7 @@ goog.scope(function() {
    *          component will be inserted before
    * @return {goog.ui.Component} Newly created component
    */
-  plaintext.View.prototype.insertComponentBefore = function(componentName, option, data, siblingComponent) {
+  View.prototype.insertComponentBefore = function(componentName, option, data, siblingComponent) {
     return this.insertComponent_(componentName, option, data, siblingComponent, true);
   };
 
@@ -460,7 +533,7 @@ goog.scope(function() {
    * Insert a new component to specified element as its child element or
    * sibling.
    */
-  plaintext.View.prototype.insertComponent_ = function(componentName, option, data, toComponent, asSibling) {
+  View.prototype.insertComponent_ = function(componentName, option, data, toComponent, asSibling) {
 
     // parameters checking:
     goog.asserts.assertString(componentName, 'componentName should be a string');

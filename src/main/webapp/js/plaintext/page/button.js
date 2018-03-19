@@ -1,3 +1,23 @@
+goog.require('goog.array');
+goog.require('goog.debug.DivConsole');
+goog.require('goog.debug.LogManager');
+goog.require('goog.dom');
+goog.require('goog.dom.TagName');
+goog.require('goog.events');
+goog.require('goog.events.EventType');
+goog.require('goog.log');
+goog.require('goog.log.Level');
+goog.require('goog.object');
+goog.require('goog.ui.Button');
+goog.require('goog.ui.ButtonSide');
+goog.require('goog.ui.Component.EventType');
+goog.require('goog.ui.Component.State');
+goog.require('goog.ui.CustomButton');
+goog.require('goog.ui.FlatButtonRenderer');
+goog.require('goog.ui.LinkButtonRenderer');
+goog.require('goog.ui.ToggleButton');
+goog.require('goog.ui.decorate');
+
 var timer = goog.now();
 
 // Set up a logger.
