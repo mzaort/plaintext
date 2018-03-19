@@ -2,7 +2,6 @@ goog.provide('plaintext.Page');
 
 goog.require('goog.Disposable');
 goog.require('goog.events.EventHandler');
-goog.require('goog.log');
 goog.require('plaintext.View');
 
 /**
@@ -69,9 +68,6 @@ goog.scope(function() {
     plaintext.View.getInstance().initialize();
     this.initialize();
     this.bindEvents();
-
-    var logger = goog.log.getLogger(this.constructor.name || 'plaintext.Page');
-    goog.log.info(logger, 'application is initialized.');
   };
 
   /**

@@ -7,6 +7,7 @@ goog.require('goog.asserts');
 goog.require('goog.async.nextTick');
 goog.require('goog.dom');
 goog.require('goog.dom.dataset');
+goog.require('goog.events');
 goog.require('goog.events.Event');
 goog.require('goog.events.EventTarget');
 goog.require('goog.structs.Map');
@@ -69,7 +70,7 @@ plaintext.View.ComponentConstructor;
 /**
  * Register a new component.
  * 
- * @param {string} name JS classname to trigger instanciation of the component.
+ * @param {string} name JS class name to trigger instantiation of the component.
  * @param {!plaintext.View.ComponentConstructor} ctor The constructor of the
  *          component.
  */
@@ -143,8 +144,8 @@ goog.scope(function() {
    * @enum {string}
    */
   plaintext.View.EventType = {
-    START_INITIALIZE : 'view_initialize_start',
-    FINISH_INITIALIZE : 'view_initialize_finish'
+    START_INITIALIZE : goog.events.getUniqueId('view-initialize-start'),
+    FINISH_INITIALIZE : goog.events.getUniqueId('view-initialize-finish')
   };
 
   /**
@@ -254,7 +255,6 @@ goog.scope(function() {
       while ((p = e.parentElement) !== stopElement) {
         parentComponent = (p !== null) ? this.getComponent(p) : null;
         if (parentComponent) {
-          this.logger_.trace('component [' + element.id + '] added to [' + p.id + ']');
           parentComponent.addChild(component);
           break;
         }
@@ -278,10 +278,8 @@ goog.scope(function() {
         lazyComponents.push(entry);
         return;
       }
-      this.logger_.trace('dispose [' + element.id + ']');
       component.decorate(element);
       this.undecoratedComponents_.remove(component);
-
     }, this);
 
     this.lazyDecorate(lazyComponents);
@@ -320,7 +318,6 @@ goog.scope(function() {
       while ((p = e.parentElement) !== stopElement) {
         parentComponent = (p !== null) ? this.getComponent(p) : null;
         if (parentComponent) {
-          this.logger_.trace('component [' + element.id + '] added to [' + p.id + ']');
           parentComponent.addChild(component);
           break;
         }
@@ -337,7 +334,6 @@ goog.scope(function() {
     goog.array.forEach(decorateList, function(entry) {
       var element = entry['element'];
       var component = entry['component'];
-      this.logger_.trace('dispose [' + element.id + ']');
       component.decorate(element);
       this.undecoratedComponents_.remove(component);
     }, this);
@@ -358,11 +354,9 @@ goog.scope(function() {
         try {
           var element = entry['element'];
           var component = entry['component'];
-          self.logger_.trace('dispose [' + element.id + ']');
           component.decorate(element);
           self.undecoratedComponents_.remove(component);
         } catch (e) {
-          self.logger_.error(e.message, e);
         }
       });
     });
