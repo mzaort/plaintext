@@ -7,9 +7,9 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.DimensionPicker</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.DimensionPicker</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.debug.DivConsole');
     goog.require('goog.debug.LogManager');
     goog.require('goog.dom');
@@ -22,11 +22,11 @@ See the COPYING file for details.
     goog.require('goog.ui.PopupMenu');
     goog.require('goog.ui.SubMenu');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/dimensionpicker.css">
-  <link rel="stylesheet" href="../css/menu.css">
-  <link rel="stylesheet" href="../css/menuitem.css">
-  <link rel="stylesheet" href="../css/menuseparator.css">
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/dimensionpicker.css">
+<link rel="stylesheet" href="../css/menu.css">
+<link rel="stylesheet" href="../css/menuitem.css">
+<link rel="stylesheet" href="../css/menuseparator.css">
 </head>
 <body dir="rtl">
   <h1>goog.ui.DimensionPicker</h1>
@@ -42,23 +42,22 @@ See the COPYING file for details.
         </td>
         <td width="67%">
           <fieldset>
-            <legend>Demo of the <strong>goog.ui.DimensionPicker</strong>
-              component:
+            <legend>
+              Demo of the <strong>goog.ui.DimensionPicker</strong> component:
             </legend>
-            <br/>
-            <p ><button id="button">Open menu</button></p>
-            <label id="p1">This is a 10x8 picker:</label>
-            <label>You selected <span id="p1_value">nothing</span></label><br/>
+            <br />
+            <p>
+              <button id="button">Open menu</button>
+            </p>
+            <label id="p1">This is a 10x8 picker:</label> <label>You selected <span id="p1_value">nothing</span></label><br />
             <label>The below picker is a decorated DIV:</label>
             <div id="decorateTarget" class="goog-dimension-picker"></div>
-          </fieldset>
-          <br/>
-          <br/>
+          </fieldset> <br /> <br />
         </td>
       </tr>
     </tbody>
   </table>
-  <br/>
+  <br />
   <div id="perf"></div>
   <script>
     var timer = goog.now();

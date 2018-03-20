@@ -7,9 +7,9 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.SelectionMenuButton Demo</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.SelectionMenuButton Demo</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.array');
     goog.require('goog.debug.DivConsole');
     goog.require('goog.debug.LogManager');
@@ -22,24 +22,24 @@ See the COPYING file for details.
     goog.require('goog.ui.Separator');
     goog.require('goog.ui.decorate');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/menubutton.css">
-  <style>
-    /* Base class for all icon elements. */
-    .icon {
-      height: 16px;
-      width: 16px;
-      margin: 0 1px;
-      background-image: url(../images/toolbar_icons.gif);
-      background-repeat: no-repeat;
-      vertical-align: middle;
-    }
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/menubutton.css">
+<style>
+/* Base class for all icon elements. */
+.icon {
+	height: 16px;
+	width: 16px;
+	margin: 0 1px;
+	background-image: url(../images/toolbar_icons.gif);
+	background-repeat: no-repeat;
+	vertical-align: middle;
+}
 
-    /* "Format" icon. */
-    .format-icon{
-      background-position: -64px;
-    }
-  </style>
+/* "Format" icon. */
+.format-icon {
+	background-position: -64px;
+}
+</style>
 </head>
 <body>
   <h1>goog.ui.SelectionMenuButton</h1>
@@ -49,8 +49,7 @@ See the COPYING file for details.
         <td width="67%">
           <fieldset>
             <legend>
-              This <strong>SelectionMenuButton</strong> was created programmatically:
-              &nbsp;
+              This <strong>SelectionMenuButton</strong> was created programmatically: &nbsp;
             </legend>
             <table border="0" cellpadding="0" cellspacing="4">
               <tbody>
@@ -58,17 +57,12 @@ See the COPYING file for details.
                   <td>
                     <div id="menuButtons"></div>
                   </td>
-                  <td>
-                    Enable button:
-                    <input type="checkbox" id="b1_enable" checked>
-                    &nbsp;
+                  <td>Enable button: <input type="checkbox" id="b1_enable" checked> &nbsp;
                   </td>
                 </tr>
               </tbody>
             </table>
-            <label>
-            </label>
-            <br>
+            <label> </label> <br>
           </fieldset>
           <fieldset>
             <legend>
@@ -78,8 +72,7 @@ See the COPYING file for details.
               <tbody>
                 <tr valign="middle">
                   <td>
-                    <div id="selectButton" class="goog-selectionmenubutton-button"
-                        title="Select">
+                    <div id="selectButton" class="goog-selectionmenubutton-button" title="Select">
                       <!-- These elements will become the button's caption. -->
                       <input type="checkbox" class="goog-selectionmenubutton-checkbox"></input>
                       <!-- This DIV will be auto-decorated with a menu. -->
@@ -88,29 +81,20 @@ See the COPYING file for details.
                         <div class="goog-menuitem">None</div>
                         <div class="goog-menuseparator"></div>
                         <div class="goog-menuitem">Starred</div>
-                        <div class="goog-menuitem goog-menuitem-disabled">
-                          Unstarred
-                        </div>
+                        <div class="goog-menuitem goog-menuitem-disabled">Unstarred</div>
                         <div class="goog-menuseparator"></div>
                         <div class="goog-menuitem">Read</div>
                         <div class="goog-menuitem">Unread</div>
                       </div>
                     </div>
                   </td>
-                  <td>
-                    Enable button:
-                    <input type="checkbox" id="selectButton_enable" checked>
-                    &nbsp;
-                    Show button:
-                    <input type="checkbox" id="selectButton_show" checked>
-                    &nbsp;
+                  <td>Enable button: <input type="checkbox" id="selectButton_enable" checked> &nbsp; Show
+                    button: <input type="checkbox" id="selectButton_show" checked> &nbsp;
                   </td>
                 </tr>
               </tbody>
             </table>
-            <label>
-            </label>
-            <br>
+            <label> </label> <br>
           </fieldset>
         </td>
         <td width="33%">

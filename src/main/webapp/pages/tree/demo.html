@@ -8,47 +8,39 @@ See the COPYING file for details.
 -->
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>goog.ui.tree.TreeControl</title>
-  <script src="../../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.tree.TreeControl</title>
+<script src="../../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.debug.DivConsole');
     goog.require('goog.debug.Trace');
     goog.require('goog.dom');
     goog.require('goog.ui.tree.TreeControl');
   </script>
-  <script src="testdata.js"></script>
-  <link rel="stylesheet" href="../../css/css/demo.css">
-  <link rel="stylesheet" href="../../css/tree.css">
-  <style>
-    #div-console {
-      position: absolute;
-      right: 10px;
-      top: 10px;
-    }
-  </style>
+<script src="testdata.js"></script>
+<link rel="stylesheet" href="../../css/css/demo.css">
+<link rel="stylesheet" href="../../css/tree.css">
+<style>
+#div-console {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+</style>
 </head>
 <body>
   <h1>goog.ui.tree.TreeControl</h1>
   <div id="div-console"></div>
 
-  <p><button onclick="toggleNonCollapseNode()">Toggle non collapsible</button>
-  <button onclick="tree.setShowExpandIcons(!tree.getShowExpandIcons())">
-    Toggle Expand Icons
-  </button>
-  <button onclick="tree.setShowLines(!tree.getShowLines())">
-    Toggle Show Lines
-  </button>
-  <button onclick="tree.setShowRootLines(!tree.getShowRootLines())">
-    Toggle Show Root Lines
-  </button>
-  <button onclick="tree.setShowRootNode(!tree.getShowRootNode())">
-    Toggle Show Root Node
-  </button>
-
-  <p><button onclick="cut()">Cut</button>
-  <button onclick="paste()">Paste</button>
-
-  <div id="treeContainer" style="width:400px"></div>
+  <p>
+    <button onclick="toggleNonCollapseNode()">Toggle non collapsible</button>
+    <button onclick="tree.setShowExpandIcons(!tree.getShowExpandIcons())">Toggle Expand Icons</button>
+    <button onclick="tree.setShowLines(!tree.getShowLines())">Toggle Show Lines</button>
+    <button onclick="tree.setShowRootLines(!tree.getShowRootLines())">Toggle Show Root Lines</button>
+    <button onclick="tree.setShowRootNode(!tree.getShowRootNode())">Toggle Show Root Node</button>
+  <p>
+    <button onclick="cut()">Cut</button>
+    <button onclick="paste()">Paste</button>
+  <div id="treeContainer" style="width: 400px"></div>
 
   <script>
 

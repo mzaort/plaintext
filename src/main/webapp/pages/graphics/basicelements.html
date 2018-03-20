@@ -7,18 +7,24 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Graphics Basic Elements Demo Page</title>
-  <style>
-    .type { font-size:14px; font-weight:bold; font-family:arial; background-color:#f7f7f7; text-align:center }
-  </style>
-  <script type="text/javascript" src="../../lib/closure-library/closure/goog/base.js"></script>
-  <script type="text/javascript">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Graphics Basic Elements Demo Page</title>
+<style>
+.type {
+	font-size: 14px;
+	font-weight: bold;
+	font-family: arial;
+	background-color: #f7f7f7;
+	text-align: center
+}
+</style>
+<script type="text/javascript" src="../../lib/closure-library/closure/goog/base.js"></script>
+<script type="text/javascript">
     goog.require('goog.dom');
     goog.require('goog.graphics');
     goog.require('goog.graphics.Font');
   </script>
-  <script type="text/javascript">
+<script type="text/javascript">
     function drawElements() {
       var graphics = goog.graphics.createSimpleGraphics(600, 200);
       // Basic shapes
@@ -217,46 +223,26 @@ See the COPYING file for details.
 <body onload="drawElements()">
   <table border="1">
     <tr valign="top">
-      <td class="type">
-        Text: fonts, alignment, vertical-alignment, direction
-      </td>
-      <td class="type">
-        Basic shapes: Rectangle, Circle, Ellipses, Path, Clip to canvas
-      </td>
+      <td class="type">Text: fonts, alignment, vertical-alignment, direction</td>
+      <td class="type">Basic shapes: Rectangle, Circle, Ellipses, Path, Clip to canvas</td>
     </tr>
     <tr>
-      <td>
-        <span id="text"></span>
-      </td>
-      <td>
-        <span id="shapes"></span>
-      </td>
+      <td><span id="text"></span></td>
+      <td><span id="shapes"></span></td>
     </tr>
     <tr valign="top">
-      <td class="type">
-        Paths: Lines, arcs, curves
-      </td>
-      <td class="type">
-        Colors: solid, gradients, transparency
-      </td>
+      <td class="type">Paths: Lines, arcs, curves</td>
+      <td class="type">Colors: solid, gradients, transparency</td>
     </tr>
     <tr>
-      <td>
-        <span id="paths"></span>
-      </td>
-      <td>
-         <span id="colors"></span>
-      </td>
+      <td><span id="paths"></span></td>
+      <td><span id="colors"></span></td>
     </tr>
     <tr>
-      <td colspan="2" class="type">
-        Coordinate scaling + stroke types
-      </td>
+      <td colspan="2" class="type">Coordinate scaling + stroke types</td>
     </tr>
     <tr>
-      <td colspan="2" class="type">
-        <span id="coords"></span>
-      </td>
+      <td colspan="2" class="type"><span id="coords"></span></td>
     </tr>
   </table>
 </body>

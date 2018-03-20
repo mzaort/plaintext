@@ -7,32 +7,28 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.TableSorter</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.TableSorter</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.ui.TableSorter');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/tablesorter.css">
-  <style>
-    /** Each application can choose how to show sorted state.
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/tablesorter.css">
+<style>
+/** Each application can choose how to show sorted state.
         This is a simple way, just toggling background colors. */
+th.goog-tablesorter-sorted {
+	background-color: #eef;
+}
 
-    th.goog-tablesorter-sorted {
-      background-color: #eef;
-    }
-
-    th.goog-tablesorter-sorted-reverse {
-      background-color: #fee;
-    }
-  </style>
+th.goog-tablesorter-sorted-reverse {
+	background-color: #fee;
+}
+</style>
 </head>
 <body>
   <h1>goog.ui.TableSorter</h1>
-  <p>
-    Number sorts numerically, month sorts alphabetically, and days sorts
-    numerically in reverse.
-  </p>
+  <p>Number sorts numerically, month sorts alphabetically, and days sorts numerically in reverse.</p>
   <table border="0" cellpadding="3" id="sortMe">
     <thead>
       <tr>
@@ -104,7 +100,7 @@ See the COPYING file for details.
       </tr>
     </tbody>
   </table>
-  <br/>
+  <br />
   <script>
     var component = new goog.ui.TableSorter();
     component.decorate(goog.dom.getElement('sortMe'));

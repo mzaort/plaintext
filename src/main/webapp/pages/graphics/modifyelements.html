@@ -7,15 +7,15 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Modifing Graphic Elements Demo</title>
-  <script type="text/javascript" src="../../lib/closure-library/closure/goog/base.js"></script>
-  <script type="text/javascript">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Modifing Graphic Elements Demo</title>
+<script type="text/javascript" src="../../lib/closure-library/closure/goog/base.js"></script>
+<script type="text/javascript">
     goog.require('goog.dom');
     goog.require('goog.graphics');
     goog.require('goog.graphics.Font');
   </script>
-  <script type="text/javascript">
+<script type="text/javascript">
     /**
      * A rectangle, returned from graphics.drawRect.
      * @type goog.graphics.RectElement.
@@ -120,74 +120,52 @@ See the COPYING file for details.
 </head>
 
 <body onload="setupElements()">
-  <div id="shapes"
-       style="border:1px solid black; width:600px; height:200px;"></div>
+  <div id="shapes" style="border: 1px solid black; width: 600px; height: 200px;"></div>
   <table>
     <tr valign="top">
       <td>Colors (stroke/fill):</td>
-      <td>
-        <input type="button" value="Green(2):yellow" onclick="setRectColors(0)">
-        <input type="button" value="Blue(4):red" onclick="setRectColors(1)">
-        <input type="button" value="null:#c0c0c0" onclick="setRectColors(2)">
-        <input type="button" value="Red(0.5):null" onclick="setRectColors(3)">
-        <input type="button" value="Gradient" onclick="setRectColors(4)">
-      </td>
+      <td><input type="button" value="Green(2):yellow" onclick="setRectColors(0)"> <input type="button"
+        value="Blue(4):red" onclick="setRectColors(1)"> <input type="button" value="null:#c0c0c0"
+        onclick="setRectColors(2)"> <input type="button" value="Red(0.5):null" onclick="setRectColors(3)">
+        <input type="button" value="Gradient" onclick="setRectColors(4)"></td>
     </tr>
     <tr valign="top">
       <td>Rectangle position:</td>
-      <td>
-        <input type="button" value="30,30" onclick="setRectPosition(30, 10)">
-        <input type="button" value="200,20" onclick="setRectPosition(200, 20)">
-        <input type="button" value="0,60" onclick="setRectPosition(0, 60)">
-      </td>
+      <td><input type="button" value="30,30" onclick="setRectPosition(30, 10)"> <input type="button"
+        value="200,20" onclick="setRectPosition(200, 20)"> <input type="button" value="0,60"
+        onclick="setRectPosition(0, 60)"></td>
     </tr>
     <tr valign="top">
       <td>Rectangle size:</td>
-      <td>
-        <input type="button" value="100,80" onclick="setRectSize(100, 80)">
-        <input type="button" value="120,120" onclick="setRectSize(120, 120)">
-        <input type="button" value="40,60" onclick="setRectSize(40, 60)">
-      </td>
+      <td><input type="button" value="100,80" onclick="setRectSize(100, 80)"> <input type="button"
+        value="120,120" onclick="setRectSize(120, 120)"> <input type="button" value="40,60"
+        onclick="setRectSize(40, 60)"></td>
     </tr>
     <tr valign="top">
       <td>Ellipse center:</td>
-      <td>
-        <input type="button" value="400,150"
-               onclick="setEllipseCenter(400, 150)">
-        <input type="button" value="200,80"
-               onclick="setEllipseCenter(200, 80)">
-        <input type="button" value="350,200"
-               onclick="setEllipseCenter(350, 200)">
-      </td>
+      <td><input type="button" value="400,150" onclick="setEllipseCenter(400, 150)"> <input type="button"
+        value="200,80" onclick="setEllipseCenter(200, 80)"> <input type="button" value="350,200"
+        onclick="setEllipseCenter(350, 200)"></td>
     </tr>
     <tr valign="top">
       <td>Ellipse radius:</td>
-      <td>
-        <input type="button" value="100,40" onclick="setEllipseRadius(100, 40)">
-        <input type="button" value="80,80" onclick="setEllipseRadius(80, 80)">
-        <input type="button" value="40,60" onclick="setEllipseRadius(40, 60)">
-      </td>
+      <td><input type="button" value="100,40" onclick="setEllipseRadius(100, 40)"> <input type="button"
+        value="80,80" onclick="setEllipseRadius(80, 80)"> <input type="button" value="40,60"
+        onclick="setEllipseRadius(40, 60)"></td>
     </tr>
     <tr valign="top">
       <td>Path:</td>
-      <td>
-        <input type="button" value="Line" onclick="setPath(1)">
-        <input type="button" value="Curve" onclick="setPath(2)">
-      </td>
+      <td><input type="button" value="Line" onclick="setPath(1)"> <input type="button" value="Curve"
+        onclick="setPath(2)"></td>
     </tr>
     <tr valign="top">
       <td>Text:</td>
-      <td>
-        <input type="text" id="text" value="Text Sample" onkeyup="setText()"
-               onchange="setText()" size="20">
+      <td><input type="text" id="text" value="Text Sample" onkeyup="setText()" onchange="setText()" size="20">
       </td>
     </tr>
     <tr valign="top">
-      <td colspan="2">
-        <input type="button" value="Clear Surface" onclick="graphics.clear()">
-        <input type="button" value="Redraw Elements"
-               onclick="graphics.clear(); drawElements()">
-      </td>
+      <td colspan="2"><input type="button" value="Clear Surface" onclick="graphics.clear()"> <input
+        type="button" value="Redraw Elements" onclick="graphics.clear(); drawElements()"></td>
     </tr>
   </table>
 

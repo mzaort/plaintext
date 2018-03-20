@@ -7,33 +7,32 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.history.Html5History Demo</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.history.Html5History Demo</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.events');
     goog.require('goog.history.EventType');
     goog.require('goog.history.Html5History');
     goog.require('goog.Uri');
   </script>
-  <style>
-  .section {
-    display: none;
-  }
+<style>
+.section {
+	display: none;
+}
 
-  .active {
-    display: block;
-  }
-  </style>
-  <link rel="stylesheet" href="../css/css/demo.css">
+.active {
+	display: block;
+}
+</style>
+<link rel="stylesheet" href="../css/css/demo.css">
 </head>
 <body>
   <h1>goog.history.Html5History</h1>
 
   <p id="links">
-    <a href="kittens/default.htm" token="kittens" title="Kittens">Kittens</a> |
-    <a href="puppies/default.htm" token="puppies" title="Puppies">Puppies</a> |
-    <a href="pandas/default.htm" token="pandas" title="Pandas">Pandas</a> |
-    <a href="bucket/default.htm" token="bucket" title="Bucket">Bucket</a>
+    <a href="kittens/default.htm" token="kittens" title="Kittens">Kittens</a> | <a href="puppies/default.htm"
+      token="puppies" title="Puppies">Puppies</a> | <a href="pandas/default.htm" token="pandas" title="Pandas">Pandas</a>
+    | <a href="bucket/default.htm" token="bucket" title="Bucket">Bucket</a>
   </p>
 
   <div id="kittens" class="section active">

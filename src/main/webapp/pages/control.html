@@ -7,9 +7,9 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.Control Demo</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.Control Demo</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.array');
     goog.require('goog.debug.DivConsole');
     goog.require('goog.debug.LogManager');
@@ -23,146 +23,144 @@ See the COPYING file for details.
     goog.require('goog.ui.registry');
     goog.require('goog.dom.TagName');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <style>
-    /* Demo styles for goog.ui.Control. */
-    .goog-control {
-      position: relative;
-      width: 20ex;
-      margin: 2px;
-      border: 2px solid #036;
-      padding: 2px;
-      font: normal 9pt "Trebuchet MS", Tahoma, Arial, sans-serif;
-      color: #036;
-      background-color:#69c;
-      cursor: pointer;
-      outline: none;
-      -moz-outline: none;
-    }
+<link rel="stylesheet" href="../css/css/demo.css">
+<style>
+/* Demo styles for goog.ui.Control. */
+.goog-control {
+	position: relative;
+	width: 20ex;
+	margin: 2px;
+	border: 2px solid #036;
+	padding: 2px;
+	font: normal 9pt "Trebuchet MS", Tahoma, Arial, sans-serif;
+	color: #036;
+	background-color: #69c;
+	cursor: pointer;
+	outline: none;
+	-moz-outline: none;
+}
 
-    .goog-control-disabled {
-      border-color: #888;
-      color: #888;
-      background-color: #ccc;
-    }
+.goog-control-disabled {
+	border-color: #888;
+	color: #888;
+	background-color: #ccc;
+}
 
-    .goog-control-hover {
-      border-color: #369;
-      color: #369;
-      background-color: #9cf;
-    }
+.goog-control-hover {
+	border-color: #369;
+	color: #369;
+	background-color: #9cf;
+}
 
-    .goog-control-active,
-    .goog-control-selected,
-    .goog-control-checked {
-      border-color: #9cf;
-      color: #9cf;
-      background-color: #369;
-    }
+.goog-control-active, .goog-control-selected, .goog-control-checked {
+	border-color: #9cf;
+	color: #9cf;
+	background-color: #369;
+}
 
-    .goog-control-focused {
-      border-color: orange;
-    }
+.goog-control-focused {
+	border-color: orange;
+}
 
-    /* Custom control styles. */
-    .goog-custom-control {
-      position: relative;
-      width: 25ex;
-      margin: 4px 0;
-      border: 2px solid #eee;
-      padding: 0;
-      cursor: pointer;
-      vertical-align: middle;
-      outline: none;
-      -moz-outline: none;
-    }
+/* Custom control styles. */
+.goog-custom-control {
+	position: relative;
+	width: 25ex;
+	margin: 4px 0;
+	border: 2px solid #eee;
+	padding: 0;
+	cursor: pointer;
+	vertical-align: middle;
+	outline: none;
+	-moz-outline: none;
+}
 
-    .goog-custom-control-outer-box {
-      position: relative;
-      margin: 0;
-      border: 2px solid #ddd;
-      padding: 0;
-      vertical-align: middle;
-    }
+.goog-custom-control-outer-box {
+	position: relative;
+	margin: 0;
+	border: 2px solid #ddd;
+	padding: 0;
+	vertical-align: middle;
+}
 
-    .goog-custom-control-inner-box {
-      position: relative;
-      margin: 0;
-      border: 2px solid #ccc;
-      padding: 0;
-      vertical-align: middle;
-    }
+.goog-custom-control-inner-box {
+	position: relative;
+	margin: 0;
+	border: 2px solid #ccc;
+	padding: 0;
+	vertical-align: middle;
+}
 
-    .goog-custom-control-content {
-      position: relative;
-      margin: 0;
-      border: 2px solid #bbb;
-      padding: 4px;
-      font-family: Georgia, Times, serif;
-      color: #ddd;
-      background-color: #aaa;
-    }
+.goog-custom-control-content {
+	position: relative;
+	margin: 0;
+	border: 2px solid #bbb;
+	padding: 4px;
+	font-family: Georgia, Times, serif;
+	color: #ddd;
+	background-color: #aaa;
+}
 
-    .goog-custom-control-hover {
-      border-color: #eef;
-    }
+.goog-custom-control-hover {
+	border-color: #eef;
+}
 
-    .goog-custom-control-hover .goog-custom-control-outer-box {
-      border-color: #ddf;
-    }
+.goog-custom-control-hover .goog-custom-control-outer-box {
+	border-color: #ddf;
+}
 
-    .goog-custom-control-hover .goog-custom-control-inner-box {
-      border-color: #ccf;
-    }
+.goog-custom-control-hover .goog-custom-control-inner-box {
+	border-color: #ccf;
+}
 
-    .goog-custom-control-hover .goog-custom-control-content {
-      border-color: #bbf;
-      background-color: #aaf;
-    }
+.goog-custom-control-hover .goog-custom-control-content {
+	border-color: #bbf;
+	background-color: #aaf;
+}
 
-    .goog-custom-control-active .goog-custom-control-content {
-      color: #fff;
-    }
+.goog-custom-control-active .goog-custom-control-content {
+	color: #fff;
+}
 
-    .goog-custom-control-focused {
-      border-style: dashed;
-      border-color: orange;
-    }
+.goog-custom-control-focused {
+	border-style: dashed;
+	border-color: orange;
+}
 
-    /* "Insert" button styles. */
-    .goog-edit-insert-icon {
-      height: 16px;
-      width: 16px;
-      margin: 0;
-      border: 0;
-      padding: 0;
-      background: url(../images/toolbar_icons.gif) no-repeat -80px;
-      vertical-align: middle;
-    }
+/* "Insert" button styles. */
+.goog-edit-insert-icon {
+	height: 16px;
+	width: 16px;
+	margin: 0;
+	border: 0;
+	padding: 0;
+	background: url(../images/toolbar_icons.gif) no-repeat -80px;
+	vertical-align: middle;
+}
 
-    .goog-edit-insert-caption {
-      margin: 0;
-      border: 0;
-      padding: 0 2px;
-      vertical-align: middle;
-      font-weight: bold;
-    }
+.goog-edit-insert-caption {
+	margin: 0;
+	border: 0;
+	padding: 0 2px;
+	vertical-align: middle;
+	font-weight: bold;
+}
 
-    /* Extra CSS styles. */
-    .extra-red {
-      border: 1px solid red;
-      background-color: #fcc;
-    }
+/* Extra CSS styles. */
+.extra-red {
+	border: 1px solid red;
+	background-color: #fcc;
+}
 
-    .extra-blue {
-      border: 1px solid blue;
-      background-color: #ccf;
-    }
+.extra-blue {
+	border: 1px solid blue;
+	background-color: #ccf;
+}
 
-    .extra-thick-border {
-      border-width: 4px;
-    }
-  </style>
+.extra-thick-border {
+	border-width: 4px;
+}
+</style>
 </head>
 <body>
   <h1>goog.ui.Control</h1>
@@ -174,96 +172,54 @@ See the COPYING file for details.
           <fieldset>
             <legend>This control was created programmatically:&nbsp;</legend>
             <div id="c1"></div>
-            <br/>
-            This control dispatches ENTER, LEAVE, and ACTION events on
-            mouseover, mouseout, and mouseup, respectively.  It supports
-            keyboard focus.
-          </fieldset>
-          <br/>
+            <br /> This control dispatches ENTER, LEAVE, and ACTION events on mouseover, mouseout, and mouseup,
+            respectively. It supports keyboard focus.
+          </fieldset> <br />
           <fieldset>
             <legend>This was created by decorating a SPAN:&nbsp;</legend>
-            <span id="c2"
-                class="goog-inline-block goog-control goog-control-disabled"
-                style="vertical-align:middle;">
-              Decorated Example
-            </span>
-            <br/>
-            <span id="hint" class="hint">
-              You need to enable this component first.
-            </span>
-            <br/>
-            <br/>
-            This control is configured to dispatch state transition events in
-            addition to ENTER, LEAVE, and ACTION.  It also supports keyboard
-            focus.  Watch the event log as you interact with this component.
-            <br/>
-            <br/>
-            <label>
-              Click here to toggle the component's enabled status:&nbsp;
-              <input type="checkbox" id="enable"/>
+            <span id="c2" class="goog-inline-block goog-control goog-control-disabled" style="vertical-align: middle;">
+              Decorated Example </span> <br /> <span id="hint" class="hint"> You need to enable this component first. </span> <br />
+            <br /> This control is configured to dispatch state transition events in addition to ENTER, LEAVE, and
+            ACTION. It also supports keyboard focus. Watch the event log as you interact with this component. <br /> <br />
+            <label> Click here to toggle the component's enabled status:&nbsp; <input type="checkbox"
+              id="enable" />
+            </label> <br /> <label> Click here to toggle the component's visiblity:&nbsp; <input type="checkbox"
+              id="visible" checked />
             </label>
-            <br/>
-            <label>
-              Click here to toggle the component's visiblity:&nbsp;
-              <input type="checkbox" id="visible" checked/>
-            </label>
-          </fieldset>
-          <br/>
+          </fieldset> <br />
           <h3>Custom Renderers</h3>
           <fieldset>
-            <legend>
-              This control was created using a custom renderer:&nbsp;
-            </legend>
+            <legend> This control was created using a custom renderer:&nbsp; </legend>
             <div id="c3"></div>
-          </fieldset>
-          <br/>
+          </fieldset> <br />
           <fieldset>
-            <legend>
-              This was created by decorating a DIV via a custom renderer:&nbsp;
-            </legend>
+            <legend> This was created by decorating a DIV via a custom renderer:&nbsp; </legend>
             <div id="c4" class="goog-custom-control">
-              <span class="goog-inline-block goog-edit-insert-icon">
-                &nbsp;
-              </span>
-              <span class="goog-inline-block goog-edit-insert-caption">
-                Insert Picture
-              </span>
+              <span class="goog-inline-block goog-edit-insert-icon"> &nbsp; </span> <span
+                class="goog-inline-block goog-edit-insert-caption"> Insert Picture </span>
             </div>
-          </fieldset>
-          <br/>
+          </fieldset> <br />
           <h3>Extra CSS Styling</h3>
           <fieldset>
-            <legend>
-              These controls have extra CSS classes applied:&nbsp;
-            </legend>
+            <legend> These controls have extra CSS classes applied:&nbsp; </legend>
             <div id="c5"></div>
             <div id="c6"></div>
-            <br/>
-            Use the <b>addClassName</b> API to add additional CSS class names
-            to controls, before or after they're rendered or decorated.
-          </fieldset>
-          <br/>
+            <br /> Use the <b>addClassName</b> API to add additional CSS class names to controls, before or after
+            they're rendered or decorated.
+          </fieldset> <br />
           <h3>Right-to-Left Rendering</h3>
           <fieldset>
-            <legend>
-              These controls are rendered right-to-left:&nbsp;
-            </legend>
+            <legend> These controls are rendered right-to-left:&nbsp; </legend>
             <p>These right-to-left controls were progammatically created:</p>
-            <div id="bidi" style="position:relative;background-color:#ccc;"
-                dir="rtl"></div>
+            <div id="bidi" style="position: relative; background-color: #ccc;" dir="rtl"></div>
             <p>These right-to-left controls were decorated:</p>
-            <div style="position:relative;background-color:#ccc;" dir="rtl">
-              <div id="c9" class="goog-inline-block goog-control">
-                Hello, world
-              </div><div id="c10" class="goog-inline-block goog-control">
-                Sample control
-              </div>
+            <div style="position: relative; background-color: #ccc;" dir="rtl">
+              <div id="c9" class="goog-inline-block goog-control">Hello, world</div>
+              <div id="c10" class="goog-inline-block goog-control">Sample control</div>
             </div>
             <p class="hint">
-              On pre-FF3 Gecko, <b>margin-left</b> and <b>margin-right</b> are
-              ignored, so controls render right next to each other.
-              A workaround is to include some <b>&amp;nbsp;</b>s in between
-              controls.
+              On pre-FF3 Gecko, <b>margin-left</b> and <b>margin-right</b> are ignored, so controls render right next to
+              each other. A workaround is to include some <b>&amp;nbsp;</b>s in between controls.
             </p>
           </fieldset>
         </td>
@@ -272,13 +228,9 @@ See the COPYING file for details.
           <fieldset class="goog-debug-panel">
             <legend>Event Log</legend>
             <div id="log"></div>
-          </fieldset>
-          <br/>
-          <span class="hint">
-            The control with the
-            <span style="font-weight:bold;color:orange;">orange outline</span>
-            has keyboard focus.
-          </span>
+          </fieldset> <br /> <span class="hint"> The control with the <span style="font-weight: bold; color: orange;">orange
+              outline</span> has keyboard focus.
+        </span>
         </td>
       </tr>
     </tbody>

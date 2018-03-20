@@ -14,70 +14,67 @@ goog.require('goog.events');
 </script>
 <link rel="stylesheet" href="../css/css/demo.css">
 <style>
-
 html, body {
-  background-color: #FFF;
-  width: 100%;
-  height: 100%;
-  padding: 0px;
-  margin: 0px;
+	background-color: #FFF;
+	width: 100%;
+	height: 100%;
+	padding: 0px;
+	margin: 0px;
 }
 
-
 h1 {
-  font: normal 24px arial;
-  color: #009;
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  width: 450px;
+	font: normal 24px arial;
+	color: #009;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	width: 450px;
 }
 
 p {
-  font: normal 14px arial;
-  color: #999;
-  margin-top: 0px;
-  margin-left: 10px;
-  width: 450px;
+	font: normal 14px arial;
+	color: #999;
+	margin-top: 0px;
+	margin-left: 10px;
+	width: 450px;
 }
 
 #tree ul {
-  font: normal 12px arial;
-  list-style: none;
-  margin: 0px;
-  padding:0px;
+	font: normal 12px arial;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
 }
 
 #tree ul ul {
-  padding-left: 36px;
+	padding-left: 36px;
 }
 
 html>body #tree span {
-  position: relative;
-  top: -2px;
+	position: relative;
+	top: -2px;
 }
 
 #tree div:hover {
-  background-color: #EEE;
+	background-color: #EEE;
 }
 
 #tree {
-  width: 300px;
-  height: 800px;
-  border: 2px solid #EEE;
-  float: left;
+	width: 300px;
+	height: 800px;
+	border: 2px solid #EEE;
+	float: left;
 }
 
 #log {
-  width: 400px;
-  height: 800px;
-  border: 2px solid #EEE;
-  border-left: 0px;
-  margin-top: 0px;
-  background-color: #FAFAFA;
+	width: 400px;
+	height: 800px;
+	border: 2px solid #EEE;
+	border-left: 0px;
+	margin-top: 0px;
+	background-color: #FAFAFA;
 }
-
 </style>
 <script>
 
@@ -177,16 +174,16 @@ goog.events.listen(window, 'load', doLoad);
 </head>
 <body>
   <h1>goog.events - Stop Propagation</h1>
-  <p><strong>Test the cancelling of capture and bubbling events.</strong>  Click
-  one of the nodes to see the event trace, then use the check boxes to cancel the
-  capture or bubble at a given branch.
-  (Double click the text area to clear it)</p>
+  <p>
+    <strong>Test the cancelling of capture and bubbling events.</strong> Click one of the nodes to see the event trace,
+    then use the check boxes to cancel the capture or bubble at a given branch. (Double click the text area to clear it)
+  </p>
 
   <div id="tree">
-  <script>writeTree();</script>
+    <script>writeTree();</script>
   </div>
 
   <textarea id="log"></textarea>
 
-  </body>
+</body>
 </html>

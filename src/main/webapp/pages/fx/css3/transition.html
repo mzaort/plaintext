@@ -16,35 +16,41 @@ See the COPYING file for details.
 <link rel="stylesheet" href="../../../css/css/demo.css">
 <style>
 .demo-options {
-  float: left;
-  padding: 0 0 20px;
-  width: 248px;
+	float: left;
+	padding: 0 0 20px;
+	width: 248px;
 }
+
 .demo-panel {
-  margin: 0 0 0 264px;
-  padding: 80px 0 0 80px;
-  text-align: center;
+	margin: 0 0 0 264px;
+	padding: 80px 0 0 80px;
+	text-align: center;
 }
+
 label.options {
-  padding-left: 35px;
+	padding-left: 35px;
 }
+
 #demo-animated-box {
-  background-color: #000;
-  color: white;
-  height: 20px;
-  padding: 40px 0;
-  text-align: center;
-  width: 100px;
+	background-color: #000;
+	color: white;
+	height: 20px;
+	padding: 40px 0;
+	text-align: center;
+	width: 100px;
 }
+
 #demo-buttons {
-  padding: 8px 0 0;
-  text-align: center;
+	padding: 8px 0 0;
+	text-align: center;
 }
+
 .goog-debug-panel {
-  clear: both;
+	clear: both;
 }
+
 .goog-debug-panel .logdiv {
-  height: 300px;
+	height: 300px;
 }
 </style>
 
@@ -61,61 +67,44 @@ goog.require('goog.log');
 </script>
 </head>
 <body>
-<div class="demo-options">
-<form>
-  <fieldset>
-    <legend>CSS3 transition choices</legend>
-    <label>
-      <input type="radio" name="transition" value="FadeIn" checked>Fade In
-    </label><br/>
-      <label class="options">
-        Duration (in s):
-        <input type="text" size="3" name="FadeInDuration" value="1">
-      </label><br/>
-    <label>
-      <input type="radio" name="transition" value="FadeOut">Fade Out
-    </label><br/>
-      <label class="options">
-        Duration (in s):
-        <input type="text" size="3" name="FadeOutDuration" value="1">
-      </label><br/>
-    <label>
-      <input type="radio" name="transition" value="Fade">Fade
-    </label><br/>
-      <label class="options">
-        Duration (in s):
-        <input type="text" size="3" name="FadeDuration" value=".5">
-      </label><br/>
-      <label class="options">
-        CSS3 timing:
-        <input type="text" size="7" name="FadeTimingFn" value="ease-in">
-      </label><br/>
-      <label class="options">
-        Starting opacity:
-        <input type="text" size="3" name="FadeStartingOpacity" value=".2">
-      </label><br/>
-      <label class="options">
-        Ending opacity:
-        <input type="text" size="3" name="FadeEndingOpacity" value=".8">
-      </label>
-    <div id="demo-buttons">
-      <input type="button" id="animate-btn" value="Animate!"></input>
-      <input type="button" id="reset-btn" value="Reset"></input>
-    </div>
+  <div class="demo-options">
+    <form>
+      <fieldset>
+        <legend>CSS3 transition choices</legend>
+        <label> <input type="radio" name="transition" value="FadeIn" checked>Fade In
+        </label><br /> <label class="options"> Duration (in s): <input type="text" size="3" name="FadeInDuration"
+          value="1">
+        </label><br /> <label> <input type="radio" name="transition" value="FadeOut">Fade Out
+        </label><br /> <label class="options"> Duration (in s): <input type="text" size="3" name="FadeOutDuration"
+          value="1">
+        </label><br /> <label> <input type="radio" name="transition" value="Fade">Fade
+        </label><br /> <label class="options"> Duration (in s): <input type="text" size="3" name="FadeDuration"
+          value=".5">
+        </label><br /> <label class="options"> CSS3 timing: <input type="text" size="7" name="FadeTimingFn"
+          value="ease-in">
+        </label><br /> <label class="options"> Starting opacity: <input type="text" size="3" name="FadeStartingOpacity"
+          value=".2">
+        </label><br /> <label class="options"> Ending opacity: <input type="text" size="3" name="FadeEndingOpacity"
+          value=".8">
+        </label>
+        <div id="demo-buttons">
+          <input type="button" id="animate-btn" value="Animate!"></input> <input type="button" id="reset-btn"
+            value="Reset"></input>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="demo-panel">
+    <div id="demo-animated-box">Hi there!</div>
+  </div>
+
+  <!-- Logging panel -->
+  <fieldset class="goog-debug-panel">
+    <legend>Event log for the transition object</legend>
+    <div id="log"></div>
   </fieldset>
-</form>
-</div>
-<div class="demo-panel">
-  <div id="demo-animated-box">Hi there!</div>
-</div>
 
-<!-- Logging panel -->
-<fieldset class="goog-debug-panel">
-  <legend>Event log for the transition object</legend>
-  <div id="log"></div>
-</fieldset>
-
-<script>
+  <script>
 // Set up debug console.
 var logger = goog.log.getLogger('Demo');
 new goog.debug.DivConsole(goog.dom.getElement('log')).

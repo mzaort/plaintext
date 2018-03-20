@@ -6,16 +6,16 @@ Copyright 2007 The Closure Library Authors. All Rights Reserved.
 Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
-  <head>
-    <script src="../lib/closure-library/closure/goog/base.js"></script>
+<head>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
 
-    <script>
+<script>
       goog.require('goog.dom');
       goog.require('goog.fx');
       goog.require('goog.fx.dom');
       goog.require('goog.fx.AnimationQueue');
     </script>
-    <script>
+<script>
       var sx = 5;
       var sy = 5;
 
@@ -118,32 +118,30 @@ See the COPYING file for details.
       }
     </script>
 
-    <style>
-      .block {
-        position: absolute;
-        width: 5px;
-        height: 5px;
-        background-color: blue;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="block1" class="block" style="left:  5px; top: 5px"></div>
-    <div id="block2" class="block" style="left: 10px; top: 5px"></div>
-    <div id="block3" class="block" style="left: 15px; top: 5px"></div>
-    <div id="block4" class="block" style="left: 20px; top: 5px"></div>
-    <div id="block5" class="block" style="left: 25px; top: 5px"></div>
+<style>
+.block {
+	position: absolute;
+	width: 5px;
+	height: 5px;
+	background-color: blue;
+}
+</style>
+</head>
+<body>
+  <div id="block1" class="block" style="left: 5px; top: 5px"></div>
+  <div id="block2" class="block" style="left: 10px; top: 5px"></div>
+  <div id="block3" class="block" style="left: 15px; top: 5px"></div>
+  <div id="block4" class="block" style="left: 20px; top: 5px"></div>
+  <div id="block5" class="block" style="left: 25px; top: 5px"></div>
 
-    <script>
+  <script>
       createAnimations();
     </script>
 
-    <div style="margin-top:70px">
-      <a href="javascript:demoParallel();">play parallel</a> |
-      <a href="javascript:demoSerial();">play serial</a> | <br/>
-      <a href="javascript:pause();">pause</a> |
-      <a href="javascript:resume(false);">resume</a> |
-      <a href="javascript:resume(true);">resume + restart</a>
-    </div>
-  </body>
+  <div style="margin-top: 70px">
+    <a href="javascript:demoParallel();">play parallel</a> | <a href="javascript:demoSerial();">play serial</a> | <br />
+    <a href="javascript:pause();">pause</a> | <a href="javascript:resume(false);">resume</a> | <a
+      href="javascript:resume(true);">resume + restart</a>
+  </div>
+</body>
 </html>

@@ -7,9 +7,9 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.Css3MenuButtonRenderer Demo</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.Css3MenuButtonRenderer Demo</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.array');
     goog.require('goog.debug.DivConsole');
     goog.require('goog.debug.LogManager');
@@ -24,29 +24,29 @@ See the COPYING file for details.
     goog.require('goog.ui.Separator');
     goog.require('goog.ui.decorate');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/menu.css">
-  <link rel="stylesheet" href="../css/menuitem.css">
-  <link rel="stylesheet" href="../css/menuseparator.css">
-  <link rel="stylesheet" href="../css/menubutton.css">
-  <link rel="stylesheet" href="../css/css3button.css">
-  <link rel="stylesheet" href="../css/css3menubutton.css">
-  <style>
-    /* Base class for all icon elements. */
-    .icon {
-      height: 16px;
-      width: 16px;
-      margin: 0 1px;
-      background-image: url(../images/toolbar_icons.gif);
-      background-repeat: no-repeat;
-      vertical-align: middle;
-    }
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/menu.css">
+<link rel="stylesheet" href="../css/menuitem.css">
+<link rel="stylesheet" href="../css/menuseparator.css">
+<link rel="stylesheet" href="../css/menubutton.css">
+<link rel="stylesheet" href="../css/css3button.css">
+<link rel="stylesheet" href="../css/css3menubutton.css">
+<style>
+/* Base class for all icon elements. */
+.icon {
+	height: 16px;
+	width: 16px;
+	margin: 0 1px;
+	background-image: url(../images/toolbar_icons.gif);
+	background-repeat: no-repeat;
+	vertical-align: middle;
+}
 
-    /* "Format" icon. */
-    .format-icon{
-      background-position: -64px;
-    }
-  </style>
+/* "Format" icon. */
+.format-icon {
+	background-position: -64px;
+}
+</style>
 </head>
 <body>
   <h1>goog.ui.Css3MenuButtonRenderer</h1>
@@ -56,8 +56,7 @@ See the COPYING file for details.
         <td width="67%">
           <fieldset>
             <legend>
-              These <strong>MenuButton</strong>s were created programmatically:
-              &nbsp;
+              These <strong>MenuButton</strong>s were created programmatically: &nbsp;
             </legend>
             <table border="0" cellpadding="0" cellspacing="4">
               <tbody>
@@ -65,20 +64,13 @@ See the COPYING file for details.
                   <td>
                     <div id="menuButtons"></div>
                   </td>
-                  <td>
-                    Enable first button:
-                    <input type="checkbox" id="b1_enable" checked>
-                    &nbsp;
-                    Show second button:
-                    <input type="checkbox" id="b2_show" checked>
-                    &nbsp;
+                  <td>Enable first button: <input type="checkbox" id="b1_enable" checked> &nbsp; Show
+                    second button: <input type="checkbox" id="b2_show" checked> &nbsp;
                   </td>
                 </tr>
               </tbody>
             </table>
-            <label>
-            </label>
-            <br>
+            <label> </label> <br>
           </fieldset>
           <fieldset>
             <legend>
@@ -88,40 +80,30 @@ See the COPYING file for details.
               <tbody>
                 <tr valign="middle">
                   <td>
-                    <div id="formatButton" class="goog-css3-menu-button"
-                        title="Format">
+                    <div id="formatButton" class="goog-css3-menu-button" title="Format">
                       <!-- These elements will become the button's caption. -->
                       <div class="icon format-icon goog-inline-block"></div>
-                      <span style="vertical-align:middle">Format</span>
+                      <span style="vertical-align: middle">Format</span>
                       <!-- This DIV will be auto-decorated with a menu. -->
                       <div id="formatMenu" class="goog-menu">
                         <div class="goog-menuitem">Bold</div>
                         <div class="goog-menuitem">Italic</div>
                         <div class="goog-menuitem">Underline</div>
                         <div class="goog-menuseparator"></div>
-                        <div class="goog-menuitem goog-menuitem-disabled">
-                          Strikethrough
-                        </div>
+                        <div class="goog-menuitem goog-menuitem-disabled">Strikethrough</div>
                         <div class="goog-menuseparator"></div>
                         <div class="goog-menuitem">Font...</div>
                         <div class="goog-menuitem">Color...</div>
                       </div>
                     </div>
                   </td>
-                  <td>
-                    Enable button:
-                    <input type="checkbox" id="formatButton_enable" checked>
-                    &nbsp;
-                    Show button:
-                    <input type="checkbox" id="formatButton_show" checked>
-                    &nbsp;
+                  <td>Enable button: <input type="checkbox" id="formatButton_enable" checked> &nbsp; Show
+                    button: <input type="checkbox" id="formatButton_show" checked> &nbsp;
                   </td>
                 </tr>
               </tbody>
             </table>
-            <label>
-            </label>
-            <br>
+            <label> </label> <br>
           </fieldset>
         </td>
         <td width="33%">

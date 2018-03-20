@@ -7,9 +7,9 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.MenuButton Demo</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.MenuButton Demo</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.array');
     goog.require('goog.debug.DivConsole');
     goog.require('goog.debug.LogManager');
@@ -24,34 +24,34 @@ See the COPYING file for details.
     goog.require('goog.ui.Separator');
     goog.require('goog.ui.decorate');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/custombutton.css">
-  <link rel="stylesheet" href="../css/menu.css">
-  <link rel="stylesheet" href="../css/menuitem.css">
-  <link rel="stylesheet" href="../css/menuseparator.css">
-  <link rel="stylesheet" href="../css/menubutton.css">
-  <style>
-    /* Base class for all icon elements. */
-    .icon {
-      height: 16px;
-      width: 16px;
-      margin: 0 1px;
-      background-image: url(../images/toolbar_icons.gif);
-      background-repeat: no-repeat;
-      vertical-align: middle;
-    }
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/custombutton.css">
+<link rel="stylesheet" href="../css/menu.css">
+<link rel="stylesheet" href="../css/menuitem.css">
+<link rel="stylesheet" href="../css/menuseparator.css">
+<link rel="stylesheet" href="../css/menubutton.css">
+<style>
+/* Base class for all icon elements. */
+.icon {
+	height: 16px;
+	width: 16px;
+	margin: 0 1px;
+	background-image: url(../images/toolbar_icons.gif);
+	background-repeat: no-repeat;
+	vertical-align: middle;
+}
 
-    /* "Format" icon. */
-    .format-icon {
-      background-position: -64px;
-    }
+/* "Format" icon. */
+.format-icon {
+	background-position: -64px;
+}
 
-    .positioning-frame {
-      height: 250px;
-      overflow: auto;
-      width: 100%;
-    }
-  </style>
+.positioning-frame {
+	height: 250px;
+	overflow: auto;
+	width: 100%;
+}
+</style>
 </head>
 <body>
   <h1>goog.ui.MenuButton</h1>
@@ -61,8 +61,7 @@ See the COPYING file for details.
         <td width="67%">
           <fieldset>
             <legend>
-              These <strong>MenuButton</strong>s were created programmatically:
-              &nbsp;
+              These <strong>MenuButton</strong>s were created programmatically: &nbsp;
             </legend>
             <table border="0" cellpadding="0" cellspacing="4">
               <tbody>
@@ -70,20 +69,13 @@ See the COPYING file for details.
                   <td>
                     <div id="menuButtons"></div>
                   </td>
-                  <td>
-                    Enable first button:
-                    <input type="checkbox" id="b1_enable" checked>
-                    &nbsp;
-                    Show second button:
-                    <input type="checkbox" id="b2_show" checked>
-                    &nbsp;
+                  <td>Enable first button: <input type="checkbox" id="b1_enable" checked> &nbsp; Show
+                    second button: <input type="checkbox" id="b2_show" checked> &nbsp;
                   </td>
                 </tr>
               </tbody>
             </table>
-            <label>
-            </label>
-            <br>
+            <label> </label> <br>
           </fieldset>
           <fieldset>
             <legend>
@@ -93,70 +85,49 @@ See the COPYING file for details.
               <tbody>
                 <tr valign="middle">
                   <td>
-                    <div id="formatButton" class="goog-menu-button"
-                        title="Format">
+                    <div id="formatButton" class="goog-menu-button" title="Format">
                       <!-- These elements will become the button's caption. -->
                       <div class="icon format-icon goog-inline-block"></div>
-                      <span style="vertical-align:middle">Format</span>
+                      <span style="vertical-align: middle">Format</span>
                       <!-- This DIV will be auto-decorated with a menu. -->
                       <div id="formatMenu" class="goog-menu">
                         <div class="goog-menuitem">Bold</div>
                         <div class="goog-menuitem">Italic</div>
                         <div class="goog-menuitem">Underline</div>
                         <div class="goog-menuseparator"></div>
-                        <div class="goog-menuitem goog-menuitem-disabled">
-                          Strikethrough
-                        </div>
+                        <div class="goog-menuitem goog-menuitem-disabled">Strikethrough</div>
                         <div class="goog-menuseparator"></div>
                         <div class="goog-menuitem">Font...</div>
                         <div class="goog-menuitem">Color...</div>
                       </div>
                     </div>
                   </td>
-                  <td>
-                    Enable button:
-                    <input type="checkbox" id="formatButton_enable" checked>
-                    &nbsp;
-                    Show button:
-                    <input type="checkbox" id="formatButton_show" checked>
-                    &nbsp;
+                  <td>Enable button: <input type="checkbox" id="formatButton_enable" checked> &nbsp; Show
+                    button: <input type="checkbox" id="formatButton_show" checked> &nbsp;
                   </td>
                 </tr>
               </tbody>
             </table>
-            <label>
-            </label>
-            <br>
+            <label> </label> <br>
           </fieldset>
           <fieldset>
             <legend>
-              This <strong>MenuButton</strong> accompanies a
-              <strong>CustomButton</strong> to form a combo button:
+              This <strong>MenuButton</strong> accompanies a <strong>CustomButton</strong> to form a combo button:
               &nbsp;
             </legend>
             <div id="comboButtons"></div>
-            <label>
-            </label>
-            <br>
+            <label> </label> <br>
           </fieldset>
           <fieldset>
             <legend>
-              These <strong>MenuButtons</strong> demonstrate
-              menu positioning options:
-              &nbsp;
+              These <strong>MenuButtons</strong> demonstrate menu positioning options: &nbsp;
             </legend>
             <div></div>
 
-            <input type="checkbox" id="pos_option_scroll">
-            <label for="pos_option_scroll">
-              Scroll on overflow
-            </label>
-            <iframe class="positioning-frame" id="positioning-frame"
-                src="menubutton_frame.html">
-            </iframe>
-            <label>
-            </label>
-            <br>
+            <input type="checkbox" id="pos_option_scroll"> <label for="pos_option_scroll"> Scroll on
+              overflow </label>
+            <iframe class="positioning-frame" id="positioning-frame" src="menubutton_frame.html"> </iframe>
+            <label> </label> <br>
           </fieldset>
         </td>
         <td width="33%">

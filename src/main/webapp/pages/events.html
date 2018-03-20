@@ -6,26 +6,23 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>Event Test</title>
-  <script type="text/javascript" src="../lib/closure-library/closure/goog/base.js"></script>
-  <script type="text/javascript">
+<title>Event Test</title>
+<script type="text/javascript" src="../lib/closure-library/closure/goog/base.js"></script>
+<script type="text/javascript">
     goog.require('goog.events');
     goog.require('goog.events.EventType');
   </script>
 </head>
 <body>
   <p>
-    <a id="link1" href="#link1">Link 1</a><br />
-    <a id="link2" href="#link2">Link 2</a><br />
-    <a id="link3" href="#link3">Link 3</a><br />
-    <a id="link4" href="#link4">Link 4</a>
+    <a id="link1" href="#link1">Link 1</a><br /> <a id="link2" href="#link2">Link 2</a><br /> <a id="link3"
+      href="#link3">Link 3</a><br /> <a id="link4" href="#link4">Link 4</a>
   </p>
   <p>
-    <a href="javascript:addListeners()">Listen</a> |
-    <a href="javascript:removeListeners()">UnListen</a> |
-    <a href="javascript:void(goog.events.unlisten($('link1'), 'click', one))">Remove One</a> |
-    <a href="javascript:void(goog.events.unlisten($('link1'), 'click', two))">Remove Two</a> |
-    <a href="javascript:void(goog.events.unlisten($('link1'), 'click', three))">Remove Three</a> |
+    <a href="javascript:addListeners()">Listen</a> | <a href="javascript:removeListeners()">UnListen</a> | <a
+      href="javascript:void(goog.events.unlisten($('link1'), 'click', one))">Remove One</a> | <a
+      href="javascript:void(goog.events.unlisten($('link1'), 'click', two))">Remove Two</a> | <a
+      href="javascript:void(goog.events.unlisten($('link1'), 'click', three))">Remove Three</a> |
   </p>
   <pre id="info"></pre>
 
@@ -33,9 +30,7 @@ See the COPYING file for details.
     Test 1
     <div id="test2" style="background-color: lightblue;">
       &nbsp; &nbsp; Test 2
-      <div id="test3" style="background-color: lightyellow;">
-        &nbsp; &nbsp; &nbsp; &nbsp; Test 3
-      </div>
+      <div id="test3" style="background-color: lightyellow;">&nbsp; &nbsp; &nbsp; &nbsp; Test 3</div>
       &nbsp; &nbsp; Test 2
     </div>
     Test 1

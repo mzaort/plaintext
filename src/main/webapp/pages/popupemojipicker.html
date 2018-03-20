@@ -7,121 +7,117 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>Popup Emoji Picker</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-  <script type="text/javascript" src="../lib/closure-library/closure/goog/base.js"></script>
-  <script type="text/javascript">
+<title>Popup Emoji Picker</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<script type="text/javascript" src="../lib/closure-library/closure/goog/base.js"></script>
+<script type="text/javascript">
     goog.require('goog.dom.classlist');
     goog.require('goog.ui.emoji.PopupEmojiPicker');
     goog.require('goog.ui.emoji.EmojiPicker');
     goog.require('goog.ui.emoji.SpriteInfo');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/css/emojipicker.css">
-  <link rel="stylesheet" href="../css/css/emojisprite.css">
-  <style type="text/css">
-    /* TabPane styles */
-    .goog-tabpane {
-      background: threedface;
-      padding-left: 1px;
-    }
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/css/emojipicker.css">
+<link rel="stylesheet" href="../css/css/emojisprite.css">
+<style type="text/css">
+/* TabPane styles */
+.goog-tabpane {
+	background: threedface;
+	padding-left: 1px;
+}
 
-    .goog-tabpane-tabs {
-      list-style: none;
-      margin: 0px;
-      padding: 0px;
-    }
+.goog-tabpane-tabs {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
 
-    .goog-tabpane-cont {
-      overflow: auto;
-      clear: both;
-      background: threedface;
-      border: 1px solid;
-      border-color: threedhighlight threedshadow threedshadow threedhighlight;
-      padding: 2px;
-    }
+.goog-tabpane-cont {
+	overflow: auto;
+	clear: both;
+	background: threedface;
+	border: 1px solid;
+	border-color: threedhighlight threedshadow threedshadow threedhighlight;
+	padding: 2px;
+}
 
-    .goog-tabpane-tab, .goog-tabpane-tab-selected {
-      display: block;
-      float: left;
-      padding: 0px 3ex;
-      background: threedface;
-      border: 1px solid;
-      border-color: threedhighlight threedshadow threedface threedhighlight;
-      margin: 0px;
-    }
+.goog-tabpane-tab, .goog-tabpane-tab-selected {
+	display: block;
+	float: left;
+	padding: 0px 3ex;
+	background: threedface;
+	border: 1px solid;
+	border-color: threedhighlight threedshadow threedface threedhighlight;
+	margin: 0px;
+}
 
-    .goog-tabpane-tab {
-      margin-top: 0px;
-    }
+.goog-tabpane-tab {
+	margin-top: 0px;
+}
 
-    .goog-tabpane-tab-selected {
-      padding-bottom: 2px;
-      padding-top: 2px;
-      position: relative;
-      top: 1px;
-      font-weight: bold;
-    }
+.goog-tabpane-tab-selected {
+	padding-bottom: 2px;
+	padding-top: 2px;
+	position: relative;
+	top: 1px;
+	font-weight: bold;
+}
 
-    /* Emojipicker styles */
-    .singlePagePicker .goog-palette {
-      border: 1px solid black;
-    }
+/* Emojipicker styles */
+.singlePagePicker .goog-palette {
+	border: 1px solid black;
+}
 
-    .popupButton {
-      display: block;
-      width: 100px;
-      text-align: center;
-      padding: 10px;
-      font: normal 0.8em verdana,sans-serif;
-      border: 1px solid #000;
-    }
-  </style>
+.popupButton {
+	display: block;
+	width: 100px;
+	text-align: center;
+	padding: 10px;
+	font: normal 0.8em verdana, sans-serif;
+	border: 1px solid #000;
+}
+</style>
 </head>
 <body>
-<h3>Popup Emoji Picker Demo</h3>
-This is a demo of popupemojipickers and docked emoji pickers. Selecting an
-emoji inserts a pseudo image tag into the text area with the id of that emoji.
+  <h3>Popup Emoji Picker Demo</h3>
+  This is a demo of popupemojipickers and docked emoji pickers. Selecting an emoji inserts a pseudo image tag into the
+  text area with the id of that emoji.
 
-<h4>Sprited Emojipicker (contains a mix of sprites and non-sprites):</h4>
-<div id="spriteDock1" class="singlePagePicker"></div>
+  <h4>Sprited Emojipicker (contains a mix of sprites and non-sprites):</h4>
+  <div id="spriteDock1" class="singlePagePicker"></div>
 
-<h4>Sprited Progressively-rendered Emojipicker (contains a mix of sprites and
-  non-sprites):</h4>
-<div id="spriteDock2" class="singlePagePicker"></div>
-<h4>Popup Emoji:</h4>
-<a href="javascript:void(0)" class="popupButton" id="button1">Gimme some emoji</a>
-<hr>
+  <h4>Sprited Progressively-rendered Emojipicker (contains a mix of sprites and non-sprites):</h4>
+  <div id="spriteDock2" class="singlePagePicker"></div>
+  <h4>Popup Emoji:</h4>
+  <a href="javascript:void(0)" class="popupButton" id="button1">Gimme some emoji</a>
+  <hr>
 
-<h4>Fast-load Progressive Sprited Emojipicker</h4>
-<div id="fastLoad1" class="singlePagePicker"></div>
+  <h4>Fast-load Progressive Sprited Emojipicker</h4>
+  <div id="fastLoad1" class="singlePagePicker"></div>
 
-<h4>Fast-load Non-progressive Sprited Emojipicker</h4>
-<div id="fastLoad2" class="singlePagePicker"></div>
+  <h4>Fast-load Non-progressive Sprited Emojipicker</h4>
+  <div id="fastLoad2" class="singlePagePicker"></div>
 
-<div id="spriteDock3" class="singlePagePicker"></div>
+  <div id="spriteDock3" class="singlePagePicker"></div>
 
-<h4>Docked emoji:</h4>
-<div id="emojiDock"></div>
+  <h4>Docked emoji:</h4>
+  <div id="emojiDock"></div>
 
-<h4>Single Page of Emoji</h4>
-<div id="singlePageEmojiPicker" class="singlePagePicker"></div>
+  <h4>Single Page of Emoji</h4>
+  <div id="singlePageEmojiPicker" class="singlePagePicker"></div>
 
-<h4>Delayed load popup picker:</h4>
-<a href="javascript:void(0)" class="popupButton" id="button2">More emoji</a>
+  <h4>Delayed load popup picker:</h4>
+  <a href="javascript:void(0)" class="popupButton" id="button2">More emoji</a>
 
-<h4>Delayed load docked picker:</h4>
-<a href="javascript:void(0)" id="delayedLoadDockDiv" class="popupButton"
-   onclick="loadPicker()">
-  Click to load
-</a>
-<div id="delayedLoadDock" class="singlePagePicker"></div>
+  <h4>Delayed load docked picker:</h4>
+  <a href="javascript:void(0)" id="delayedLoadDockDiv" class="popupButton" onclick="loadPicker()"> Click to load </a>
+  <div id="delayedLoadDock" class="singlePagePicker"></div>
 
-<textarea rows="20" cols="200" id="text">
+  <textarea rows="20" cols="200" id="text">
 
 </textarea>
 
-<script type="text/javascript">
+  <script type="text/javascript">
   var emojiGroup1 = [
       'Emoji 1',
       [

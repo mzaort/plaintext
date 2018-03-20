@@ -9,11 +9,9 @@ See the COPYING file for details.
 <head>
 <title></title>
 <style>
-
 label {
-  display: block;
+	display: block;
 }
-
 </style>
 <script src="../lib/closure-library/closure/goog/base.js"></script>
 <script>
@@ -23,7 +21,7 @@ goog.require('goog.dom.selection');
 </head>
 <body>
 
-<script>
+  <script>
 
 var $ = goog.dom.getElement;
 
@@ -61,21 +59,23 @@ function sync(i) {
 
 </script>
 
-<label>selectionStart <input type=text id=selectionStart1></label>
-<label>selectionEnd <input type=text id=selectionEnd1></label>
-<label>selectionText <input type=text id=selectionText1></label>
-<button onclick="update(1)">Update Textarea</button><br>
+  <label>selectionStart <input type=text id=selectionStart1></label>
+  <label>selectionEnd <input type=text id=selectionEnd1></label>
+  <label>selectionText <input type=text id=selectionText1></label>
+  <button onclick="update(1)">Update Textarea</button>
+  <br>
 
-<textarea id=textField1 onkeydown="sync(1)" onkeyup="sync(1)"></textarea>
+  <textarea id=textField1 onkeydown="sync(1)" onkeyup="sync(1)"></textarea>
 
 
-<label>selectionStart <input type=text id=selectionStart2></label>
-<label>selectionEnd <input type=text id=selectionEnd2></label>
-<label>selectionText <input type=text id=selectionText2></label>
-<button onclick="update(2)">Update Input</button><br>
-<input type=text id=textField2 onkeydown="sync(2)" onkeyup="sync(2)">
+  <label>selectionStart <input type=text id=selectionStart2></label>
+  <label>selectionEnd <input type=text id=selectionEnd2></label>
+  <label>selectionText <input type=text id=selectionText2></label>
+  <button onclick="update(2)">Update Input</button>
+  <br>
+  <input type=text id=textField2 onkeydown="sync(2)" onkeyup="sync(2)">
 
-<script>
+  <script>
 
 window.onload = function() {
   sync(1);

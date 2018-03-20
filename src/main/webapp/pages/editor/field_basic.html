@@ -8,37 +8,37 @@ See the COPYING file for details.
 -->
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>goog.editor.Field</title>
-  <script src="../../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.editor.Field</title>
+<script src="../../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.dom');
     goog.require('goog.editor.Field');
   </script>
-  <link rel="stylesheet" href="../../css/css/demo.css">
-  <style>
-    #editMe {
-      width: 300px;
-      height: 150px;
-      background-color: white;
-      border: 1px solid grey;
-    }
-  </style>
+<link rel="stylesheet" href="../../css/css/demo.css">
+<style>
+#editMe {
+	width: 300px;
+	height: 150px;
+	background-color: white;
+	border: 1px solid grey;
+}
+</style>
 </head>
 <body>
   <h1>goog.editor.Field</h1>
   <p>This is a very basic demonstration of how to make a region editable.</p>
   <input type="button" value="Make Editable" onclick="makeFieldEditable();" />
-  <input type="button" value="Make Uneditable"
-      onclick="makeFieldUneditable();" />
-  <br><br>
-  <div id="editMe">I am a regular div.  Click "Make Editable" above to transform me into an editable region.</div>
+  <input type="button" value="Make Uneditable" onclick="makeFieldUneditable();" />
+  <br>
+  <br>
+  <div id="editMe">I am a regular div. Click "Make Editable" above to transform me into an editable region.</div>
   <hr>
-  <p><b>Current field contents</b>
-  (updates as contents of the editable field above change):<br>
-  <textarea id="fieldContents" style="height:100px;width:400px;"></textarea><br>
-  <input type="button" value="Set Field Contents"
-      onclick="myField.setHtml(false, goog.dom.getElement('fieldContents').value);" />
-  (Use to set contents of the editable field to the contents of this textarea)
+  <p>
+    <b>Current field contents</b> (updates as contents of the editable field above change):<br>
+    <textarea id="fieldContents" style="height: 100px; width: 400px;"></textarea>
+    <br> <input type="button" value="Set Field Contents"
+      onclick="myField.setHtml(false, goog.dom.getElement('fieldContents').value);" /> (Use to set contents of the
+    editable field to the contents of this textarea)
   </p>
 
   <script>

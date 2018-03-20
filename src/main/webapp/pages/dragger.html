@@ -19,41 +19,37 @@ goog.require('goog.fx.Dragger.EventType');
 </script>
 <link rel="stylesheet" href="../css/css/demo.css">
 <style>
-
 #stopper {
-  position: absolute;
-  padding: 5px;
-  right: 20px;
-  top: 20px;
-  width: 100px;
-  height: 100px;
-  background: pink;
-  border: 1px solid red;
+	position: absolute;
+	padding: 5px;
+	right: 20px;
+	top: 20px;
+	width: 100px;
+	height: 100px;
+	background: pink;
+	border: 1px solid red;
 }
 
 #out {
-  display: inline;
-  background: #eee;
-  border: 1px solid #ddd;
-  padding: 5px;
+	display: inline;
+	background: #eee;
+	border: 1px solid #ddd;
+	padding: 5px;
 }
-
 </style>
 </head>
 <body>
 
-<h1>goog.fx.Dragger</h1>
+  <h1>goog.fx.Dragger</h1>
 
-<p>This demo shows how to use a dragger to capture mouse move events. It tests
-that you can drag things outside the window and that alerts ends the dragging.
+  <p>This demo shows how to use a dragger to capture mouse move events. It tests that you can drag things outside
+    the window and that alerts ends the dragging.
+  <h2 id=test onclick="alert('Click')">Drag me</h2>
+  <pre id=out>Status</pre>
 
-<h2 id=test onclick="alert('Click')">Drag me</h2>
-<pre id=out>Status</pre>
+  <div id=stopper onmouseover="alert('Stop!')">Drag over me to generate an alert</div>
 
-<div id=stopper onmouseover="alert('Stop!')">Drag over me to generate an
-alert</div>
-
-<script>
+  <script>
 
 function update(e) {
   print(e.clientX + ', ' +  e.clientY);

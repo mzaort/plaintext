@@ -7,9 +7,9 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.Checkbox</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.Checkbox</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.debug.DivConsole');
     goog.require('goog.debug.LogManager');
     goog.require('goog.dom');
@@ -18,33 +18,36 @@ See the COPYING file for details.
     goog.require('goog.ui.Checkbox');
     goog.require('goog.ui.Checkbox.State');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/checkbox.css">
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/checkbox.css">
 </head>
 <body>
   <h1>goog.ui.Checkbox</h1>
   <p>This is a tri-state checkbox.</p>
   <div>
-    <span id="enable" class="goog-checkbox-checked"></span>Enable/disable</div>
+    <span id="enable" class="goog-checkbox-checked"></span>Enable/disable
+  </div>
   <br>
-  <div><span id="all" class="goog-checkbox-undetermined"></span>root</div>
+  <div>
+    <span id="all" class="goog-checkbox-undetermined"></span>root
+  </div>
   <div style="margin-left: 1em;">
-    <div><span id="leaf1" class="goog-checkbox-checked"></span>leaf 1</div>
-    <div><span id="leaf2"></span>leaf 2</div>
+    <div>
+      <span id="leaf1" class="goog-checkbox-checked"></span>leaf 1
+    </div>
+    <div>
+      <span id="leaf2"></span>leaf 2
+    </div>
   </div>
   <br>
-  <div id="render">
-    Created with render
-  </div>
+  <div id="render">Created with render</div>
   <br>
   <div id="decorate">
-    Created with decorate
-    <span class="goog-checkbox"></span>
-    <span class="goog-checkbox goog-checkbox-checked"></span>
-    <span class="goog-checkbox goog-checkbox-undetermined"></span>
-    <span class="goog-checkbox goog-checkbox-disabled"></span>
+    Created with decorate <span class="goog-checkbox"></span> <span class="goog-checkbox goog-checkbox-checked"></span>
+    <span class="goog-checkbox goog-checkbox-undetermined"></span> <span class="goog-checkbox goog-checkbox-disabled"></span>
   </div>
-  <br><br>
+  <br>
+  <br>
   <!-- Event log. -->
   <fieldset class="goog-debug-panel">
     <legend>Event Log for 'root', 'leaf1', 'leaf2'</legend>

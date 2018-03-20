@@ -7,9 +7,9 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.Container</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.Container</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.array');
     goog.require('goog.debug.DivConsole');
     goog.require('goog.debug.LogManager');
@@ -31,181 +31,136 @@ See the COPYING file for details.
     goog.require('goog.ui.ToggleButton');
     goog.require('goog.dom.TagName');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/button.css">
-  <link rel="stylesheet" href="../css/menubutton.css">
-  <style>
-    /* Demo styles for goog.ui.Control. */
-    .goog-control {
-      position: relative;
-      margin: 2px;
-      border: 2px solid #036;
-      padding: 2px;
-      font: normal 9pt "Trebuchet MS", Tahoma, Arial, sans-serif;
-      color: #036;
-      background-color:#69c;
-      cursor: pointer;
-      outline: none !important;
-    }
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/button.css">
+<link rel="stylesheet" href="../css/menubutton.css">
+<style>
+/* Demo styles for goog.ui.Control. */
+.goog-control {
+	position: relative;
+	margin: 2px;
+	border: 2px solid #036;
+	padding: 2px;
+	font: normal 9pt "Trebuchet MS", Tahoma, Arial, sans-serif;
+	color: #036;
+	background-color: #69c;
+	cursor: pointer;
+	outline: none !important;
+}
 
-    .goog-control-disabled {
-      border-color: #888;
-      color: #888;
-      background-color: #ccc;
-    }
+.goog-control-disabled {
+	border-color: #888;
+	color: #888;
+	background-color: #ccc;
+}
 
-    .goog-control-hover {
-      border-color: #369;
-      color: #369;
-      background-color: #9cf;
-    }
+.goog-control-hover {
+	border-color: #369;
+	color: #369;
+	background-color: #9cf;
+}
 
-    .goog-control-active,
-    .goog-control-selected,
-    .goog-control-checked {
-      border-color: #9cf;
-      color: #9cf;
-      background-color: #369;
-    }
+.goog-control-active, .goog-control-selected, .goog-control-checked {
+	border-color: #9cf;
+	color: #9cf;
+	background-color: #369;
+}
 
-    .goog-control-focused {
-      border-color: orange;
-    }
+.goog-control-focused {
+	border-color: orange;
+}
 
-    /* Demo styles for goog.ui.Container */
-    .goog-container {
-      position: relative;
-      margin: 0;
-      border: 0;
-      padding: 0;
-      background-color: #eee;
-      outline: none !important;
-      zoom: 1; /* The container element must have layout on IE. */
-    }
+/* Demo styles for goog.ui.Container */
+.goog-container {
+	position: relative;
+	margin: 0;
+	border: 0;
+	padding: 0;
+	background-color: #eee;
+	outline: none !important;
+	zoom: 1; /* The container element must have layout on IE. */
+}
 
-    .goog-container-vertical {
-      width: 25ex;
-      border: 1px solid #888;
-    }
+.goog-container-vertical {
+	width: 25ex;
+	border: 1px solid #888;
+}
 
-    .goog-container-horizontal {
-      border-bottom: 1px solid #d5d5d5;
-      background: #fafafa url(../images/toolbar-bg.png) repeat-x bottom left;
-    }
+.goog-container-horizontal {
+	border-bottom: 1px solid #d5d5d5;
+	background: #fafafa url(../images/toolbar-bg.png) repeat-x bottom left;
+}
 
-    /* Additional demo styles. */
+/* Additional demo styles. */
+.goog-month .goog-menu-button-caption {
+	width: 18ex;
+}
 
-    .goog-month .goog-menu-button-caption {
-      width: 18ex;
-    }
+.goog-year .goog-menu-button-caption {
+	width: 6ex;
+}
 
-    .goog-year .goog-menu-button-caption {
-      width: 6ex;
-    }
+.goog-edit-font .goog-menu-button-caption {
+	width: 15ex;
+}
 
-    .goog-edit-font .goog-menu-button-caption {
-      width: 15ex;
-    }
+.goog-edit-font-size .goog-menu-button-caption {
+	width: 5ex;
+}
 
-    .goog-edit-font-size .goog-menu-button-caption {
-      width: 5ex;
-    }
+.goog-edit-bold {
+	width: 14px;
+	background: url(../images/toolbar_icons.gif) no-repeat -1px;
+}
 
-    .goog-edit-bold {
-      width: 14px;
-      background: url(../images/toolbar_icons.gif) no-repeat -1px;
-    }
+.goog-edit-italic {
+	width: 14px;
+	background: url(../images/toolbar_icons.gif) no-repeat -17px;
+}
 
-    .goog-edit-italic {
-      width: 14px;
-      background: url(../images/toolbar_icons.gif) no-repeat -17px;
-    }
+.goog-edit-underline {
+	width: 14px;
+	background: url(../images/toolbar_icons.gif) no-repeat -33px;
+}
 
-    .goog-edit-underline {
-      width: 14px;
-      background: url(../images/toolbar_icons.gif) no-repeat -33px;
-    }
-
-    #tb4_highlight_links span {
-      border: 1px solid #888;
-      cursor: pointer;
-      padding: 2px 4px;
-    }
-  </style>
+#tb4_highlight_links span {
+	border: 1px solid #888;
+	cursor: pointer;
+	padding: 2px 4px;
+}
+</style>
 </head>
 <body>
   <h2>goog.ui.Container</h2>
-  <p><b>goog.ui.Container</b> is a base class for menus and toolbars.</p>
+  <p>
+    <b>goog.ui.Container</b> is a base class for menus and toolbars.
+  </p>
   <fieldset>
     <legend>These containers were created programmatically:</legend>
     <table border="0" cellpadding="8" cellspacing="0" width="100%">
       <tbody>
         <tr valign="top">
-          <td width="50%" id="vc">
-            Vertical container example:
-          </td>
-          <td width="50%" id="hc">
-            Horizontal container example:
-          </td>
+          <td width="50%" id="vc">Vertical container example:</td>
+          <td width="50%" id="hc">Horizontal container example:</td>
         </tr>
         <tr valign="top">
-          <td>
-            <label>
-              Show vertical container:
-              <input type="checkbox" id="show_vc" checked>
-            </label>
-            &nbsp;
-            <label>
-              Enable vertical container:
-              <input type="checkbox" id="enable_vc" checked>
-            </label>
-            <br>
-            <label>
-              Show Porthos:
-              <input type="checkbox" id="show_porthos" checked>
-            </label>
-            &nbsp;
-            <label>
-              Enable Porthos:
-              <input type="checkbox" id="enable_porthos">
-            </label>
-            <br>
-            <label>
-              Enable transition events:
-              <input type="checkbox" id="enable_vc_events" checked>
-            </label>
-          </td>
-          <td>
-            <label>
-              Show horizontal container:
-              <input type="checkbox" id="show_hc" checked>
-            </label>
-            &nbsp;
-            <label>
-              Enable horizontal container:
-              <input type="checkbox" id="enable_hc" checked>
-            </label>
-            <br>
-            <label>
-              Show Doc:
-              <input type="checkbox" id="show_doc" checked>
-            </label>
-            &nbsp;
-            <label>
-              Enable Doc:
-              <input type="checkbox" id="enable_doc">
-            </label>
-            <br>
-            <label>
-              Enable transition events:
-              <input type="checkbox" id="enable_hc_events" checked>
-            </label>
-          </td>
+          <td><label> Show vertical container: <input type="checkbox" id="show_vc" checked>
+          </label> &nbsp; <label> Enable vertical container: <input type="checkbox" id="enable_vc" checked>
+          </label> <br> <label> Show Porthos: <input type="checkbox" id="show_porthos" checked>
+          </label> &nbsp; <label> Enable Porthos: <input type="checkbox" id="enable_porthos">
+          </label> <br> <label> Enable transition events: <input type="checkbox" id="enable_vc_events" checked>
+          </label></td>
+          <td><label> Show horizontal container: <input type="checkbox" id="show_hc" checked>
+          </label> &nbsp; <label> Enable horizontal container: <input type="checkbox" id="enable_hc" checked>
+          </label> <br> <label> Show Doc: <input type="checkbox" id="show_doc" checked>
+          </label> &nbsp; <label> Enable Doc: <input type="checkbox" id="enable_doc">
+          </label> <br> <label> Enable transition events: <input type="checkbox" id="enable_hc_events" checked>
+          </label></td>
         </tr>
       </tbody>
     </table>
-    <span class="hint">Try enabling and disabling containers with &amp; without
-      state transition events, and compare performance!</span>
+    <span class="hint">Try enabling and disabling containers with &amp; without state transition events, and
+      compare performance!</span>
   </fieldset>
   <br>
   <br>
@@ -218,9 +173,7 @@ See the COPYING file for details.
   <br>
   <fieldset>
     <legend>Another horizontal container:</legend>
-    <label>
-      This is starting to look useful...  Enable toolbar:
-      <input type="checkbox" id="enable_tb" checked>
+    <label> This is starting to look useful... Enable toolbar: <input type="checkbox" id="enable_tb" checked>
     </label>
     <div id="tb"></div>
   </fieldset>
@@ -228,10 +181,8 @@ See the COPYING file for details.
   <br>
   <fieldset>
     <legend>A decorated container:</legend>
-    <label>
-      It's much easier to decorate than to create programmatically...
-      Enable decorated toolbar:
-      <input type="checkbox" id="enable_tb2">
+    <label> It's much easier to decorate than to create programmatically... Enable decorated toolbar: <input
+      type="checkbox" id="enable_tb2">
     </label>
     <div id="tb2" class="goog-container-horizontal goog-container-disabled">
       <div id="month" class="goog-month goog-select">
@@ -266,31 +217,23 @@ See the COPYING file for details.
           <div class="goog-option">2010</div>
         </div>
       </div>
-      <div id="foo" class="goog-toggle-button">
-        Toggle Button
-      </div>
+      <div id="foo" class="goog-toggle-button">Toggle Button</div>
       <div id="bar" class="goog-toggle-button">
-        <div><b><i>Fancy</i></b> Toggle Button</div>
+        <div>
+          <b><i>Fancy</i></b> Toggle Button
+        </div>
       </div>
-      <div id="fee" class="goog-toggle-button">
-        Another Button
-      </div>
+      <div id="fee" class="goog-toggle-button">Another Button</div>
     </div>
   </fieldset>
   <br>
   <br>
   <fieldset>
     <legend>The same container, right-to-left:</legend>
-    <label>
-      Show right-to-left toolbar:
-      <input type="checkbox" id="show_tb3" checked>
+    <label> Show right-to-left toolbar: <input type="checkbox" id="show_tb3" checked>
+    </label> <label> Enable right-to-left toolbar: <input type="checkbox" id="enable_tb3">
     </label>
-    <label>
-      Enable right-to-left toolbar:
-      <input type="checkbox" id="enable_tb3">
-    </label>
-    <div id="tb3" class="goog-container-horizontal goog-container-disabled"
-        dir="rtl">
+    <div id="tb3" class="goog-container-horizontal goog-container-disabled" dir="rtl">
       <div class="goog-month goog-select">
         Select month
         <div class="goog-menu" dir="rtl">
@@ -323,40 +266,31 @@ See the COPYING file for details.
           <div class="goog-option">2010</div>
         </div>
       </div>
+      <div class="goog-toggle-button">Toggle Button</div>
       <div class="goog-toggle-button">
-        Toggle Button
+        <div>
+          <b><i>Fancy</i></b> Toggle Button
+        </div>
       </div>
-      <div class="goog-toggle-button">
-        <div><b><i>Fancy</i></b> Toggle Button</div>
-      </div>
-      <div class="goog-toggle-button">
-        Another Button
-      </div>
+      <div class="goog-toggle-button">Another Button</div>
     </div>
   </fieldset>
   <br>
   <br>
   <fieldset>
     <legend>A scrolling container:</legend>
-    <label>
-      This container scrolls so that the highlighted item is visible.
-      Here's a mix of block items and inline block items, which both work.
-    </label>
+    <label> This container scrolls so that the highlighted item is visible. Here's a mix of block items and
+      inline block items, which both work. </label>
     <p>
-      Put focus in the text box and use the arrow keys:
-      <input id="tb4_key_target">
+      Put focus in the text box and use the arrow keys: <input id="tb4_key_target">
     </p>
     <p>
-      Or quick jump to item:
-      <span id="tb4_highlight_links">
-        <span>0</span> <span>1</span> <span>2</span> <span>3</span>
-        <span>4</span> <span>5</span> <span>6</span> <span>7</span>
-        <span>8</span> <span>9</span> <span>10</span> <span>11</span>
+      Or quick jump to item: <span id="tb4_highlight_links"> <span>0</span> <span>1</span> <span>2</span> <span>3</span>
+        <span>4</span> <span>5</span> <span>6</span> <span>7</span> <span>8</span> <span>9</span> <span>10</span> <span>11</span>
         <span>12</span> <span>13</span> <span>14</span> <span>15</span>
       </span>
     </p>
-    <div id="tb4" class="goog-container-vertical"
-        style="height: 100px; overflow-y: scroll">
+    <div id="tb4" class="goog-container-vertical" style="height: 100px; overflow-y: scroll">
       <div class="goog-month goog-menuitem">menuitem 0</div>
       <div class="goog-month goog-menuitem">menuitem 1</div>
       <div class="goog-month goog-menuitem">menuitem 2</div>

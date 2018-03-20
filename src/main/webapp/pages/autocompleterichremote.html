@@ -9,57 +9,50 @@ See the COPYING file for details.
 <!--
 -->
 <head>
-  <title>goog.ui.ac.RichRemote</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.ac.RichRemote</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require("goog.array");
     goog.require("goog.dom");
     goog.require("goog.ui.ac.RichRemote");
     goog.require('goog.dom.TagName');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/autocomplete.css">
-  <style type="text/css">
-    .apple {
-      background-color: #990033;
-      color: #FFFFFF;
-      margin: 3px;
-      font-style: italic;
-    }
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/autocomplete.css">
+<style type="text/css">
+.apple {
+	background-color: #990033;
+	color: #FFFFFF;
+	margin: 3px;
+	font-style: italic;
+}
 
-    .citrus {
-      background-color: #CCCC33;
-      color: #FFFFFF;
-      margin: 3px;
-      font-style: italic;
-    }
+.citrus {
+	background-color: #CCCC33;
+	color: #FFFFFF;
+	margin: 3px;
+	font-style: italic;
+}
 
-    .berry {
-      background-color: #009933;
-      color: #FFFFFF;
-      margin: 3px;
-      font-style: italic;
-    }
-  </style>
+.berry {
+	background-color: #009933;
+	color: #FFFFFF;
+	margin: 3px;
+	font-style: italic;
+}
+</style>
 </head>
 <body>
   <h1>goog.ui.ac.RichRemote</h1>
   <p>
-    Fruit Selector:<br>
-    <input type="text" id="txtInput" style="width:500px"/>
-    <input type="checkbox" id="berryAllergy" onclick="setFilter()"/>
-    <label for="berryAllergy">berry allergy</label>
-    <input type="checkbox" id="setHighlighting"
-        onclick="setHighlighting()"/>
-    <label for="setHighlighting">standard highlighting</label>
-    <p>
-      This data is being pulled from the server at
-      <a href="autocompleterichremotedata.js">autocompleterichremotedata.js</a>.
-    </p>
-    <p>
-      Ideally the server would perform a search on the query and would only
-      return relevant results; however, this response is static.
-    </p>
+    Fruit Selector:<br> <input type="text" id="txtInput" style="width: 500px" /> <input type="checkbox"
+      id="berryAllergy" onclick="setFilter()" /> <label for="berryAllergy">berry allergy</label> <input type="checkbox"
+      id="setHighlighting" onclick="setHighlighting()" /> <label for="setHighlighting">standard highlighting</label>
+  <p>
+    This data is being pulled from the server at <a href="autocompleterichremotedata.js">autocompleterichremotedata.js</a>.
+  </p>
+  <p>Ideally the server would perform a search on the query and would only return relevant results; however, this
+    response is static.</p>
   </p>
 
   <iframe id="wikipedia" width="900" height="600"></iframe>

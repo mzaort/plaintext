@@ -7,11 +7,9 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>
-    goog.ui.ImagelessButtonRenderer Demo
-  </title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.ImagelessButtonRenderer Demo</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.array');
     goog.require('goog.debug.DivConsole');
     goog.require('goog.debug.LogManager');
@@ -24,94 +22,82 @@ See the COPYING file for details.
     goog.require('goog.ui.decorate');
     goog.require('goog.dom.TagName');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/imagelessbutton.css">
-  <style>
-    /* Base class for all icon elements. */
-    .icon {
-      height: 16px;
-      width: 16px;
-      margin: 0 4px 0 0;
-      background-image: url(../images/toolbar_icons.gif);
-      background-repeat: no-repeat;
-      vertical-align: middle;
-    }
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/imagelessbutton.css">
+<style>
+/* Base class for all icon elements. */
+.icon {
+	height: 16px;
+	width: 16px;
+	margin: 0 4px 0 0;
+	background-image: url(../images/toolbar_icons.gif);
+	background-repeat: no-repeat;
+	vertical-align: middle;
+}
 
-    /* "Highlight" icon. */
-    .highlight-icon{
-      background-position: -64px;
-    }
+/* "Highlight" icon. */
+.highlight-icon {
+	background-position: -64px;
+}
 
-    /* "Insert Image" icon. */
-    .insert-image-icon {
-      background-position: -80px;
-    }
+/* "Insert Image" icon. */
+.insert-image-icon {
+	background-position: -80px;
+}
 
-    /* Custom style for the "default" button. */
-    .default-button {
-      font-weight: bold;
-    }
-  </style>
+/* Custom style for the "default" button. */
+.default-button {
+	font-weight: bold;
+}
+</style>
 </head>
 <body>
   <h1>goog.ui.ImagelessButtonRenderer</h1>
   <fieldset>
     <legend>
-      These buttons were rendered using
-      <strong>goog.ui.ImagelessButtonRenderer</strong>:
+      These buttons were rendered using <strong>goog.ui.ImagelessButtonRenderer</strong>:
     </legend>
-    <br/>
-    These buttons were created programmatically:<br/>
+    <br /> These buttons were created programmatically:<br />
     <div id="cb1"></div>
-    <br/>
-    These buttons were created by decorating some DIVs, and they dispatch
-    state transition events (watch the event log):<br/>
+    <br /> These buttons were created by decorating some DIVs, and they dispatch state transition events (watch the
+    event log):<br />
     <div id="cb2">
       <!-- On FF2, if you don't enclose the contents of the button in a SPAN,
            the bold element isn't rendered.  Works on every other browser. -->
-      <div id="foo" class="goog-imageless-button"
-          title="Title specified in HTML">
-        <span>Decorated <b>Button</b>, yay!</span>
+      <div id="foo" class="goog-imageless-button" title="Title specified in HTML">
+        <span>Decorated <b>Button</b>, yay!
+        </span>
       </div>
       <div id="bar" class="goog-imageless-button goog-imageless-button-disabled"
-          title="Initialized to DISABLED in HTML...">Decorated Disabled</div>
+        title="Initialized to DISABLED in HTML...">Decorated Disabled</div>
       <div id="fee" class="goog-imageless-button">Another Button</div>
-      <div id="btn1"
-           class="goog-imageless-button goog-imageless-button-collapse-right">
-        Archive
-      </div><div id="btn2"
-          class="goog-imageless-button goog-imageless-button-collapse-right goog-imageless-button-collapse-left">
-        Delete
-      </div><div id="btn3"
-          class="goog-imageless-button goog-imageless-button-collapse-left">
-        Report Spam
-      </div>
+      <div id="btn1" class="goog-imageless-button goog-imageless-button-collapse-right">Archive</div>
+      <div id="btn2"
+        class="goog-imageless-button goog-imageless-button-collapse-right goog-imageless-button-collapse-left">
+        Delete</div>
+      <div id="btn3" class="goog-imageless-button goog-imageless-button-collapse-left">Report Spam</div>
     </div>
-    <br/>
-    Use these <strong>ToggleButton</strong>s to hide/show and enable/disable
-    the middle button:<br/>
-    <div id="toggleEnable" class="goog-imageless-toggle-button"
-        title="Click here to enable/disable the button above">Enable</div>
+    <br /> Use these <strong>ToggleButton</strong>s to hide/show and enable/disable the middle button:<br />
+    <div id="toggleEnable" class="goog-imageless-toggle-button" title="Click here to enable/disable the button above">Enable</div>
 
-    <div id="hideShow"
-        class="goog-imageless-toggle-button goog-imageless-button-checked"
-        title="Click here to hide/show the button above">Show</div>
+    <div id="hideShow" class="goog-imageless-toggle-button goog-imageless-button-checked"
+      title="Click here to hide/show the button above">Show</div>
 
-    <br/><br/>
-    Combined toggle buttons<br/>
-      <div id="btn4" class="goog-imageless-toggle-button goog-imageless-button-collapse-right">
-        Bold
-      </div><div id="btn5" class="goog-imageless-toggle-button goog-imageless-button-collapse-right goog-imageless-button-collapse-left">
-        Italics
-      </div><div id="btn6" class="goog-imageless-toggle-button goog-imageless-button-collapse-left goog-imageless-button-checked">
-        Underlined
-      </div>
-    <br/><br/>
-    These buttons have icons, and the second one has an extra CSS class:<br/>
+    <br />
+    <br /> Combined toggle buttons<br />
+    <div id="btn4" class="goog-imageless-toggle-button goog-imageless-button-collapse-right">Bold</div>
+    <div id="btn5"
+      class="goog-imageless-toggle-button goog-imageless-button-collapse-right goog-imageless-button-collapse-left">
+      Italics</div>
+    <div id="btn6"
+      class="goog-imageless-toggle-button goog-imageless-button-collapse-left goog-imageless-button-checked">
+      Underlined</div>
+    <br />
+    <br /> These buttons have icons, and the second one has an extra CSS class:<br />
     <div id="iconbuttons"></div>
-    <br/>
+    <br />
   </fieldset>
-  <br/>
+  <br />
   <div id="perf"></div>
   <!-- Event log. -->
   <fieldset class="goog-debug-panel">

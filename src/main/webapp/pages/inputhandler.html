@@ -19,24 +19,24 @@ goog.require('goog.log');
 <link rel="stylesheet" href="../css/css/demo.css">
 </head>
 <body>
-<h1>goog.events.InputHandler</h1>
-<p><button onclick="addSome('text')">Add Some</button>
-<input type="text" id="text"><span></span>
+  <h1>goog.events.InputHandler</h1>
+  <p>
+    <button onclick="addSome('text')">Add Some</button>
+    <input type="text" id="text"><span></span>
+  <p>
+    <button onclick="addSome('password')">Add Some</button>
+    <input type="password" id="password"><span></span>
+  <p>
+    <button onclick="addSome('textarea')">Add Some</button>
+    <textarea id="textarea"></textarea>
+    <span></span> <br>
+    <br>
+  <fieldset class="goog-debug-panel">
+    <legend>Event Log</legend>
+    <div id="log" style="height: 400px;"></div>
+  </fieldset>
 
-<p><button onclick="addSome('password')">Add Some</button>
-<input type="password" id="password"><span></span>
-
-
-<p><button onclick="addSome('textarea')">Add Some</button>
-<textarea id="textarea"></textarea><span></span>
-
-<br><br>
-<fieldset class="goog-debug-panel">
-  <legend>Event Log</legend>
-  <div id="log" style="height: 400px;"></div>
-</fieldset>
-
-<script>
+  <script>
 var $ = goog.dom.getElement;
 var logger = goog.log.getLogger('demo');
 var logconsole = new goog.debug.DivConsole(goog.dom.getElement('log'));

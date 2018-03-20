@@ -7,37 +7,39 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.SubMenu</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.SubMenu</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.debug');
     goog.require('goog.positioning.Corner');
     goog.require('goog.ui.Menu');
     goog.require('goog.ui.SubMenu');
     goog.require('goog.ui.PopupMenu');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/menu.css">
-  <link rel="stylesheet" href="../css/menuitem.css">
-  <link rel="stylesheet" href="../css/menuseparator.css">
-  <link rel="stylesheet" href="../css/submenu.css">
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/menu.css">
+<link rel="stylesheet" href="../css/menuitem.css">
+<link rel="stylesheet" href="../css/menuseparator.css">
+<link rel="stylesheet" href="../css/submenu.css">
 </head>
 <body>
   <h1>goog.ui.SubMenu</h1>
   <p>Demonstration of different of hierarchical menus.</p>
-  <p><button id="button">Open menu</button></p>
-
   <p>
-    Here's a menu (with submenus) defined in markup:
+    <button id="button">Open menu</button>
   </p>
+
+  <p>Here's a menu (with submenus) defined in markup:</p>
   <div id="demoMenu" class="goog-menu">
     <div class="goog-menuitem">Open...</div>
-    <div class="goog-submenu">Open Recent
+    <div class="goog-submenu">
+      Open Recent
       <div class="goog-menu">
         <div class="goog-menuitem">Annual Report.pdf</div>
         <div class="goog-menuitem">Quarterly Update.pdf</div>
         <div class="goog-menuitem">Enemies List.txt</div>
-        <div class="goog-submenu">More
+        <div class="goog-submenu">
+          More
           <div class="goog-menu">
             <div class="goog-menuitem">Foo.txt</div>
             <div class="goog-menuitem">Bar.txt</div>

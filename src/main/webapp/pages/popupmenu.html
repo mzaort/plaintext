@@ -7,39 +7,39 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.PopupMenu</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.PopupMenu</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.positioning.Corner');
     goog.require('goog.object');
     goog.require('goog.ui.MenuItem');
     goog.require('goog.ui.PopupMenu');
     goog.require('goog.dom.TagName');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/menu.css">
-  <link rel="stylesheet" href="../css/menuitem.css">
-  <link rel="stylesheet" href="../css/menuseparator.css">
-  <style>
-    .event-log {
-      border: 1px solid #CCC;
-      height: 300px;
-      position: absolute;
-      right: 20px;
-      width: 400px;
-    }
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/menu.css">
+<link rel="stylesheet" href="../css/menuitem.css">
+<link rel="stylesheet" href="../css/menuseparator.css">
+<style>
+.event-log {
+	border: 1px solid #CCC;
+	height: 300px;
+	position: absolute;
+	right: 20px;
+	width: 400px;
+}
 
-    .event-log-content {
-      height: 280px;
-      overflow: auto;
-    }
-  </style>
+.event-log-content {
+	height: 280px;
+	overflow: auto;
+}
+</style>
 </head>
 <body>
   <h1>goog.ui.PopupMenu</h1>
   <div>
-    This shows a 2 popup menus, each menu has been attached to two targets.
-    <br><br>
+    This shows a 2 popup menus, each menu has been attached to two targets. <br>
+    <br>
   </div>
 
   <fieldset class="event-log">
@@ -50,13 +50,15 @@ See the COPYING file for details.
     <div>
       <span>Hello there <i>I'm italic!</i></span>
     </div>
-    <div><button id="bar">Decorated Popup attached to a Button</button></div>
+    <div>
+      <button id="bar">Decorated Popup attached to a Button</button>
+    </div>
   </div>
 
-  <button id="bar2" style="position:absolute;left: 600px;top:330px;">Button</button>
+  <button id="bar2" style="position: absolute; left: 600px; top: 330px;">Button</button>
 
   <button id="dButton">Decorated Popup</button>
-  <div id="dMenu" for="dButton" class="goog-menu" style="display:none">
+  <div id="dMenu" for="dButton" class="goog-menu" style="display: none">
     <div class="goog-menuitem">A a</div>
     <div class="goog-menuitem">B b</div>
     <div class="goog-menuitem">C c</div>

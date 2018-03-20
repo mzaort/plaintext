@@ -7,43 +7,42 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.ProgressBar</title>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <style>
-    .progress-bar-vertical,
-    .progress-bar-horizontal {
-      position: relative;
-      border: 1px solid #949dad;
-      background: white;
-      padding: 1px;
-      overflow: hidden;
-      margin: 2px;
-    }
+<title>goog.ui.ProgressBar</title>
+<link rel="stylesheet" href="../css/css/demo.css">
+<style>
+.progress-bar-vertical, .progress-bar-horizontal {
+	position: relative;
+	border: 1px solid #949dad;
+	background: white;
+	padding: 1px;
+	overflow: hidden;
+	margin: 2px;
+}
 
-    .progress-bar-horizontal {
-      width: 80%;
-      height: 14px;
-    }
+.progress-bar-horizontal {
+	width: 80%;
+	height: 14px;
+}
 
-    .progress-bar-vertical {
-      width: 14px;
-      height: 200px;
-    }
+.progress-bar-vertical {
+	width: 14px;
+	height: 200px;
+}
 
-    .progress-bar-thumb {
-      position: relative;
-      background: #d4e4ff;
-      overflow: hidden;
-      width: 100%;
-      height: 100%;
-    }
+.progress-bar-thumb {
+	position: relative;
+	background: #d4e4ff;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
 
-    #pb2 {
-      height: 1.3em;
-    }
-  </style>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+#pb2 {
+	height: 1.3em;
+}
+</style>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.ui.Component');
     goog.require('goog.ui.ProgressBar');
     goog.require('goog.dom');
@@ -57,10 +56,8 @@ See the COPYING file for details.
 
   <div id=pb2>
     <div class="progress-bar-thumb"></div>
-    <div style='position:absolute;top:0;text-align:center;width:100%;
-                font:statusbar;padding:2px'>
-      Decorated element
-    </div>
+    <div style='position: absolute; top: 0; text-align: center; width: 100%; font: statusbar; padding: 2px'>
+      Decorated element</div>
   </div>
 
   <script>

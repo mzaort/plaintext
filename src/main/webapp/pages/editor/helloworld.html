@@ -11,48 +11,52 @@ See the COPYING file for details.
 -->
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>goog.editor Hello World plugins Demo</title>
-  <script src="../../lib/closure-library/closure/goog/base.js"></script>
-  <script src="deps.js"></script>
-  <script>
+<title>goog.editor Hello World plugins Demo</title>
+<script src="../../lib/closure-library/closure/goog/base.js"></script>
+<script src="deps.js"></script>
+<script>
     goog.require('goog.dom');
     goog.require('goog.editor.Field');
     goog.require('goog.editor.Field.EventType');
     goog.require('goog.demos.editor.HelloWorld');
     goog.require('goog.demos.editor.HelloWorldDialogPlugin');
   </script>
-  <link rel="stylesheet" href="../../css/css/demo.css">
-  <link rel="stylesheet" href="../../css/dialog.css" />
-  <style>
-    #editMe {
-      width: 600px;
-      height: 300px;
-      background-color: white;
-      border: 1px solid grey;
-    }
-  </style>
+<link rel="stylesheet" href="../../css/css/demo.css">
+<link rel="stylesheet" href="../../css/dialog.css" />
+<style>
+#editMe {
+	width: 600px;
+	height: 300px;
+	background-color: white;
+	border: 1px solid grey;
+}
+</style>
 </head>
 <body>
   <h1>goog.editor Hello World plugins Demo</h1>
-  <p>This is a demonstration of an editable field with the two sample plugins
-    installed: goog.editor.plugins.HelloWorld and
-    goog.editor.plugins.HelloWorldDialogPlugin.</p>
+  <p>This is a demonstration of an editable field with the two sample plugins installed:
+    goog.editor.plugins.HelloWorld and goog.editor.plugins.HelloWorldDialogPlugin.</p>
   <br>
   <button onclick='doHelloWorld()'>Hello World</button>
-  <button onclick='doHelloWorldDialog()'>Hello World Dialog</button><br>
-  <div id='editMe'><ul>
-    <li>Click <b>Hello World</b> to insert "Hello World!".</li>
-    <li>Click <b>Hello World Dialog</b> to open a dialog where you can customize
-      your hello world message to be inserted.</li>
-  </ul>The hello world message will be inserted at the cursor, or will replace
-  the selected text.</div>
+  <button onclick='doHelloWorldDialog()'>Hello World Dialog</button>
+  <br>
+  <div id='editMe'>
+    <ul>
+      <li>Click <b>Hello World</b> to insert "Hello World!".
+      </li>
+      <li>Click <b>Hello World Dialog</b> to open a dialog where you can customize your hello world message to be
+        inserted.
+      </li>
+    </ul>
+    The hello world message will be inserted at the cursor, or will replace the selected text.
+  </div>
   <hr>
-  <p><b>Current field contents</b>
-  (updates as contents of the editable field above change):<br>
-  <textarea id="fieldContents" style="height:100px;width:400px;"></textarea><br>
-  <input type="button" value="Set Field Contents"
-      onclick="myField.setHtml(false, goog.dom.getElement('fieldContents').value);" />
-  (Use to set contents of the editable field to the contents of this textarea)
+  <p>
+    <b>Current field contents</b> (updates as contents of the editable field above change):<br>
+    <textarea id="fieldContents" style="height: 100px; width: 400px;"></textarea>
+    <br> <input type="button" value="Set Field Contents"
+      onclick="myField.setHtml(false, goog.dom.getElement('fieldContents').value);" /> (Use to set contents of the
+    editable field to the contents of this textarea)
   </p>
 
   <script>

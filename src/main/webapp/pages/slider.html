@@ -7,50 +7,53 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.Slider</title>
-  <meta charset="utf-8">
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.Slider</title>
+<meta charset="utf-8">
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.dom');
     goog.require('goog.ui.Component');
     goog.require('goog.ui.Slider');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <style>
-    .goog-slider-vertical,
-    .goog-slider-horizontal {
-      background-color: ThreeDFace;
-      position: relative;
-      overflow: hidden;
-    }
-    .goog-slider-thumb {
-      position: absolute;
-      background-color: ThreeDShadow;
-      overflow: hidden;
-    }
+<link rel="stylesheet" href="../css/css/demo.css">
+<style>
+.goog-slider-vertical, .goog-slider-horizontal {
+	background-color: ThreeDFace;
+	position: relative;
+	overflow: hidden;
+}
 
-    .goog-slider-vertical .goog-slider-thumb {
-      left: 0;
-      height: 20px;
-      width: 100%;
-    }
+.goog-slider-thumb {
+	position: absolute;
+	background-color: ThreeDShadow;
+	overflow: hidden;
+}
 
-    .goog-slider-horizontal .goog-slider-thumb {
-      top: 0;
-      width: 20px;
-      height: 100%;
-    }
-    .goog-slider-disabled {
-      background-color: lightgray
-    }
-    #s-h {
-      margin-bottom: 2em;
-    }
-    strong {
-      display: block;
-      margin-bottom: 3px;
-    }
-  </style>
+.goog-slider-vertical .goog-slider-thumb {
+	left: 0;
+	height: 20px;
+	width: 100%;
+}
+
+.goog-slider-horizontal .goog-slider-thumb {
+	top: 0;
+	width: 20px;
+	height: 100%;
+}
+
+.goog-slider-disabled {
+	background-color: lightgray
+}
+
+#s-h {
+	margin-bottom: 2em;
+}
+
+strong {
+	display: block;
+	margin-bottom: 3px;
+}
+</style>
 </head>
 <body>
   <h1>goog.ui.Slider</h1>
@@ -59,30 +62,21 @@ See the COPYING file for details.
     <strong>Horizontal Slider</strong>
     <div id="s1" class="goog-slider" style="width: 200px; height: 20px">
       <!-- this line is here just to show that custom content can be added -->
-      <div style="position:absolute;width:100%;top:9px;border:1px inset white;
-                  overflow:hidden;height:0"></div>
+      <div style="position: absolute; width: 100%; top: 9px; border: 1px inset white; overflow: hidden; height: 0"></div>
       <div class="goog-slider-thumb"></div>
     </div>
-    <input type="checkbox" onclick="s.setMoveToPointEnabled(this.checked)">
-    MoveToPointEnabled
-    <input type="checkbox" onclick="s.setEnabled(this.checked)" checked>
-    Enable
-    <br>
-    <input type="text" value="0" id="out1" style="margin-left: 0px">
-    <input type="button" value="Set Value" onclick="setSliderValue(s, 'out1')">
+    <input type="checkbox" onclick="s.setMoveToPointEnabled(this.checked)"> MoveToPointEnabled <input
+      type="checkbox" onclick="s.setEnabled(this.checked)" checked> Enable <br> <input type="text"
+      value="0" id="out1" style="margin-left: 0px"> <input type="button" value="Set Value"
+      onclick="setSliderValue(s, 'out1')">
   </div>
 
   <div id="s-v">
-    <strong>Vertical Slider, inserted w/ script</strong>
-    <label id="s2-label">
-      <input type="checkbox" onclick="s2.setMoveToPointEnabled(this.checked)">
-      MoveToPointEnabled
-    </label>
-    <input type="checkbox" onclick="s2.setEnabled(this.checked)" checked>
-    Enable
-    <br>
-    <input type="text" value="0" id="out2" style="margin-left: 0px">
-    <input type="button" value="Set Value" onclick="setSliderValue(s2, 'out2')">
+    <strong>Vertical Slider, inserted w/ script</strong> <label id="s2-label"> <input type="checkbox"
+      onclick="s2.setMoveToPointEnabled(this.checked)"> MoveToPointEnabled
+    </label> <input type="checkbox" onclick="s2.setEnabled(this.checked)" checked> Enable <br> <input type="text"
+      value="0" id="out2" style="margin-left: 0px"> <input type="button" value="Set Value"
+      onclick="setSliderValue(s2, 'out2')">
   </div>
   <script>
 

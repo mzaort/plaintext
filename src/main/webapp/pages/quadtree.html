@@ -15,44 +15,48 @@ See the COPYING file for details.
   goog.require('goog.structs.QuadTree');
 </script>
 <style>
-  .region {
-    position: absolute;
-    -moz-outline: 1px solid #CCC;
-    outline: 1px solid #CCC;
-    z-index: 500;
-  }
-  .point {
-    position: absolute;
-    background-color: red;
-    width: 4px;
-    height: 4px;
-    z-index: 1000;
-  }
-  #el {
-    width: 500px;
-    height: 500px;
-    background-color: #FCFCFC;
-  }
-  #values {
-    font-size: small;
-  }
-  #info {
-    position: absolute;
-    top: 5px;
-    left: 505px;
-    width: 200px;
-    font: normal 11px verdana;
-  }
+.region {
+	position: absolute;
+	-moz-outline: 1px solid #CCC;
+	outline: 1px solid #CCC;
+	z-index: 500;
+}
+
+.point {
+	position: absolute;
+	background-color: red;
+	width: 4px;
+	height: 4px;
+	z-index: 1000;
+}
+
+#el {
+	width: 500px;
+	height: 500px;
+	background-color: #FCFCFC;
+}
+
+#values {
+	font-size: small;
+}
+
+#info {
+	position: absolute;
+	top: 5px;
+	left: 505px;
+	width: 200px;
+	font: normal 11px verdana;
+}
 </style>
 </head>
 <body>
-<div id="el"></div>
-<div id="info">
-  <p>Click on the area to the left to add a point to the quadtree, clicking on
-  a point will remove it from the tree.</p>
-  <pre id="values"></pre>
-</div>
-<script>
+  <div id="el"></div>
+  <div id="info">
+    <p>Click on the area to the left to add a point to the quadtree, clicking on a point will remove it from the
+      tree.</p>
+    <pre id="values"></pre>
+  </div>
+  <script>
 
 function visualize(node) {
   var div = document.createElement('div');

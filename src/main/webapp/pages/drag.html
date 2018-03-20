@@ -1,124 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>goog.fx.Dragger</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.fx.Dragger</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../css/css/demo.css">
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.fx.Dragger');
     goog.require('goog.dom');
     goog.require('goog.style');
   </script>
-  <style>
-    #frame {
-      position: absolute;
-      left: 99px;
-      top: 99px;
-      width: 802px;
-      height: 502px;
-      border: 1px solid #999;
-      background-color: #F0F0F0;
-    }
+<style>
+#frame {
+	position: absolute;
+	left: 99px;
+	top: 99px;
+	width: 802px;
+	height: 502px;
+	border: 1px solid #999;
+	background-color: #F0F0F0;
+}
 
-    .window {
-      position:absolute;
-      left: 150px;
-      top: 110px;
-      width: 300px;
-      height: 100px;
-      background-color: rgb(200,200,250);
-      border: 1px solid #99F;
-      font: bold 11px/18px arial;
-      text-indent: 10px;
-      color: #FFF;
-    }
+.window {
+	position: absolute;
+	left: 150px;
+	top: 110px;
+	width: 300px;
+	height: 100px;
+	background-color: rgb(200, 200, 250);
+	border: 1px solid #99F;
+	font: bold 11px/18px arial;
+	text-indent: 10px;
+	color: #FFF;
+}
 
-    #win2 {
-      top:250px;
-      background-color: rgb(250,200,200);
-      border: 1px solid #F99;
-    }
+#win2 {
+	top: 250px;
+	background-color: rgb(250, 200, 200);
+	border: 1px solid #F99;
+}
 
-    #win3 {
-      left:500px;
-      background-color: rgb(150,200,150);
-      border: 1px solid #6A6;
-    }
+#win3 {
+	left: 500px;
+	background-color: rgb(150, 200, 150);
+	border: 1px solid #6A6;
+}
 
-    .bar {
-      position:absolute;
-      left: 0px;
-      top: 0px;
-      width: 300px;
-      height: 20px;
-      background-color: #99F;
-      cursor: default;
-    }
-    #win2 .bar { background-color: #F99; }
-    #win3 .bar { background-color: #6A6; }
+.bar {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 300px;
+	height: 20px;
+	background-color: #99F;
+	cursor: default;
+}
 
-    #sliderback {
-      position: absolute;
-      left: 50px;
-      top: 98px;
-      height: 505px;
-      width: 1px;
-      font-size: 1px;
-      background-color: #999;
-    }
+#win2 .bar {
+	background-color: #F99;
+}
 
-    #slider {
-      position: absolute;
-      left: 35px;
-      top: 98px;
-      width: 30px;
-      height: 13px;
-      font: normal 10px verdana;
-      background-color: #EEE;
-      color: #000;
-      text-align:center;
-      border: 1px solid #999;
-      cursor: default;
-    }
+#win3 .bar {
+	background-color: #6A6;
+}
 
-    #ghostbox {
-      position: absolute;
-      left: 100px;
-      top: 625px;
-      width: 600px;
-      height: 20px;
-    }
+#sliderback {
+	position: absolute;
+	left: 50px;
+	top: 98px;
+	height: 505px;
+	width: 1px;
+	font-size: 1px;
+	background-color: #999;
+}
 
-    .block {
-      position: absolute;
-      left: 0px;
-      top: 0px;
-      width: 125px;
-      height: 20px;
-      font: bold 11px/18px arial;
-      background-color: #AAA;
-      color: #EEE;
-      text-align: center;
-      border: 1px solid #666;
-    }
+#slider {
+	position: absolute;
+	left: 35px;
+	top: 98px;
+	width: 30px;
+	height: 13px;
+	font: normal 10px verdana;
+	background-color: #EEE;
+	color: #000;
+	text-align: center;
+	border: 1px solid #999;
+	cursor: default;
+}
 
-    .ghost0 { left: 0px; }
-    .ghost1 { left: 130px; }
-    .ghost2 { left: 260px; }
-    .ghost3 { left: 390px; }
+#ghostbox {
+	position: absolute;
+	left: 100px;
+	top: 625px;
+	width: 600px;
+	height: 20px;
+}
 
-  </style>
+.block {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 125px;
+	height: 20px;
+	font: bold 11px/18px arial;
+	background-color: #AAA;
+	color: #EEE;
+	text-align: center;
+	border: 1px solid #666;
+}
+
+.ghost0 {
+	left: 0px;
+}
+
+.ghost1 {
+	left: 130px;
+}
+
+.ghost2 {
+	left: 260px;
+}
+
+.ghost3 {
+	left: 390px;
+}
+</style>
 </head>
 <body>
   <h1>goog.fx.Dragger</h1>
-  <p><strong>Demonstrations of the drag utiities</strong>.</p>
+  <p>
+    <strong>Demonstrations of the drag utiities</strong>.
+  </p>
 
   <div id="frame"></div>
 
-  <div id="win1" class="window"><div class="bar">Drag Me...</div></div>
-  <div id="win2" class="window"><div class="bar">Drag Me...</div></div>
-  <div id="win3" class="window"><div class="bar">Drag Me...</div></div>
+  <div id="win1" class="window">
+    <div class="bar">Drag Me...</div>
+  </div>
+  <div id="win2" class="window">
+    <div class="bar">Drag Me...</div>
+  </div>
+  <div id="win3" class="window">
+    <div class="bar">Drag Me...</div>
+  </div>
 
   <div id="sliderback"></div>
   <div id="slider">0</div>

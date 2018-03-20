@@ -7,9 +7,9 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.ColorMenuButton</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.ColorMenuButton</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.array');
     goog.require('goog.color');
     goog.require('goog.debug.DivConsole');
@@ -29,30 +29,30 @@ See the COPYING file for details.
     goog.require('goog.ui.ToolbarColorMenuButtonRenderer');
     goog.require('goog.ui.decorate');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/menu.css">
-  <link rel="stylesheet" href="../css/menuitem.css">
-  <link rel="stylesheet" href="../css/menuseparator.css">
-  <link rel="stylesheet" href="../css/menubutton.css">
-  <link rel="stylesheet" href="../css/custombutton.css">
-  <link rel="stylesheet" href="../css/palette.css">
-  <link rel="stylesheet" href="../css/colorpalette.css">
-  <link rel="stylesheet" href="../css/colormenubutton.css">
-  <link rel="stylesheet" href="../css/toolbar.css">
-  <style>
-    /* Text color. */
-    .goog-text-color {
-      width: 15px;
-      height: 13px;
-      background: url(../images/toolbar_icons.gif) no-repeat -48px;
-    }
-    /* Background color. */
-    .goog-bg-color {
-      width: 15px;
-      height: 13px;
-      background: url(../images/toolbar_icons.gif) no-repeat -64px;
-    }
-  </style>
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/menu.css">
+<link rel="stylesheet" href="../css/menuitem.css">
+<link rel="stylesheet" href="../css/menuseparator.css">
+<link rel="stylesheet" href="../css/menubutton.css">
+<link rel="stylesheet" href="../css/custombutton.css">
+<link rel="stylesheet" href="../css/palette.css">
+<link rel="stylesheet" href="../css/colorpalette.css">
+<link rel="stylesheet" href="../css/colormenubutton.css">
+<link rel="stylesheet" href="../css/toolbar.css">
+<style>
+/* Text color. */
+.goog-text-color {
+	width: 15px;
+	height: 13px;
+	background: url(../images/toolbar_icons.gif) no-repeat -48px;
+}
+/* Background color. */
+.goog-bg-color {
+	width: 15px;
+	height: 13px;
+	background: url(../images/toolbar_icons.gif) no-repeat -64px;
+}
+</style>
 </head>
 <body>
   <h2>goog.ui.ColorMenuButton Demo</h2>
@@ -61,68 +61,53 @@ See the COPYING file for details.
       <tr valign="top">
         <td width="67%">
           <fieldset>
-            <legend><strong>goog.ui.ColorMenuButton</strong> demo:</legend>
+            <legend>
+              <strong>goog.ui.ColorMenuButton</strong> demo:
+            </legend>
             <div id="cmb1">This button was created programmatically:&nbsp;</div>
             <br>
             <div>
               This button decorates a <strong>DIV</strong>:&nbsp;
-              <div id="cmb2" class="goog-color-menu-button"
-                  title="Decorated tooltip">Color</div>
+              <div id="cmb2" class="goog-color-menu-button" title="Decorated tooltip">Color</div>
             </div>
             <br>
             <div id="cmb3">This button has a custom color menu:&nbsp;</div>
-          </fieldset>
-          <br>
-          <br>
+          </fieldset> <br> <br>
           <fieldset>
             <legend>
               <strong>goog.ui.ToolbarColorMenuButtonRenderer</strong> demo:
             </legend>
-            <div id="tcmb1">
-              This toolbar button was created programmatically:&nbsp;
-            </div>
+            <div id="tcmb1">This toolbar button was created programmatically:&nbsp;</div>
             <br>
             <div>
               This toolbar button decorates a <strong>DIV</strong>:&nbsp;
-              <div id="tcmb2" class="goog-toolbar-color-menu-button"
-                  title="Decorated tooltip">Color</div>
+              <div id="tcmb2" class="goog-toolbar-color-menu-button" title="Decorated tooltip">Color</div>
             </div>
             <br>
             <div>
-              This is what these would look like in an actual toolbar, with
-              icons instead of text captions:
-              <br>
-              <br>
+              This is what these would look like in an actual toolbar, with icons instead of text captions: <br> <br>
               <div id="tb" class="goog-toolbar">
-                <div id="textColor" class="goog-toolbar-color-menu-button"
-                    title="Text color">
+                <div id="textColor" class="goog-toolbar-color-menu-button" title="Text color">
                   <div class="goog-text-color"></div>
                 </div>
-                <div id="bgColor" class="goog-toolbar-color-menu-button"
-                    title="Background color">
+                <div id="bgColor" class="goog-toolbar-color-menu-button" title="Background color">
                   <div class="goog-bg-color"></div>
                 </div>
               </div>
             </div>
             <br>
             <div dir="rtl">
-              BiDi is all the rage these days
-              <br>
-              <br>
+              BiDi is all the rage these days <br> <br>
               <div id="tbRtl" class="goog-toolbar">
-                <div id="textColorRtl" class="goog-toolbar-color-menu-button"
-                    title="Text color">
+                <div id="textColorRtl" class="goog-toolbar-color-menu-button" title="Text color">
                   <div class="goog-text-color"></div>
                 </div>
-                <div id="bgColorRtl" class="goog-toolbar-color-menu-button"
-                    title="Background color">
+                <div id="bgColorRtl" class="goog-toolbar-color-menu-button" title="Background color">
                   <div class="goog-bg-color"></div>
                 </div>
               </div>
             </div>
-          </fieldset>
-          <br>
-          <br>
+          </fieldset> <br> <br>
         </td>
         <td width="33%">
           <!-- Event log. -->

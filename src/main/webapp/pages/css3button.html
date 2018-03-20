@@ -7,11 +7,9 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>
-    goog.ui.Css3ButtonRenderer Demo
-  </title>
-  <script type="text/javascript" src="../lib/closure-library/closure/goog/base.js"></script>
-  <script type="text/javascript">
+<title>goog.ui.Css3ButtonRenderer Demo</title>
+<script type="text/javascript" src="../lib/closure-library/closure/goog/base.js"></script>
+<script type="text/javascript">
     goog.require('goog.array');
     goog.require('goog.debug.DivConsole');
     goog.require('goog.debug.LogManager');
@@ -23,58 +21,45 @@ See the COPYING file for details.
     goog.require('goog.ui.ToggleButton');
     goog.require('goog.ui.decorate');
   </script>
-  <link rel="stylesheet" type="text/css" href="../css/css/demo.css">
-  <link rel="stylesheet" type="text/css" href="../css/common.css">
-  <link rel="stylesheet" type="text/css" href="../css/css3button.css">
+<link rel="stylesheet" type="text/css" href="../css/css/demo.css">
+<link rel="stylesheet" type="text/css" href="../css/common.css">
+<link rel="stylesheet" type="text/css" href="../css/css3button.css">
 </head>
 <body>
   <h2>Demo of goog.ui.Css3ButtonRenderer</h2>
   <fieldset>
     <legend>
-      These buttons were rendered using
-      <strong>goog.ui.Css3ButtonRenderer</strong>:
+      These buttons were rendered using <strong>goog.ui.Css3ButtonRenderer</strong>:
     </legend>
-    <br/>
-    These buttons were created programmatically:<br/>
+    <br /> These buttons were created programmatically:<br />
     <div id="cb1"></div>
-    <br/>
-    These buttons were created by decorating some DIVs, and they dispatch
-    state transition events (watch the event log):<br/>
+    <br /> These buttons were created by decorating some DIVs, and they dispatch state transition events (watch the
+    event log):<br />
     <div id="cb2">
       <div id="foo" class="goog-css3-button" title="Title specified in HTML">
         Decorated <b>Button</b>, yay!
-      </div><div id="bar" class="goog-css3-button goog-css3-button-disabled"
-          title="Initialized to DISABLED in HTML...">Decorated Disabled
-      </div><div id="fee" class="goog-css3-button">Another Button</div><div id="btn1"
-           class="goog-css3-button goog-css3-button-collapse-right">
-        Archive
-      </div><div id="btn2"
-          class="goog-css3-button goog-css3-button-collapse-right goog-css3-button-collapse-left">
-        Delete
-      </div><div id="btn3"
-          class="goog-css3-button goog-css3-button-collapse-left">
-        Report Spam
       </div>
+      <div id="bar" class="goog-css3-button goog-css3-button-disabled" title="Initialized to DISABLED in HTML...">Decorated
+        Disabled</div>
+      <div id="fee" class="goog-css3-button">Another Button</div>
+      <div id="btn1" class="goog-css3-button goog-css3-button-collapse-right">Archive</div>
+      <div id="btn2" class="goog-css3-button goog-css3-button-collapse-right goog-css3-button-collapse-left">
+        Delete</div>
+      <div id="btn3" class="goog-css3-button goog-css3-button-collapse-left">Report Spam</div>
     </div>
-    <br/>
-    Use these <strong>ToggleButton</strong>s to hide/show and enable/disable
-    the middle button:<br/>
-    <div id="toggleEnable" class="goog-css3-toggle-button"
-        title="Click here to enable/disable the button above">Enable</div>
-    <div id="hideShow"
-        class="goog-css3-toggle-button goog-css3-button-checked"
-        title="Click here to hide/show the button above">Show</div>
-    <br/><br/>
-    Combined toggle buttons<br/>
-    <div id="btn4" class="goog-css3-toggle-button goog-css3-button-collapse-right">
-      Bold
-    </div><div id="btn5" class="goog-css3-toggle-button goog-css3-button-collapse-right goog-css3-button-collapse-left">
-      Italics
-    </div><div id="btn6" class="goog-css3-toggle-button goog-css3-button-collapse-left goog-css3-button-checked">
-      Underlined
-    </div>
+    <br /> Use these <strong>ToggleButton</strong>s to hide/show and enable/disable the middle button:<br />
+    <div id="toggleEnable" class="goog-css3-toggle-button" title="Click here to enable/disable the button above">Enable</div>
+    <div id="hideShow" class="goog-css3-toggle-button goog-css3-button-checked"
+      title="Click here to hide/show the button above">Show</div>
+    <br />
+    <br /> Combined toggle buttons<br />
+    <div id="btn4" class="goog-css3-toggle-button goog-css3-button-collapse-right">Bold</div>
+    <div id="btn5" class="goog-css3-toggle-button goog-css3-button-collapse-right goog-css3-button-collapse-left">
+      Italics</div>
+    <div id="btn6" class="goog-css3-toggle-button goog-css3-button-collapse-left goog-css3-button-checked">
+      Underlined</div>
   </fieldset>
-  <br/>
+  <br />
   <div id="perf"></div>
   <!-- Event log. -->
   <fieldset class="goog-debug-panel">

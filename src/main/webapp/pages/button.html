@@ -7,9 +7,9 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.Button and goog.ui.ToggleButton</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.Button and goog.ui.ToggleButton</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.array');
     goog.require('goog.debug.DivConsole');
     goog.require('goog.debug.LogManager');
@@ -28,167 +28,124 @@ See the COPYING file for details.
     goog.require('goog.ui.decorate');
     goog.require('goog.dom.TagName');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/button.css">
-  <link rel="stylesheet" href="../css/custombutton.css">
-  <link rel="stylesheet" href="../css/flatbutton.css">
-  <link rel="stylesheet" href="../css/linkbutton.css">
-  <style>
-    /* Base class for all icon elements. */
-    .icon {
-      height: 16px;
-      width: 16px;
-      margin: 0 1px;
-      background-image: url(../images/toolbar_icons.gif);
-      background-repeat: no-repeat;
-      vertical-align: middle;
-    }
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/button.css">
+<link rel="stylesheet" href="../css/custombutton.css">
+<link rel="stylesheet" href="../css/flatbutton.css">
+<link rel="stylesheet" href="../css/linkbutton.css">
+<style>
+/* Base class for all icon elements. */
+.icon {
+	height: 16px;
+	width: 16px;
+	margin: 0 1px;
+	background-image: url(../images/toolbar_icons.gif);
+	background-repeat: no-repeat;
+	vertical-align: middle;
+}
 
-    /* "Highlight" icon. */
-    .highlight-icon{
-      background-position: -64px;
-    }
+/* "Highlight" icon. */
+.highlight-icon {
+	background-position: -64px;
+}
 
-    /* "Insert Image" icon. */
-    .insert-image-icon {
-      background-position: -80px;
-    }
+/* "Insert Image" icon. */
+.insert-image-icon {
+	background-position: -80px;
+}
 
-    /* Custom style for the "default" button. */
-    .default-button {
-      font-weight: bold;
-    }
-  </style>
+/* Custom style for the "default" button. */
+.default-button {
+	font-weight: bold;
+}
+</style>
 </head>
 <body>
   <h1>goog.ui.Button</h1>
   <fieldset>
     <legend>
-      The first <strong>Button</strong> was created programmatically,
-      the second by decorating an <strong>&lt;input&gt;</strong> element:&nbsp;
+      The first <strong>Button</strong> was created programmatically, the second by decorating an <strong>&lt;input&gt;</strong>
+      element:&nbsp;
     </legend>
     <div id="b1"></div>
-    <label>
-      Enable button:<input type="checkbox" id="b1_enable" checked/>
-    </label>
-    <br/>
-    <br/>
-    <input >
-    <input th:replace="~{component::#component-input-button}()" th:with="id='b2', title='Tooltip extracted from title', value='My Button', disabled=true" type="button" id="b2" title="Tooltip extracted from title"
-        value="My " disabled/><br/>
-    <label>Enable button:<input type="checkbox" id="b2_enable"/></label>
-    <br/>
+    <label> Enable button:<input type="checkbox" id="b1_enable" checked />
+    </label> <br /> <br /> <input
+      th:replace="component :: .component-input-button(id='b2',title='Tooltip extracted from title',value='My Button',disabled=true)"
+      th:with="id='b2',title='Tooltip extracted from title',value='My Button',disabled=true" type="button" id="b2"
+      title="Tooltip extracted from title" value="My " disabled /><br /> <label>Enable button:<input
+      type="checkbox" id="b2_enable" /></label> <br />
   </fieldset>
-  <br/>
-
-  <fieldset>
-    <legend>
-      Testing
-    </legend>
-    <button class="component component-button">Hello</button>
-
-    <br/>
-  </fieldset>
+  <br />
 
   <h2>goog.ui.FlatButtonRenderer</h2>
   <fieldset>
     <legend>
-      Buttons made with <strong>&lt;div&gt;</strong>'s instead of
-      <strong>&lt;input&gt;</strong>'s or <strong>&lt;button&gt;</strong>'s
+      Buttons made with <strong>&lt;div&gt;</strong>'s instead of <strong>&lt;input&gt;</strong>'s or <strong>&lt;button&gt;</strong>'s
       The first rendered, the second decorated:&nbsp;
     </legend>
     <div id="fb1"></div>
-    <label>
-      Enable button:<input type="checkbox" id="fb1_enable" checked/>
-    </label>
-    <br/>
-    <br/>
-    <div id="fb2" class="goog-flat-button goog-flat-button-disabled"
-        title="Tooltip extracted from title">My Flat Button</div><br/>
-    <label>Enable button:<input type="checkbox" id="fb2_enable"/></label>
-    <br/>
-    <br/>
-    <div id="fb3" class="goog-flat-button goog-flat-button-collapse-right">
-      Combined
-    </div><div id="fb4" class="goog-flat-button goog-flat-button-collapse-left">
-      Buttons
-    </div>
-    <br/>
+    <label> Enable button:<input type="checkbox" id="fb1_enable" checked />
+    </label> <br /> <br />
+    <div id="fb2" class="goog-flat-button goog-flat-button-disabled" title="Tooltip extracted from title">My Flat
+      Button</div>
+    <br /> <label>Enable button:<input type="checkbox" id="fb2_enable" /></label> <br /> <br />
+    <div id="fb3" class="goog-flat-button goog-flat-button-collapse-right">Combined</div>
+    <div id="fb4" class="goog-flat-button goog-flat-button-collapse-left">Buttons</div>
+    <br />
   </fieldset>
-  <br/>
+  <br />
 
   <h2>goog.ui.LinkButtonRenderer</h2>
   <fieldset>
-    <legend>
-      Like FlatButtonRenderer, except the style makes the button appear to be a
-      link.
-    </legend>
+    <legend> Like FlatButtonRenderer, except the style makes the button appear to be a link. </legend>
     <div id="lb"></div>
-    <label>
-      Enable button:<input type="checkbox" id="lb_enable" checked/>
+    <label> Enable button:<input type="checkbox" id="lb_enable" checked />
     </label>
   </fieldset>
 
   <h2>goog.ui.CustomButton &amp goog.ui.ToggleButton</h2>
   <fieldset>
     <legend>
-      These buttons were rendered using <strong>goog.ui.CustomButton</strong>:
-      &nbsp;
+      These buttons were rendered using <strong>goog.ui.CustomButton</strong>: &nbsp;
     </legend>
-    <br/>
-    These buttons were created programmatically:<br/>
+    <br /> These buttons were created programmatically:<br />
     <div id="cb1"></div>
-    <br/>
-    These buttons were created by decorating some DIVs, and they dispatch
-    state transition events (watch the event log):<br/>
+    <br /> These buttons were created by decorating some DIVs, and they dispatch state transition events (watch the
+    event log):<br />
     <div id="cb2">
       <!-- On FF2, if you don't enclose the contents of the button in a SPAN,
            the bold element isn't rendered.  Works on every other browser. -->
       <div id="foo" class="goog-custom-button" title="Title specified in HTML">
-        <span>Decorated <b>Button</b>, yay!</span>
+        <span>Decorated <b>Button</b>, yay!
+        </span>
       </div>
-      <div id="bar" class="goog-custom-button goog-custom-button-disabled"
-          title="Initialized to DISABLED in HTML...">Decorated Disabled</div>
+      <div id="bar" class="goog-custom-button goog-custom-button-disabled" title="Initialized to DISABLED in HTML...">Decorated
+        Disabled</div>
       <div id="fee" class="goog-custom-button">Another Button</div>
-      <div id="btn1"
-           class="goog-custom-button goog-custom-button-collapse-right">
-        Archive
-      </div><div id="btn2" class="goog-custom-button goog-custom-button-collapse-right goog-custom-button-collapse-left">
-        Delete
-      </div><div id="btn3"
-                 class="goog-custom-button goog-custom-button-collapse-left">
-        Report Spam
-      </div>
+      <div id="btn1" class="goog-custom-button goog-custom-button-collapse-right">Archive</div>
+      <div id="btn2" class="goog-custom-button goog-custom-button-collapse-right goog-custom-button-collapse-left">
+        Delete</div>
+      <div id="btn3" class="goog-custom-button goog-custom-button-collapse-left">Report Spam</div>
     </div>
-    <br/>
-    Use these <strong>ToggleButton</strong>s to hide/show and enable/disable
-    the middle button:<br/>
-    <div id="toggleEnable" class="goog-toggle-button"
-        title="Click here to enable/disable the button above">Enable</div>
+    <br /> Use these <strong>ToggleButton</strong>s to hide/show and enable/disable the middle button:<br />
+    <div id="toggleEnable" class="goog-toggle-button" title="Click here to enable/disable the button above">Enable</div>
     &nbsp;
-    <div id="hideShow"
-        class="goog-toggle-button goog-custom-button-checked"
-        title="Click here to hide/show the button above">Show</div>
-    <br/><br/>
-    Combined toggle buttons:<br/>
-    <div id="btn4" class="goog-toggle-button goog-custom-button-collapse-right">
-      Bold
-    </div><div id="btn5" class="goog-toggle-button goog-custom-button-collapse-right goog-custom-button-collapse-left">
-      Italics
-    </div><div id="btn6" class="goog-toggle-button goog-custom-button-collapse-left goog-custom-button-checked">
-      Underlined
-    </div>
-    <br/>
-    <br/>
-    These buttons have icons, and the second one has an extra CSS class:<br/>
+    <div id="hideShow" class="goog-toggle-button goog-custom-button-checked"
+      title="Click here to hide/show the button above">Show</div>
+    <br />
+    <br /> Combined toggle buttons:<br />
+    <div id="btn4" class="goog-toggle-button goog-custom-button-collapse-right">Bold</div>
+    <div id="btn5" class="goog-toggle-button goog-custom-button-collapse-right goog-custom-button-collapse-left">
+      Italics</div>
+    <div id="btn6" class="goog-toggle-button goog-custom-button-collapse-left goog-custom-button-checked">
+      Underlined</div>
+    <br /> <br /> These buttons have icons, and the second one has an extra CSS class:<br />
     <div id="iconbuttons"></div>
-    <br/>
-    <span class="hint">
-      The button with the <span style="font-weight:bold;color:orange;">orange
-      outline</span> has keyboard focus.  Hit Enter to activate focused buttons.
+    <br /> <span class="hint"> The button with the <span style="font-weight: bold; color: orange;">orange
+        outline</span> has keyboard focus. Hit Enter to activate focused buttons.
     </span>
   </fieldset>
-  <br/>
+  <br />
   <div id="perf"></div>
   <!-- Event log. -->
   <fieldset class="goog-debug-panel">
@@ -198,7 +155,7 @@ See the COPYING file for details.
   <script src="../js/plaintext/util/uid-map.js"></script>
   <script src="../js/plaintext/view.js"></script>
   <script src="../js/plaintext/page.js"></script>
-  <script src="../js/plaintext/page/button.js"></script>
   <script src="../js/entry-point/bootstrap.js"></script>
+  <script src="../js/plaintext/page/button.js"></script>
 </body>
 </html>

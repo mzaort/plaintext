@@ -9,9 +9,9 @@ See the COPYING file for details.
 <!--
 -->
 <head>
-  <title>goog.ui.ac.Remote</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.ac.Remote</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.ui.ac.AutoComplete');
     goog.require('goog.ui.ac.InputHandler');
     goog.require('goog.ui.ac.Renderer');
@@ -19,22 +19,21 @@ See the COPYING file for details.
     goog.require('goog.ui.ac.CachingMatcher');
     goog.require('goog.ui.ac.Remote');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/autocomplete.css">
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/autocomplete.css">
 </head>
 <body>
   <h1>goog.ui.ac.Remote</h1>
 
-  Google Buzzwords:<br>
-  <input type="text" id="txtInput" style="width:500px"><br>
+  Google Buzzwords:
+  <br>
+  <input type="text" id="txtInput" style="width: 500px">
+  <br>
   <p>
-    This data is being pulled from the server at
-    <a href="autocompleteremotedata.js">autocompleteremotedata.js</a>.
+    This data is being pulled from the server at <a href="autocompleteremotedata.js">autocompleteremotedata.js</a>.
   </p>
-  <p>
-    Ideally the server would perform a search on the query and would only
-    return relevant results; however, this response is static.
-  </p>
+  <p>Ideally the server would perform a search on the query and would only return relevant results; however, this
+    response is static.</p>
 
   <script>
     var input = document.getElementById('txtInput');
@@ -44,18 +43,16 @@ See the COPYING file for details.
 
   <h1>goog.ui.ac.CachingMatcher on top of goog.ui.ac.RemoteArrayMatcher</h1>
 
-  Google Buzzwords:<br>
-  <input type="text" id="txtInput2" style="width:500px"><br>
+  Google Buzzwords:
+  <br>
+  <input type="text" id="txtInput2" style="width: 500px">
+  <br>
   <p>
-    This data is being pulled from the server at
-    <a href="autocompleteremotedata.js">autocompleteremotedata.js</a>.
+    This data is being pulled from the server at <a href="autocompleteremotedata.js">autocompleteremotedata.js</a>.
   </p>
-  <p>
-    This sets up a client-side cache of suggestions from the server, and matches
-    against the client cache when the user types, while simultaneously making
-    requests to the server in the background. The result feels more responsive
-    than the goog.ui.ac.Remote, which has no client cache.
-  </p>
+  <p>This sets up a client-side cache of suggestions from the server, and matches against the client cache when the
+    user types, while simultaneously making requests to the server in the background. The result feels more responsive
+    than the goog.ui.ac.Remote, which has no client cache.</p>
 
   <script>
     var input = document.getElementById('txtInput2');

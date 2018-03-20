@@ -7,9 +7,9 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.HoverCard</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.HoverCard</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.debug.DivConsole');
     goog.require('goog.debug.LogManager');
     goog.require('goog.log');
@@ -18,60 +18,58 @@ See the COPYING file for details.
     goog.require('goog.ui.Component.EventType');
     goog.require('goog.ui.HoverCard');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/hovercard.css">
-  <style>
-    #personEmail {
-      font-style: italic;
-    }
-    .anchor {
-      font: bold;
-      color: white;
-      background-color: gray;
-      padding: 20px;
-      margin: 20px;
-    }
-  </style>
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/hovercard.css">
+<style>
+#personEmail {
+	font-style: italic;
+}
+
+.anchor {
+	font: bold;
+	color: white;
+	background-color: gray;
+	padding: 20px;
+	margin: 20px;
+}
+</style>
 </head>
 <body>
   <h1>goog.ui.HoverCard</h1>
   <p>
-    Show by mouse position:<br><br><br>
-    <span class="anchor" email="tom@gmail.com">Tom Smith</span>
-    <span class="anchor" email="dick@gmail.com">Dick Jones</span>
-    <span class="anchor" email="harry@gmail.com">Harry Brown</span>
-
-    <br><br><br>Show hovercard to the right:<br><br><br>
-    <span class="anchor" config="right" email="tom@gmail.com">Tom Smith</span>
-    <span class="anchor" config="right" email="dick@gmail.com">Dick Jones</span>
-    <span class="anchor" config="right"
-          email="harry@gmail.com">Harry Brown</span>
-
-    <br><br><br>Show hovercard below:<br><br><br>
-    <span class="anchor" config="down" email="tom@gmail.com">Tom Smith</span>
-    <span class="anchor" config="down" email="dick@gmail.com">Dick Jones</span>
-    <span class="anchor" config="down"
-          email="harry@gmail.com">Harry Brown</span>
-
-    <br><br><br>
+    Show by mouse position:<br>
+    <br>
+    <br> <span class="anchor" email="tom@gmail.com">Tom Smith</span> <span class="anchor" email="dick@gmail.com">Dick
+      Jones</span> <span class="anchor" email="harry@gmail.com">Harry Brown</span> <br>
+    <br>
+    <br>Show hovercard to the right:<br>
+    <br>
+    <br> <span class="anchor" config="right" email="tom@gmail.com">Tom Smith</span> <span class="anchor"
+      config="right" email="dick@gmail.com">Dick Jones</span> <span class="anchor" config="right"
+      email="harry@gmail.com">Harry Brown</span> <br>
+    <br>
+    <br>Show hovercard below:<br>
+    <br>
+    <br> <span class="anchor" config="down" email="tom@gmail.com">Tom Smith</span> <span class="anchor"
+      config="down" email="dick@gmail.com">Dick Jones</span> <span class="anchor" config="down" email="harry@gmail.com">Harry
+      Brown</span> <br>
+    <br>
+    <br>
 
   </p>
 
-  <div id='profileCard' style="display:none;position:absolute">
-    <div style="position:relative;left:2px;z-index:100">
-     <table class="goog-hovercard-icons">
-       <tr>
-         <td>Email</td>
-         <td>Chat</td>
-         <td>More</td>
-       </tr>
-     </table>
-     <table class="goog-hovercard-content">
+  <div id='profileCard' style="display: none; position: absolute">
+    <div style="position: relative; left: 2px; z-index: 100">
+      <table class="goog-hovercard-icons">
         <tr>
-           <td valign="top">
-                <span id='personName'>&nbsp;</span><br />
-                <span id='personEmail'>&nbsp;</span>
-           </td>
+          <td>Email</td>
+          <td>Chat</td>
+          <td>More</td>
+        </tr>
+      </table>
+      <table class="goog-hovercard-content">
+        <tr>
+          <td valign="top"><span id='personName'>&nbsp;</span><br /> <span id='personEmail'>&nbsp;</span></td>
         </tr>
       </table>
     </div>
@@ -105,7 +103,7 @@ See the COPYING file for details.
   <br>
   <div id="perf"></div>
 
-    <script>
+  <script>
       var timer = goog.now();
 
       // Set up a logger.

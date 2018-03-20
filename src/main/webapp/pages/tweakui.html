@@ -7,36 +7,37 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.tweak.TweakUi</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.tweak.TweakUi</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.tweak');
     goog.require('goog.tweak.TweakUi');
   </script>
-  <link rel="stylesheet" type="text/css" href="../css/common.css">
+<link rel="stylesheet" type="text/css" href="../css/common.css">
 </head>
 <body>
   <h1>goog.ui.TweakUi</h1>
-The goog.tweak package provides a convenient and flexible way to add
-configurable settings to an app. These settings:
-<ul>
-  <li>can be set at compile time
-  <li>can be set in code (using goog.tweak.overrideDefaultValue)
-  <li>can be set by query parameters
-  <li>can be set through the TweakUi interface
-</ul>
-Tweaks IDs are checked by the compiler and tweaks can be fully removed when
-tweakProcessing=STRIP. Tweaks are great for toggling debugging facilities.
+  The goog.tweak package provides a convenient and flexible way to add configurable settings to an app. These settings:
+  <ul>
+    <li>can be set at compile time
+    <li>can be set in code (using goog.tweak.overrideDefaultValue)
+    <li>can be set by query parameters
+    <li>can be set through the TweakUi interface
+  </ul>
+  Tweaks IDs are checked by the compiler and tweaks can be fully removed when tweakProcessing=STRIP. Tweaks are great
+  for toggling debugging facilities.
 
-<h2>A collapsible menu</h2><div id="menu1"></div>
-<h2>An expanded menu</h2><div id="menu2"></div>
-<ul>
-  <li>When "Apply Tweaks" is clicked, all non-default values are encoded into
-  query parameters and the page is refreshed.
-  <li>Blue entries are ones where the value of the tweak will change without
-  clicking apply tweaks (the value of goog.tweak.get*() will change)
-</ul>
-<script>
+  <h2>A collapsible menu</h2>
+  <div id="menu1"></div>
+  <h2>An expanded menu</h2>
+  <div id="menu2"></div>
+  <ul>
+    <li>When "Apply Tweaks" is clicked, all non-default values are encoded into query parameters and the page is
+      refreshed.
+    <li>Blue entries are ones where the value of the tweak will change without clicking apply tweaks (the value of
+      goog.tweak.get*() will change)
+  </ul>
+  <script>
 
 var entryCounter = 0;
 

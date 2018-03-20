@@ -7,9 +7,9 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.menuBar Demo</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.menuBar Demo</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.array');
     goog.require('goog.debug.DivConsole');
     goog.require('goog.debug.LogManager');
@@ -25,40 +25,40 @@ See the COPYING file for details.
     goog.require('goog.ui.menuBar');
     goog.require('goog.ui.menuBarDecorator');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/menu.css">
-  <link rel="stylesheet" href="../css/menubar.css">
-  <link rel="stylesheet" href="../css/menubutton.css">
-  <link rel="stylesheet" href="../css/menuitem.css">
-  <link rel="stylesheet" href="../css/menuseparator.css">
-  <style>
-    /* Base class for all icon elements. */
-    .icon {
-      height: 16px;
-      width: 16px;
-      margin: 0 1px;
-      background-image: url(../images/toolbar_icons.gif);
-      background-repeat: no-repeat;
-      vertical-align: middle;
-    }
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/menu.css">
+<link rel="stylesheet" href="../css/menubar.css">
+<link rel="stylesheet" href="../css/menubutton.css">
+<link rel="stylesheet" href="../css/menuitem.css">
+<link rel="stylesheet" href="../css/menuseparator.css">
+<style>
+/* Base class for all icon elements. */
+.icon {
+	height: 16px;
+	width: 16px;
+	margin: 0 1px;
+	background-image: url(../images/toolbar_icons.gif);
+	background-repeat: no-repeat;
+	vertical-align: middle;
+}
 
-    /* "Format" icon. */
-    .format-icon {
-      background-position: -64px;
-    }
+/* "Format" icon. */
+.format-icon {
+	background-position: -64px;
+}
 
-    .positioning-frame {
-      height: 250px;
-      overflow: auto;
-      width: 100%;
-    }
+.positioning-frame {
+	height: 250px;
+	overflow: auto;
+	width: 100%;
+}
 
-    .format-lightborder {
-      border-style: solid;
-      border-width: 1px;
-      border-color: #ddd;
-    }
-  </style>
+.format-lightborder {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #ddd;
+}
+</style>
 </head>
 
 <body>
@@ -69,65 +69,64 @@ See the COPYING file for details.
         <td width="67%">
           <fieldset>
             <legend>
-              This <strong>menu bar</strong> was created programmatically:
-              &nbsp;
+              This <strong>menu bar</strong> was created programmatically: &nbsp;
             </legend>
             <table border="0" cellpadding="0" cellspacing="4">
               <tbody>
                 <tr>
                   <td>
-                    <div id="menuBarProgrammatic"
-                        class="format-lightborder"></div>
+                    <div id="menuBarProgrammatic" class="format-lightborder"></div>
                   </td>
                 </tr>
               </tbody>
             </table>
             <br>
           </fieldset>
-         </td>
+        </td>
 
         <td width="67%">
           <fieldset>
             <legend>
-              This <strong>menu bar</strong> is decorated:
-              &nbsp;
+              This <strong>menu bar</strong> is decorated: &nbsp;
             </legend>
             <!-- Wrap the menubar in a table to prevent it from stretching -->
-            <table border="0" cellpadding="0" cellspacing="4"><tbody>
-                <tr align="middle"><td>
-            <!-- Decorated menu bar definition begins here -->
-            <div id="menubar" class="goog-menubar format-lightborder">
-              <div id="FileButton" class="goog-menu-button" title="File">
-                <span style="vertical-align:middle">File</span>
-                <!-- This DIV will be auto-decorated with a menu. -->
-                <div id="fileMenu" class="goog-menu">
-                  <div class="goog-menuitem">Open</div>
-                  <div class="goog-menuitem">Save</div>
-                  <div class="goog-menuseparator"></div>
-                  <div class="goog-menuitem">Close</div>
-                </div>
-              </div>
-              <div id="formatButton" class="goog-menu-button"
-                  title="Format">
-                <!-- These elements will become the button's caption. -->
-                <div class="icon format-icon goog-inline-block"></div>
-                <span style="vertical-align:middle">Format</span>
-                <!-- This DIV will be auto-decorated with a menu. -->
-                <div id="formatMenu" class="goog-menu">
-                  <div class="goog-menuitem">Bold</div>
-                  <div class="goog-menuitem">Italic</div>
-                  <div class="goog-menuitem">Underline</div>
-                  <div class="goog-menuseparator"></div>
-                  <div class="goog-menuitem goog-menuitem-disabled">
-                    Strikethrough
-                  </div>
-                  <div class="goog-menuseparator"></div>
-                  <div class="goog-menuitem">Font...</div>
-                  <div class="goog-menuitem">Color...</div>
-                </div>
-              </div>
-            </div>
-            </td></tr></tbody></table>
+            <table border="0" cellpadding="0" cellspacing="4">
+              <tbody>
+                <tr align="middle">
+                  <td>
+                    <!-- Decorated menu bar definition begins here -->
+                    <div id="menubar" class="goog-menubar format-lightborder">
+                      <div id="FileButton" class="goog-menu-button" title="File">
+                        <span style="vertical-align: middle">File</span>
+                        <!-- This DIV will be auto-decorated with a menu. -->
+                        <div id="fileMenu" class="goog-menu">
+                          <div class="goog-menuitem">Open</div>
+                          <div class="goog-menuitem">Save</div>
+                          <div class="goog-menuseparator"></div>
+                          <div class="goog-menuitem">Close</div>
+                        </div>
+                      </div>
+                      <div id="formatButton" class="goog-menu-button" title="Format">
+                        <!-- These elements will become the button's caption. -->
+                        <div class="icon format-icon goog-inline-block"></div>
+                        <span style="vertical-align: middle">Format</span>
+                        <!-- This DIV will be auto-decorated with a menu. -->
+                        <div id="formatMenu" class="goog-menu">
+                          <div class="goog-menuitem">Bold</div>
+                          <div class="goog-menuitem">Italic</div>
+                          <div class="goog-menuitem">Underline</div>
+                          <div class="goog-menuseparator"></div>
+                          <div class="goog-menuitem goog-menuitem-disabled">Strikethrough</div>
+                          <div class="goog-menuseparator"></div>
+                          <div class="goog-menuitem">Font...</div>
+                          <div class="goog-menuitem">Color...</div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
             <br>
           </fieldset>
         </td>

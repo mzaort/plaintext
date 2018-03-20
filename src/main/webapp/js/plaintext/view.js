@@ -275,6 +275,8 @@ goog.scope(function() {
     switch (className) {
     case 'component-button':
       return goog.ui.Button;
+    case 'component-input-button':
+      return goog.ui.Button;
     default:
       return null;
     }

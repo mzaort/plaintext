@@ -7,14 +7,14 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>Closure Demos</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>Closure Demos</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.ui.tree.TreeControl');
     goog.require('goog.dom');
     goog.require('goog.html.SafeHtml');
   </script>
-  <script>
+<script>
     var treeData = [
       {name: 'Advanced Tooltip', url: 'advancedtooltip.html'},
       {name: 'Autocomplete', childNodes: [
@@ -37,7 +37,7 @@ See the COPYING file for details.
         {name: 'Buttons', childNodes: [
           {name: 'CSS 3', url: 'css3button.html'},
           {name: 'Imageless', url: 'imagelessbutton.html'},
-          {name: 'Simple', url: 'button.html'}
+          {name: 'Simple', url: 'button'}
         ]},
         {name: 'Checkbox', url: 'checkbox.html'},
         {name: 'Combobox', url: 'combobox.html'},
@@ -201,56 +201,58 @@ See the COPYING file for details.
     //  window.top.frames['demo'].location = node.getClientData();
     //}
   </script>
-  <link rel="stylesheet" href="../css/tree.css">
-  <style>
-    body {
-      font: normal 10pt Tahoma, Arial, sans-serif;
-      color: #333;
-      background-color: #eee;
-    }
+<link rel="stylesheet" href="../css/tree.css">
+<style>
+body {
+	font: normal 10pt Tahoma, Arial, sans-serif;
+	color: #333;
+	background-color: #eee;
+}
 
-    h2 a {
-      font: bold 18pt Tahoma, Arial, sans-serif;
-      color: #333;
-      text-decoration: underline;
-    }
+h2 a {
+	font: bold 18pt Tahoma, Arial, sans-serif;
+	color: #333;
+	text-decoration: underline;
+}
 
-    h2 a:hover {
-      color: #00f;
-      text-decoration: underline;
-    }
+h2 a:hover {
+	color: #00f;
+	text-decoration: underline;
+}
 
-    .goog-tree-children {
-      background-repeat: repeat-y;
-      background-image: url("../images/tree/I.png") !important;
-      background-position-y: 1px !important; /* IE only */
-      font: icon;
-    }
+.goog-tree-children {
+	background-repeat: repeat-y;
+	background-image: url("../images/tree/I.png") !important;
+	background-position-y: 1px !important; /* IE only */
+	font: icon;
+}
 
-    .goog-tree-icon {
-      background-image:url("../images/tree/tree.png");
-    }
+.goog-tree-icon {
+	background-image: url("../images/tree/tree.png");
+}
 
-    .goog-tree-item-label {
-      font: bold 10pt Tahoma, Arial, sans-serif;
-      color: #333;
-      text-decoration: none;
-    }
+.goog-tree-item-label {
+	font: bold 10pt Tahoma, Arial, sans-serif;
+	color: #333;
+	text-decoration: none;
+}
 
-    .goog-tree-item-label a {
-      font: normal 10pt Tahoma, Arial, sans-serif;
-      color: #333;
-      text-decoration: none;
-    }
+.goog-tree-item-label a {
+	font: normal 10pt Tahoma, Arial, sans-serif;
+	color: #333;
+	text-decoration: none;
+}
 
-    .goog-tree-item-label a:hover {
-      color: #00f;
-      text-decoration: underline;
-    }
-  </style>
+.goog-tree-item-label a:hover {
+	color: #00f;
+	text-decoration: underline;
+}
+</style>
 </head>
 <body>
-  <h2><a href="index_splash.html" title="Home" target="demo">Index</a></h2>
+  <h2>
+    <a href="index_splash.html" title="Home" target="demo">Index</a>
+  </h2>
   <div id="demo-list"></div>
   <script>initTree();</script>
 </body>

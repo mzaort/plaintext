@@ -7,10 +7,10 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-  <title>goog.ui.DatePicker</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<title>goog.ui.DatePicker</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.dom');
     goog.require('goog.date');
     goog.require('goog.i18n.DateTimeSymbols');
@@ -30,96 +30,72 @@ See the COPYING file for details.
     goog.require('goog.i18n.DateTimePatterns_ja');
     goog.require('goog.ui.DatePicker');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/datepicker.css">
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/datepicker.css">
 </head>
 <body>
   <h1>goog.ui.DatePicker</h1>
 
-  <table width="100%" summary="for laying out datepickers"><tr><td valign="top">
-  <h2>Default: ISO 8601</h2>
-  <div id="widget_iso_8601"></div>
-  <div style="clear: both;">&nbsp;</div>
-  <span id="label_iso_8601"></span>
-  <br><br>
-  <h2>Custom</h2>
-  <input type="checkbox" id="ck-0"
-      onclick="allShowFixedNumWeeks(this.checked);" checked><label
-      for="ck-0">ShowFixedNumWeeks</label><br>
-  <input type="checkbox" id="ck-1"
-      onclick="allShowOtherMonths(this.checked);" checked><label
-      for="ck-1">ShowOtherMonths</label><br>
-  <input type="checkbox" id="ck-2"
-      onclick="allExtraWeekAtEnd(this.checked);" checked><label
-      for="ck-2">ExtraWeekAtEnd</label><br>
-  <input type="checkbox" id="ck-3"
-      onclick="allShowWeekNum(this.checked);" checked><label
-      for="ck-3">ShowWeekNum</label><br>
-  <input type="checkbox" id="ck-4"
-      onclick="allShowWeekdays(this.checked);" checked><label
-      for="ck-4">ShowWeekdays</label><br>
-  <input type="checkbox" id="ck-5"
-      onclick="allAllowNone(this.checked);" checked><label
-      for="ck-5">AllowNone</label><br>
-  <input type="checkbox" id="ck-6"
-      onclick="allShowToday(this.checked);" checked><label
-      for="ck-6">ShowToday</label><br>
-  <input type="checkbox" id="ck-7"
-      onclick="allUseNarrowWeekdayNames(this.checked);"><label
-      for="ck-7">UseNarrowWeekdayNames</label><br>
-  <input type="checkbox" id="ck-8"
-      onclick="allUseSimpleNavigationMenu(this.checked);"><label
-      for="ck-8">UseSimpleNavigationMenu</label><br>
-  <input type="checkbox" id="ck-9"
-      onclick="allLongDateFormat(this.checked);"><label
-      for="ck-9">LongDateFormat</label><br>
-  <br>
-  <div id="widget_custom"></div>
-  <div style="clear: both;">&nbsp;</div>
-  <span id="label_custom"></span>
-  </td>
-  <td valign="top">
+  <table width="100%" summary="for laying out datepickers">
+    <tr>
+      <td valign="top">
+        <h2>Default: ISO 8601</h2>
+        <div id="widget_iso_8601"></div>
+        <div style="clear: both;">&nbsp;</div> <span id="label_iso_8601"></span> <br>
+      <br>
+        <h2>Custom</h2> <input type="checkbox" id="ck-0" onclick="allShowFixedNumWeeks(this.checked);" checked><label
+        for="ck-0">ShowFixedNumWeeks</label><br> <input type="checkbox" id="ck-1"
+        onclick="allShowOtherMonths(this.checked);" checked><label for="ck-1">ShowOtherMonths</label><br> <input
+        type="checkbox" id="ck-2" onclick="allExtraWeekAtEnd(this.checked);" checked><label for="ck-2">ExtraWeekAtEnd</label><br>
+        <input type="checkbox" id="ck-3" onclick="allShowWeekNum(this.checked);" checked><label for="ck-3">ShowWeekNum</label><br>
+        <input type="checkbox" id="ck-4" onclick="allShowWeekdays(this.checked);" checked><label for="ck-4">ShowWeekdays</label><br>
+        <input type="checkbox" id="ck-5" onclick="allAllowNone(this.checked);" checked><label for="ck-5">AllowNone</label><br>
+        <input type="checkbox" id="ck-6" onclick="allShowToday(this.checked);" checked><label for="ck-6">ShowToday</label><br>
+        <input type="checkbox" id="ck-7" onclick="allUseNarrowWeekdayNames(this.checked);"><label for="ck-7">UseNarrowWeekdayNames</label><br>
+        <input type="checkbox" id="ck-8" onclick="allUseSimpleNavigationMenu(this.checked);"><label for="ck-8">UseSimpleNavigationMenu</label><br>
+        <input type="checkbox" id="ck-9" onclick="allLongDateFormat(this.checked);"><label for="ck-9">LongDateFormat</label><br>
+        <br>
+        <div id="widget_custom"></div>
+        <div style="clear: both;">&nbsp;</div> <span id="label_custom"></span>
+      </td>
+      <td valign="top">
 
-  <h2>English (US)</h2>
-  <div id="widget_en_US"></div>
-  <div style="clear: both;">&nbsp;</div>
-  <span id="label_en_US"></span>
-  <br><br>
+        <h2>English (US)</h2>
+        <div id="widget_en_US"></div>
+        <div style="clear: both;">&nbsp;</div> <span id="label_en_US"></span> <br>
+      <br>
 
-  <h2>German</h2>
-  <div id="widget_de"></div>
-  <div style="clear: both;">&nbsp;</div>
-  <span id="label_de"></span>
-  <br><br>
+        <h2>German</h2>
+        <div id="widget_de"></div>
+        <div style="clear: both;">&nbsp;</div> <span id="label_de"></span> <br>
+      <br>
 
-  <h2>Malayalam</h2>
-  <div id="widget_ml"></div>
-  <div style="clear: both;">&nbsp;</div>
-  <span id="label_ml"></span>
-  <br><br>
+        <h2>Malayalam</h2>
+        <div id="widget_ml"></div>
+        <div style="clear: both;">&nbsp;</div> <span id="label_ml"></span> <br>
+      <br>
 
-  </td>
-  <td valign="top">
+      </td>
+      <td valign="top">
 
-  <h2>Arabic (Yemen)</h2>
-  <div dir=rtl id="widget_ar_YE"></div>
-  <div style="clear: both;">&nbsp;</div>
-  <span id="label_ar_YE"></span>
-  <br><br>
+        <h2>Arabic (Yemen)</h2>
+        <div dir=rtl id="widget_ar_YE"></div>
+        <div style="clear: both;">&nbsp;</div> <span id="label_ar_YE"></span> <br>
+      <br>
 
-  <h2>Thai</h2>
-  <div id="widget_th"></div>
-  <div style="clear: both;">&nbsp;</div>
-  <span id="label_th"></span>
-  <br><br>
+        <h2>Thai</h2>
+        <div id="widget_th"></div>
+        <div style="clear: both;">&nbsp;</div> <span id="label_th"></span> <br>
+      <br>
 
-  <h2>Japanese</h2>
-  <div id="widget_ja"></div>
-  <div style="clear: both;">&nbsp;</div>
-  <span id="label_ja"></span>
-  <br><br>
+        <h2>Japanese</h2>
+        <div id="widget_ja"></div>
+        <div style="clear: both;">&nbsp;</div> <span id="label_ja"></span> <br>
+      <br>
 
-  </td></tr></table>
+      </td>
+    </tr>
+  </table>
 
   <script type="text/javascript">
     // Standard: ISO 8601

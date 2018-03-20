@@ -7,63 +7,51 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.Dialog</title>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.Dialog</title>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.events');
     goog.require('goog.events.EventType');
     goog.require('goog.html.testing');
     goog.require('goog.ui.Dialog');
   </script>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <link rel="stylesheet" href="../css/dialog.css">
-  <style>
-  .modal-dialog {
-    width: 430px;
-  }
-  </style>
+<link rel="stylesheet" href="../css/css/demo.css">
+<link rel="stylesheet" href="../css/dialog.css">
+<style>
+.modal-dialog {
+	width: 430px;
+}
+</style>
 </head>
 
 <body>
   <h1>goog.ui.Dialog</h1>
-  <div><input id="openOnKeyDown" type="checkbox">
-  <label>Enable open on keydown</label>
-  <span>(use "Space" to open dialog with no Iframe, "Enter" to open with Iframe
-  mask</span>
+  <div>
+    <input id="openOnKeyDown" type="checkbox"> <label>Enable open on keydown</label> <span>(use "Space"
+      to open dialog with no Iframe, "Enter" to open with Iframe mask</span>
   </div>
-  <div><input id="swapModalOnShift" type="checkbox">
-  <label>Enable modal change with shift when the dialog is open</label>
+  <div>
+    <input id="swapModalOnShift" type="checkbox"> <label>Enable modal change with shift when the dialog
+      is open</label>
   </div>
-  <button onclick="showDialog(dialog1);">
-    Open Dialog (no Iframe)</button>
+  <button onclick="showDialog(dialog1);">Open Dialog (no Iframe)</button>
   <br>
-  <button onclick="showDialog(dialog2);">
-    Open Dialog (w/ Iframe mask)
-  </button>
+  <button onclick="showDialog(dialog2);">Open Dialog (w/ Iframe mask)</button>
 
 
   <fieldset style="margin-top: 2em;">
     <legend>A sample web page</legend>
-    <h2>
-      A World Beyond AJAX: Accessing Google's APIs from Flash and
-      Non-JavaScript Environments
-    </h2>
+    <h2>A World Beyond AJAX: Accessing Google's APIs from Flash and Non-JavaScript Environments</h2>
     <cite>Vadim Spivak (Google)</cite>
 
-    <p>
-      AJAX isn't the only way to access Google APIs. Learn how to use Google's
-      services from Flash and other non-JavaScript programming environments.
-      We'll show you how easy it is to augment your site with dynamic search
-      and feed data from non-JavaScript environments.
-    </p>
+    <p>AJAX isn't the only way to access Google APIs. Learn how to use Google's services from Flash and other
+      non-JavaScript programming environments. We'll show you how easy it is to augment your site with dynamic search
+      and feed data from non-JavaScript environments.</p>
+
+    <p>Participants should be familiar with general web application development.</p>
 
     <p>
-      Participants should be familiar with general web application
-      development.
-    </p>
-
-    <p>Select Element:
-      <select>
+      Select Element: <select>
         <option>Option 1</option>
         <option>Option 2</option>
         <option>Option 3</option>
@@ -72,14 +60,11 @@ See the COPYING file for details.
 
     <p>
       <object width="425" height="344">
-        <param name="movie"
-          value="http://www.youtube.com/v/7fbz8WOec1g&hl=en&fs=1&"></param>
+        <param name="movie" value="http://www.youtube.com/v/7fbz8WOec1g&hl=en&fs=1&"></param>
         <param name="allowFullScreen" value="true"></param>
         <param name="allowscriptaccess" value="always"></param>
-        <embed
-          src="http://www.youtube.com/v/7fbz8WOec1g&hl=en&fs=1&"
-          type="application/x-shockwave-flash" allowscriptaccess="always"
-          allowfullscreen="true" width="425" height="344"></embed>
+        <embed src="http://www.youtube.com/v/7fbz8WOec1g&hl=en&fs=1&" type="application/x-shockwave-flash"
+          allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed>
       </object>
     </p>
   </fieldset>

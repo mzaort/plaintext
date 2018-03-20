@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<input class='component component-input-button' th:value="${value}" th:id="${id}" th:title="${title}" th:disabled="${disabled}"/>
+  <div class="component component-input-button" th:value="${value}" th:id="b2" th:title="${title}"
+    th:disabled="${disabled}">
+    <span th:text="${value} ?: _">google</span>
+  </div>
 </body>
 </html>

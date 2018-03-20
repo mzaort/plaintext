@@ -7,13 +7,19 @@ Use of this source code is governed by the Apache License, Version 2.0.
 See the COPYING file for details.
 -->
 <head>
-  <title>goog.ui.Gauge</title>
-  <link rel="stylesheet" href="../css/css/demo.css">
-  <style>
-    .type { font-size:14px; font-weight:bold; font-family:arial; background-color:#f7f7f7; text-align:center }
-  </style>
-  <script src="../lib/closure-library/closure/goog/base.js"></script>
-  <script>
+<title>goog.ui.Gauge</title>
+<link rel="stylesheet" href="../css/css/demo.css">
+<style>
+.type {
+	font-size: 14px;
+	font-weight: bold;
+	font-family: arial;
+	background-color: #f7f7f7;
+	text-align: center
+}
+</style>
+<script src="../lib/closure-library/closure/goog/base.js"></script>
+<script>
     goog.require('goog.dom');
     goog.require('goog.graphics');
     goog.require('goog.graphics.Font');
@@ -23,7 +29,7 @@ See the COPYING file for details.
     goog.require('goog.ui.Gauge');
     goog.require('goog.ui.GaugeTheme');
   </script>
-  <script>
+<script>
 
     var CustomGaugeTheme = function() {
     }
@@ -119,36 +125,19 @@ See the COPYING file for details.
   <h2>Note: This component requires vector graphics support</h2>
   <table border="1">
     <tr valign="top">
-      <td class="type">
-        Basic
-      </td>
-      <td class="type">
-        Background colors, title. custom ticks
-      </td>
-      <td class="type">
-        Value change, formatted value, tick labels
-      </td>
-      <td class="type">
-        Custom colors
-      </td>
+      <td class="type">Basic</td>
+      <td class="type">Background colors, title. custom ticks</td>
+      <td class="type">Value change, formatted value, tick labels</td>
+      <td class="type">Custom colors</td>
     </tr>
     <tr>
-      <td style="width: 120px">
-        <span id="basic"></span>
-      </td>
-      <td style="width: 200px">
-        <span id="colors"></span>
-      </td>
-      <td style="width: 300px">
-        <span id="interactive"></span>
+      <td style="width: 120px"><span id="basic"></span></td>
+      <td style="width: 200px"><span id="colors"></span></td>
+      <td style="width: 300px"><span id="interactive"></span>
         <center>
-          <input type="text" size="3" value="22" id="v1" />
-          <input type="button" onclick="setValue()" value="Set" />
-        </center>
-      </td>
-      <td style="width: 200px">
-        <span id="customcolors"></span>
-      </td>
+          <input type="text" size="3" value="22" id="v1" /> <input type="button" onclick="setValue()" value="Set" />
+        </center></td>
+      <td style="width: 200px"><span id="customcolors"></span></td>
     </tr>
   </table>
   <script>

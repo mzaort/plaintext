@@ -11,34 +11,33 @@ See the COPYING file for details.
 <link rel="stylesheet" href="../css/checkbox.css">
 <style>
 #out {
-  background-color: #eee;
-  width: 200px;
-  height: 200px;
-  position: relative;
+	background-color: #eee;
+	width: 200px;
+	height: 200px;
+	position: relative;
 }
 
 #h-line, #v-line {
-  position: absolute;
-  background: black;
+	position: absolute;
+	background: black;
 }
 
 #h-line {
-  width: 20px;
-  height: 1px;
+	width: 20px;
+	height: 1px;
 }
 
 #v-line {
-  width: 1px;
-  height: 20px;
+	width: 1px;
+	height: 20px;
 }
 
 #status {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  font: 70% sans-serif;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	font: 70% sans-serif;
 }
-
 </style>
 <script src="../lib/closure-library/closure/goog/base.js"></script>
 <script>
@@ -50,17 +49,16 @@ goog.require('goog.events.MouseWheelHandler');
 </head>
 <body>
 
-<h1>goog.events.MouseWheelHandler</h1>
+  <h1>goog.events.MouseWheelHandler</h1>
 
-<p>Use your mousewheel on the gray box below to move the cross hair.
+  <p>Use your mousewheel on the gray box below to move the cross hair.
+  <div id=out>
+    <div id=h-line></div>
+    <div id=v-line></div>
+    <div id=status></div>
+  </div>
 
-<div id=out>
-  <div id=h-line></div>
-  <div id=v-line></div>
-  <div id=status></div>
-</div>
-
-<script>
+  <script>
 
 var MouseWheelHandler = goog.events.MouseWheelHandler;
 var MOUSEWHEEL = MouseWheelHandler.EventType.MOUSEWHEEL;
