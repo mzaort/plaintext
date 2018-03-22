@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-  <div class="component component-input-button" th:value="${value}" th:id="b2" th:title="${title}"
-    th:disabled="${disabled}">
-    <span th:text="${value} ?: _">google</span>
+  <input class="component component-input-button" type="button" th:value="${value}?:_" th:id="${id}?: _"
+    th:title="${title}?:_" th:disabled="${disabled}?:_" />
+
+  <div class="component component-simple-menu goog-menu" th:id="${id}?:_">
+    <th:block th:if="${menuItems} != null">
+      <th:block th:each="e: ${menuItems}">
+        <hr th:if="${e['isSeperator']}">
+        <div th:unless="${e['isSeperator']}" class="goog-menuitem" th:id="${e['id']} ?: _"
+          th:classappend="${e['selected']} == true ? 'goog-option goog-option-selected' : _">
+          <div th:if="${e['accelerator']} != null" class="goog-menuitem-accel">[[${e['accelerator']}]]</div>
+          [[${e['caption']}]]
+        </div>
+      </th:block>
+    </th:block>
   </div>
 </body>
 </html>

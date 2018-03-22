@@ -70,10 +70,10 @@ See the COPYING file for details.
     <div id="b1"></div>
     <label> Enable button:<input type="checkbox" id="b1_enable" checked />
     </label> <br /> <br /> <input
-      th:replace="component :: .component-input-button(id='b2',title='Tooltip extracted from title',value='My Button',disabled=true)"
-      th:with="id='b2',title='Tooltip extracted from title',value='My Button',disabled=true" type="button" id="b2"
-      title="Tooltip extracted from title" value="My " disabled /><br /> <label>Enable button:<input
-      type="checkbox" id="b2_enable" /></label> <br />
+      th:replace="component :: .component-input-button(id='b2',value='My Button',disabled=true)"
+      type="button" title="Tooltip extracted from title" value="My Button" disabled /><br /> <label>Enable
+      button:<input type="checkbox" id="b2_enable" />
+    </label> <br />
   </fieldset>
   <br />
 
@@ -132,8 +132,7 @@ See the COPYING file for details.
     &nbsp;
     <div id="hideShow" class="goog-toggle-button goog-custom-button-checked"
       title="Click here to hide/show the button above">Show</div>
-    <br />
-    <br /> Combined toggle buttons:<br />
+    <br /> <br /> Combined toggle buttons:<br />
     <div id="btn4" class="goog-toggle-button goog-custom-button-collapse-right">Bold</div>
     <div id="btn5" class="goog-toggle-button goog-custom-button-collapse-right goog-custom-button-collapse-left">
       Italics</div>

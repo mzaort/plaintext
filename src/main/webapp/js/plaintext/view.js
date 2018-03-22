@@ -12,10 +12,12 @@ goog.require('goog.dom.dataset');
 goog.require('goog.events');
 goog.require('goog.events.Event');
 goog.require('goog.events.EventTarget');
+goog.require('goog.object');
 goog.require('goog.string');
 goog.require('goog.structs.Map');
 goog.require('goog.ui.Button');
 goog.require('goog.ui.Component');
+goog.require('goog.ui.Menu');
 goog.require('plaintext.util.UidMap');
 
 /**
@@ -32,9 +34,14 @@ plaintext.View = function() {
   this.componentConstructors_ = new goog.structs.Map();
 
   /**
-   * A map from elements to component instances for which they are created. It
-   * holds all component instances both decorated and undecorated as its value
-   * set.
+   * @private
+   * @type {!plaintext.util.UidMap.<!goog.ui.Component, Function(Object)>}
+   */
+  this.constructorWrapper_ = new plaintext.util.UidMap();
+
+  /**
+   * A map from elements to component instances for which they are created. It holds all component instances both
+   * decorated and undecorated as its value set.
    * 
    * @private
    * @type {!plaintext.util.UidMap.<!Element, !goog.ui.Component>}
@@ -42,9 +49,8 @@ plaintext.View = function() {
   this.componentInstances_ = new plaintext.util.UidMap();
 
   /**
-   * A map from component instances to their element. Because we cannot call
-   * .setElementInternal(element) on undecorated components, we keep this
-   * information here to be used in decorateChildren(container).
+   * A map from component instances to their element. Because we cannot call .setElementInternal(element) on undecorated
+   * components, we keep this information here to be used in decorateChildren(container).
    * 
    * @private
    * @type {!plaintext.util.UidMap.<!goog.ui.Component, !Element>}
@@ -80,6 +86,20 @@ plaintext.View.Classes = {
 };
 
 /**
+ * @enum {Object}
+ */
+plaintext.View.REGISTER = {
+  'component-input-button' : {
+    ctor : goog.ui.Button,
+    paramKeys : [ 'content', 'renderer', 'domHelper' ]
+  },
+  'component-simple-menu' : {
+    ctor : goog.ui.Menu,
+    paramKeys : [ 'domHelper', 'renderer' ]
+  }
+};
+
+/**
  * @type {Array}
  */
 plaintext.View.metaKeyList = [ 'label', 'hint', 'visible', 'readonly', 'disabled', 'required', 'dateType', 'maxlength',
@@ -92,12 +112,13 @@ plaintext.View.metaKeyList = [ 'label', 'hint', 'visible', 'readonly', 'disabled
  * Register a new component.
  * 
  * @param {string} name JS class name to trigger instantiation of the component.
- * @param {!plaintext.View.ComponentConstructor} ctor The constructor of the
- *          component.
+ * @param {!plaintext.View.ComponentConstructor} ctor The constructor of the component.
+ * @param {Function.<Object>=} opt_wrapper a function to build ctor accepting Object as parameter
  */
-plaintext.View.registerComponent = function(name, ctor) {
+plaintext.View.registerComponent = function(name, ctor, opt_wrapper) {
   var cssName = name.toLowerCase().replace(/\./g, '-');
   plaintext.View.getInstance().componentConstructors_.set(cssName, ctor);
+  plaintext.View.getInstance().constructorWrapper_.set(ctor, opt_wrapper);
 };
 
 /**
@@ -128,8 +149,7 @@ goog.scope(function() {
   var View = plaintext.View;
 
   /**
-   * Get the component instance generated for the given element / the element
-   * with the given id.
+   * Get the component instance generated for the given element / the element with the given id.
    * 
    * @param {string|!Element|null} idOrElement
    * @return {?goog.ui.Component} the component with the given id
@@ -144,8 +164,7 @@ goog.scope(function() {
   };
 
   /**
-   * Returns true if the view has component constructed by constructor for given
-   * element.
+   * Returns true if the view has component constructed by constructor for given element.
    * 
    * @param {!Element} element
    * @param {!Function} constructor
@@ -172,8 +191,8 @@ goog.scope(function() {
   };
 
   /**
-   * Search DOM tree under root and create components. Set
-   * this.componentInstances_ and this.undecoratedComponents_ appropriately.
+   * Search DOM tree under root and create components. Set this.componentInstances_ and this.undecoratedComponents_
+   * appropriately.
    * 
    * @private
    * @param {?Element} root
@@ -194,7 +213,7 @@ goog.scope(function() {
         var component;
 
         goog.mixin(param, goog.dom.dataset.getAll(element));
-        component = new ctor(param);
+        component = this.assembleComponent(ctor, param);
         component.addOnDisposeCallback(plaintext.View.componentDispose_, {
           view : this,
           targetElement : element
@@ -208,10 +227,22 @@ goog.scope(function() {
   };
 
   /**
+   * @param {Function} ctor
+   * @param {Object=} opt_params
+   */
+  View.prototype.assembleComponent = function(ctor, opt_params) {
+    var wrapper = this.constructorWrapper_.get(ctor);
+    if (goog.isFunction(wrapper)) {
+      return wrapper(opt_params || {});
+    } else {
+      return goog.isObject(opt_params) && !goog.object.isEmpty(opt_params) ? new ctor(opt_params) : new ctor();
+    }
+  };
+
+  /**
    * Initialize the view
    * 
-   * @param {Object=} opt_defaultParams This parameter is for legacy use only.
-   *          DO NOT USE.
+   * @param {Object=} opt_defaultParams This parameter is for legacy use only. DO NOT USE.
    */
   View.prototype.initialize = function(opt_defaultParams) {
     goog.ui.Component.setDefaultRightToLeft(false);
@@ -245,7 +276,8 @@ goog.scope(function() {
       if (componentNames.length !== 1) {
         return false;
       } else {
-        View.registerComponent(componentNames[0], this.getComponentBuilder(componentNames[0]));
+        var builder = this.getComponentBuilder(componentNames[0]);
+        View.registerComponent(componentNames[0], builder.ctor, builder.wrapper);
         return true;
       }
     }
@@ -264,22 +296,44 @@ goog.scope(function() {
   };
 
   /**
+   * @param {Object} builder
+   * @return {Function=}
+   * @private
+   */
+  View.prototype.wrapperConstructor_ = function(builder) {
+    if (goog.isArray(builder.paramKeys) && builder.paramKeys.length !== 0) {
+      return function(obj) {
+        obj = obj || {};
+        var params = goog.array.map(builder.paramKeys, function(key) {
+          return obj[key];
+        });
+        var component = {};
+        var fun = Object.setPrototypeOf || function(obj, proto) {
+          obj.__proto__ = proto;
+          return obj;
+        };
+        fun(component, builder.ctor.prototype);
+        builder.ctor.apply(component, params);
+        return component;
+      };
+    }
+  };
+
+  /**
    * Get the constructor of a component from its className
    * 
    * @param {!string} className
    * @return {Function}
    */
   View.prototype.getComponentBuilder = function(className) {
-    if (goog.string.isEmptySafe(className))
-      return null;
-    switch (className) {
-    case 'component-button':
-      return goog.ui.Button;
-    case 'component-input-button':
-      return goog.ui.Button;
-    default:
-      return null;
-    }
+    if (goog.string.isEmptySafe(className)) return null;
+    var builder = View.REGISTER[className];
+    if (builder == null) return null;
+
+    return {
+      ctor : builder.ctor,
+      wrapper : this.wrapperConstructor_(builder)
+    };
   };
 
   /**
@@ -294,8 +348,7 @@ goog.scope(function() {
   /**
    * get component constructor by component js class
    * 
-   * @param {string} componentJsClass JS classname to trigger instanciation of
-   *          the component.
+   * @param {string} componentJsClass JS classname to trigger instanciation of the component.
    * @return {?plaintext.View.ComponentConstructor}
    */
   View.prototype.getComponentConstructor = function(componentJsClass) {
@@ -307,8 +360,7 @@ goog.scope(function() {
   };
 
   /**
-   * Decorate all components that are found below the root, except for those
-   * managed by another container component.
+   * Decorate all components that are found below the root, except for those managed by another container component.
    * 
    * @param {!Object} defaultParams
    * @param {?Element} root
@@ -370,8 +422,7 @@ goog.scope(function() {
   };
 
   /**
-   * Decorate all components that are found below the root, no calling on lazy
-   * component decoration
+   * Decorate all components that are found below the root, no calling on lazy component decoration
    * 
    * @param {!Object} defaultParams
    * @param {?Element} root
@@ -425,8 +476,7 @@ goog.scope(function() {
 
   /**
    * 
-   * @param {Array. <{component:goog.ui.Component,element:Element}>}
-   *          lazyComponents
+   * @param {Array. <{component:goog.ui.Component,element:Element}>} lazyComponents
    */
   View.prototype.lazyDecorate = function(lazyComponents) {
     if (lazyComponents.length === 0) {
@@ -440,15 +490,13 @@ goog.scope(function() {
           var component = entry['component'];
           component.decorate(element);
           self.undecoratedComponents_.remove(component);
-        } catch (e) {
-        }
+        } catch (e) {}
       });
     });
   };
 
   /**
-   * @param {!goog.ui.Component} container A container component whose children
-   *          this function decorates.
+   * @param {!goog.ui.Component} container A container component whose children this function decorates.
    */
   View.prototype.decorateChildren = function(container) {
     if (!container.hasChildren()) {
@@ -509,15 +557,13 @@ goog.scope(function() {
   };
 
   /**
-   * Insert component to a container component. This new component will be
-   * appended to the end of the container component.
+   * Insert component to a container component. This new component will be appended to the end of the container
+   * component.
    * 
-   * @param {string} componentName The component name registered by
-   *          plaintext.View.registerComponent
+   * @param {string} componentName The component name registered by plaintext.View.registerComponent
    * @param {object} option Option that used as tag attributes.
    * @param {object} data Value object that used in component.
-   * @param {goog.ui.Component} parantComponent Parent component that this new
-   *          component will be inserted into
+   * @param {goog.ui.Component} parantComponent Parent component that this new component will be inserted into
    * @return {goog.ui.Component} Newly created component
    */
   View.prototype.insertComponentInto = function(componentName, option, data, parentComponent) {
@@ -525,15 +571,12 @@ goog.scope(function() {
   };
 
   /**
-   * Insert component. This new component will be appended before the specified
-   * component
+   * Insert component. This new component will be appended before the specified component
    * 
-   * @param {string} componentName The component name registered by
-   *          plaintext.View.registerComponent
+   * @param {string} componentName The component name registered by plaintext.View.registerComponent
    * @param {object} option Option that used as tag attributes.
    * @param {object} data Value object that used in component.
-   * @param {goog.ui.Component} siblingComponent Sibling component that this new
-   *          component will be inserted before
+   * @param {goog.ui.Component} siblingComponent Sibling component that this new component will be inserted before
    * @return {goog.ui.Component} Newly created component
    */
   View.prototype.insertComponentBefore = function(componentName, option, data, siblingComponent) {
@@ -541,8 +584,7 @@ goog.scope(function() {
   };
 
   /**
-   * Insert a new component to specified element as its child element or
-   * sibling.
+   * Insert a new component to specified element as its child element or sibling.
    */
   View.prototype.insertComponent_ = function(componentName, option, data, toComponent, asSibling) {
 
@@ -560,7 +602,7 @@ goog.scope(function() {
     goog.asserts.assertFunction(generator,
         'This ui component can not be inserted. Please add <?will-insert ?> processing instruction.');
     var componentDomString = generator(option, data);
-    var $componentElement = goog.dom.htmlToDocumentFragment(componentDomString);
+    var $componentElement = goog.dom.safeHtmlToNode(componentDomString);
     $componentElement.classList.add(componentName);
 
     // insert element:

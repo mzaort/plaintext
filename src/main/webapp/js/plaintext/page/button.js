@@ -17,6 +17,7 @@ goog.require('goog.ui.FlatButtonRenderer');
 goog.require('goog.ui.LinkButtonRenderer');
 goog.require('goog.ui.ToggleButton');
 goog.require('goog.ui.decorate');
+goog.require('plaintext.View');
 
 function startup1() {
   var timer = goog.now();
@@ -34,6 +35,8 @@ function startup1() {
     goog.log.info(logger, '"' + e.target.getCaption() + '" dispatched: ' + e.type);
   }
 
+  var view = plaintext.View.getInstance();
+
   // Create the first button programmatically.
   var b1 = new goog.ui.Button('Hello!');
   b1.render(goog.dom.getElement('b1'));
@@ -50,7 +53,7 @@ function startup1() {
   });
 
   // Create the second button by decorating an element.
-  var b2 = plaintext.View.getInstance().getComponent('b2');
+  var b2 = view.getComponent('b2');
   goog.events.listen(b2, EVENTS, logEvent);
 
   goog.events.listen(goog.dom.getElement('b2_enable'), goog.events.EventType.CLICK, function(e) {
