@@ -17,7 +17,7 @@ var util = require('util');
 var zip = require('gulp-zip');
 var fixclosure = require('fixclosure');
 
-var main = path.join(__dirname, 'main');
+var main = path.join(__dirname, 'src', 'main');
 var resources = path.join(main, 'resources');
 var webapp = path.join(main, 'webapp');
 

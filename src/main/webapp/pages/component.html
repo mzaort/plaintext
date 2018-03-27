@@ -16,7 +16,14 @@
       </th:block>
     </th:block>
   </div>
-  
+
   <div class="component component-render-datepicker-enus" th:id="${id} ?: _"></div>
+
+  <div class="component component-slider goog-slider" th:id="${id} ?: _" th:style="${dir} != 'vertical' ? 'width:' +  (${width} ?: 200) + 'px;' + 'height:' + (${height} ?: 20) + 'px' : 'width:' +  (${width} ?: 20) + 'px;' + 'height:' + (${height} ?: 200) + 'px'">
+    <th:block th:if="${content}">[[${content}]]</th:block>
+    <div th:if="${baseline}"
+      th:style="${dir} != 'vertical' ? 'position: absolute;width: 100%;top: 50%;border: 1px inset white;overflow: hidden;height: 0;' : 'position: absolute;height: 100%;left: 50%;border: 1px inset white;overflow: hidden;height: 0;'"></div>
+    <div class="goog-slider-thumb"></div>
+  </div>
 </body>
 </html>

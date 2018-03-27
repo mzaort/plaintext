@@ -12,11 +12,13 @@ goog.require('goog.dom.dataset');
 goog.require('goog.events');
 goog.require('goog.events.Event');
 goog.require('goog.events.EventTarget');
+goog.require('goog.i18n.DateTimeSymbols_en_US');
 goog.require('goog.object');
 goog.require('goog.string');
 goog.require('goog.structs.Map');
 goog.require('goog.ui.Button');
 goog.require('goog.ui.Component');
+goog.require('goog.ui.DatePicker');
 goog.require('goog.ui.Menu');
 goog.require('plaintext.util.UidMap');
 
@@ -108,11 +110,9 @@ plaintext.View.REGISTER = {
 
 plaintext.View.RENDERS = {
   'component-render-datepicker-enus' : function(element, obj) {
-    goog.i18n.DateTimeSymbols = goog.i18n.DateTimeSymbols_en_US;
-    goog.i18n.DateTimePatterns = goog.i18n.DateTimePatterns_en_US;
-
-    obj = obj || [];
-    var dp_en_US = new goog.ui.DatePicker(obj['date'], obj['dateTimeSymbols'], obj['domHelper'], obj['renderer']);
+    obj = obj || {};
+    var dp_en_US = new goog.ui.DatePicker(obj['date'], goog.i18n.DateTimeSymbols_en_US, obj['domHelper'],
+        obj['renderer']);
     dp_en_US.render(element);
     return dp_en_US;
   }

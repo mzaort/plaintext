@@ -1,28 +1,19 @@
-goog.require('goog.array');
-goog.require('goog.debug.DivConsole');
-goog.require('goog.debug.LogManager');
+goog.require('goog.date.Date');
 goog.require('goog.dom');
-goog.require('goog.dom.TagName');
 goog.require('goog.events');
-goog.require('goog.events.EventType');
-goog.require('goog.log');
-goog.require('goog.log.Level');
-goog.require('goog.object');
-goog.require('goog.ui.Button');
-goog.require('goog.ui.ButtonSide');
-goog.require('goog.ui.Component.EventType');
-goog.require('goog.ui.Component.State');
-goog.require('goog.ui.CustomButton');
-goog.require('goog.ui.FlatButtonRenderer');
-goog.require('goog.ui.LinkButtonRenderer');
-goog.require('goog.ui.ToggleButton');
-goog.require('goog.ui.decorate');
+goog.require('goog.i18n.DateTimeSymbols_ar_YE');
+goog.require('goog.i18n.DateTimeSymbols_de');
+goog.require('goog.i18n.DateTimeSymbols_en_ISO');
+goog.require('goog.i18n.DateTimeSymbols_ja');
+goog.require('goog.i18n.DateTimeSymbols_ml');
+goog.require('goog.i18n.DateTimeSymbols_th');
+goog.require('goog.ui.DatePicker');
+goog.require('goog.ui.DatePicker.Events');
 goog.require('plaintext.View');
 
 function startup1() {
   // Standard: ISO 8601
-  goog.i18n.DateTimeSymbols = goog.i18n.DateTimeSymbols_en_ISO;
-  var dp_iso_8601 = new goog.ui.DatePicker();
+  var dp_iso_8601 = new goog.ui.DatePicker(undefined, goog.i18n.DateTimeSymbols_en_ISO);
   dp_iso_8601.render(document.getElementById('widget_iso_8601'));
 
   goog.events.listen(dp_iso_8601, goog.ui.DatePicker.Events.CHANGE, function(event) {
@@ -56,10 +47,8 @@ function startup1() {
   goog.dom.setTextContent(document.getElementById('label_en_US'), dp_en_US.getDate().toIsoString(true));
 
   // German
-  goog.i18n.DateTimeSymbols = goog.i18n.DateTimeSymbols_de;
-  goog.i18n.DateTimePatterns = goog.i18n.DateTimePatterns_de;
 
-  dp_de = new goog.ui.DatePicker();
+  dp_de = new goog.ui.DatePicker(undefined, goog.i18n.DateTimeSymbols_de);
   dp_de.render(document.getElementById('widget_de'));
 
   goog.events.listen(dp_de, goog.ui.DatePicker.Events.CHANGE, function(event) {
@@ -69,10 +58,8 @@ function startup1() {
   goog.dom.setTextContent(document.getElementById('label_de'), dp_de.getDate().toIsoString(true));
 
   // Malayalam
-  goog.i18n.DateTimeSymbols = goog.i18n.DateTimeSymbols_ml;
-  goog.i18n.DateTimePatterns = goog.i18n.DateTimePatterns_ml;
 
-  var dp_ml = new goog.ui.DatePicker();
+  var dp_ml = new goog.ui.DatePicker(undefined, goog.i18n.DateTimeSymbols_ml);
   dp_ml.render(document.getElementById('widget_ml'));
 
   goog.events.listen(dp_ml, goog.ui.DatePicker.Events.CHANGE, function(event) {
@@ -82,7 +69,6 @@ function startup1() {
   goog.dom.setTextContent(document.getElementById('label_ml'), dp_ml.getDate().toIsoString(true));
 
   // Arabic (Yemen)
-  goog.i18n.DateTimePatterns = goog.i18n.DateTimePatterns_ar_YE;
   var dp_ar_YE = new goog.ui.DatePicker(null, goog.i18n.DateTimeSymbols_ar_YE);
 
   dp_ar_YE.render(document.getElementById('widget_ar_YE'));
@@ -96,10 +82,8 @@ function startup1() {
   goog.dom.setTextContent(document.getElementById('label_ar_YE'), dp_ar_YE.getDate().toIsoString(true));
 
   // Thai
-  goog.i18n.DateTimeSymbols = goog.i18n.DateTimeSymbols_th;
-  goog.i18n.DateTimePatterns = goog.i18n.DateTimePatterns_th;
 
-  var dp_th = new goog.ui.DatePicker();
+  var dp_th = new goog.ui.DatePicker(undefined, goog.i18n.DateTimeSymbols_th);
   dp_th.render(document.getElementById('widget_th'));
 
   goog.events.listen(dp_th, goog.ui.DatePicker.Events.CHANGE, function(event) {
@@ -109,10 +93,8 @@ function startup1() {
   goog.dom.setTextContent(document.getElementById('label_th'), dp_th.getDate().toIsoString(true));
 
   // Japanese
-  goog.i18n.DateTimeSymbols = goog.i18n.DateTimeSymbols_ja;
-  goog.i18n.DateTimePatterns = goog.i18n.DateTimePatterns_ja;
 
-  var dp_ja = new goog.ui.DatePicker();
+  var dp_ja = new goog.ui.DatePicker(undefined, goog.i18n.DateTimeSymbols_ja);
   dp_ja.render(document.getElementById('widget_ja'));
 
   goog.events.listen(dp_ja, goog.ui.DatePicker.Events.CHANGE, function(event) {
