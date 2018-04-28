@@ -22,17 +22,6 @@ plaintext.net.io.Ajax = function(contextPath) {
 plaintext.net.io.Ajax.ROOT = '/plaintext';
 
 /**
- * IE fix parameter to disable cache
- * 
- * the solution is to add a timestamp to each GET request ( no need to change POST, since POST works well in IE). An
- * alternative solution is to disable cache for all. But we don't want to harm features in future which might need cache
- * (in chrome or other browsers) So this is a compromised solution.
- * 
- * @const
- */
-plaintext.net.io.Ajax.IE_FIX = 'ie_fix';
-
-/**
  * @const
  */
 plaintext.net.io.Ajax.TYPE_ERROR = 'Illegle AJAX request type!';
@@ -99,9 +88,6 @@ plaintext.net.io.Ajax.prototype.sendPost = function(url, opt_queryParam, data, r
 plaintext.net.io.Ajax.prototype.sendGet = function(url, opt_queryParam, resultHandler, opt_errorHandler, opt_obj) {
   var self = opt_obj || window;
   opt_queryParam = opt_queryParam || {};
-
-  // prevent ie from cache
-  opt_queryParam[wap.core.ui.spreadsheet.io.Ajax.IE_FIX] = new Date().getTime();
 
   this.promiseAjax_.get(url, opt_queryParam).getResult().then(function(response) {
     var result = response.getResponseJson() || response.getResponseText();
