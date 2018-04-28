@@ -116,7 +116,7 @@ function startup1() {
   var customButtons = [new goog.ui.CustomButton('Button'), new goog.ui.CustomButton('Another Button'),
     disabledButton = new goog.ui.CustomButton('Disabled Button'), new goog.ui.CustomButton('Yet Another Button'),
     leftButton = new goog.ui.CustomButton('Left'), centerButton = new goog.ui.CustomButton('Center'),
-    rightButton = new goog.ui.CustomButton('Right'),
+    rightButton = new goog.ui.CustomButton('Right')
   ];
   disabledButton.setEnabled(false);
   leftButton.setCollapsed(goog.ui.ButtonSide.END);

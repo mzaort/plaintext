@@ -1,3 +1,8 @@
+goog.provide('plaintext.net.PromiseAjax');
+goog.provide('plaintext.net.PromiseAjax.ApplicationParameter');
+goog.provide('plaintext.net.PromiseAjax.Request');
+goog.provide('plaintext.net.PromiseAjax.SendingTypes');
+
 goog.require('goog.Disposable');
 goog.require('goog.Promise');
 goog.require('goog.Uri');
@@ -6,6 +11,12 @@ goog.require('goog.net.HttpStatus');
 goog.require('goog.net.XhrManager');
 goog.require('goog.object');
 goog.require('goog.string');
+goog.require('plaintext');
+goog.require('plaintext.events.Event');
+goog.require('plaintext.events.GlobalErrorHandler');
+goog.require('plaintext.events.GlobalErrorHandler.EventType');
+goog.require('plaintext.net.Response');
+goog.require('plaintext.util.object');
 
 /**
  * @constructor
@@ -16,7 +27,7 @@ goog.require('goog.string');
  * @param {goog.net.XhrManager=} opt_xhrManager Optional XhrManager. Use this parameter to mock HTTP response in unit
  *          test.
  */
-wap.core.net.PromiseAjax = function(opt_scope, opt_header, opt_contextPath, opt_xhrManager) {
+plaintext.net.PromiseAjax = function(opt_scope, opt_header, opt_contextPath, opt_xhrManager) {
   goog.Disposable.call(this);
 
   /**
@@ -39,7 +50,7 @@ wap.core.net.PromiseAjax = function(opt_scope, opt_header, opt_contextPath, opt_
 
   /**
    * @private
-   * @type {Object.<string, wap.core.net.PromiseAjax.Request>}
+   * @type {Object.<string, plaintext.net.PromiseAjax.Request>}
    */
   this.pendingMap_ = {};
 
@@ -47,14 +58,14 @@ wap.core.net.PromiseAjax = function(opt_scope, opt_header, opt_contextPath, opt_
    * @private
    * @type {string}
    */
-  this.contextPath_ = opt_contextPath ? opt_contextPath : wap.core.common.getContextPath();
+  this.contextPath_ = opt_contextPath ? opt_contextPath : plaintext.common;
 };
-goog.inherits(wap.core.net.PromiseAjax, goog.Disposable);
+goog.inherits(plaintext.net.PromiseAjax, goog.Disposable);
 
 /**
  * @enum {string}
  */
-wap.core.net.PromiseAjax.SendingTypes = {
+plaintext.net.PromiseAjax.SendingTypes = {
   JSON: 'application/json',
   FORM: 'application/x-www-form-urlencoded;charset=UTF-8'
 };
@@ -64,31 +75,31 @@ wap.core.net.PromiseAjax.SendingTypes = {
  * @private
  * @type {string}
  */
-wap.core.net.PromiseAjax.ajaxRequestTypeValue_ = 'XMLHttpRequest';
+plaintext.net.PromiseAjax.ajaxRequestTypeValue_ = 'XMLHttpRequest';
 
 /**
  * 
  * @type {string}
  * @private
  */
-wap.core.net.PromiseAjax.ajaxRequestTypeHeader_ = 'X-Requested-With';
+plaintext.net.PromiseAjax.ajaxRequestTypeHeader_ = 'X-Requested-With';
 
 /**
  * @private
  * @type {number}
  */
-wap.core.net.PromiseAjax.xhrId_ = 0;
+plaintext.net.PromiseAjax.xhrId_ = 0;
 
 /**
  * Send GET http request with query parameters.
  * @param {string} url should not be contained context path.
  * @param {Object=} opt_queryParam
  * @param {Object=} opt_headers Additional headers for this request.
- * @param {wap.core.net.PromiseAjax.ApplicationParameter=} opt_appParam Additional application query parameter
+ * @param {plaintext.net.PromiseAjax.ApplicationParameter=} opt_appParam Additional application query parameter
  *          information for this request.
- * @return {wap.core.net.PromiseAjax.Request}
+ * @return {plaintext.net.PromiseAjax.Request}
  */
-wap.core.net.PromiseAjax.prototype.get = function(url, opt_queryParam, opt_headers, opt_appParam) {
+plaintext.net.PromiseAjax.prototype.get = function(url, opt_queryParam, opt_headers, opt_appParam) {
   return this.send('GET', url, opt_queryParam, null, null, opt_headers, opt_appParam);
 };
 
@@ -98,9 +109,9 @@ wap.core.net.PromiseAjax.prototype.get = function(url, opt_queryParam, opt_heade
  * @param {Object=} opt_queryParam
  * @param {Object=} opt_jsonObject
  * @param {Object=} opt_headers Additional headers for this request.
- * @return {wap.core.net.PromiseAjax.Request}
+ * @return {plaintext.net.PromiseAjax.Request}
  */
-wap.core.net.PromiseAjax.prototype.post = function(url, opt_queryParam, opt_jsonObject, opt_headers) {
+plaintext.net.PromiseAjax.prototype.post = function(url, opt_queryParam, opt_jsonObject, opt_headers) {
   return this.send('POST', url, opt_queryParam, null, opt_jsonObject, opt_headers);
 };
 
@@ -110,9 +121,9 @@ wap.core.net.PromiseAjax.prototype.post = function(url, opt_queryParam, opt_json
  * @param {Object=} opt_queryParam
  * @param {Object=} opt_formParam
  * @param {Object=} opt_headers Additional headers for this request.
- * @return {wap.core.net.PromiseAjax.Request}
+ * @return {plaintext.net.PromiseAjax.Request}
  */
-wap.core.net.PromiseAjax.prototype.postFormData = function(url, opt_queryParam, opt_formParam, opt_headers) {
+plaintext.net.PromiseAjax.prototype.postFormData = function(url, opt_queryParam, opt_formParam, opt_headers) {
   return this.send('POST', url, opt_queryParam, opt_formParam, null, opt_headers);
 };
 
@@ -124,13 +135,13 @@ wap.core.net.PromiseAjax.prototype.postFormData = function(url, opt_queryParam, 
  * @param {Object} formParam
  * @param {Object} sendingObject
  * @param {Object=} opt_headers Additional headers for this request.
- * @param {wap.core.net.PromiseAjax.ApplicationParameter=} opt_appParam Additional application query parameter
+ * @param {plaintext.net.PromiseAjax.ApplicationParameter=} opt_appParam Additional application query parameter
  *          information for this request.
- * @return {wap.core.net.PromiseAjax.Request}
+ * @return {plaintext.net.PromiseAjax.Request}
  */
-wap.core.net.PromiseAjax.prototype.send = function(method, url, queryParam, formParam, sendingObject, opt_headers,
+plaintext.net.PromiseAjax.prototype.send = function(method, url, queryParam, formParam, sendingObject, opt_headers,
   opt_appParam) {
-  if (wap.core.net.PromiseAjax.disabled_) {
+  if (plaintext.net.PromiseAjax.disabled_) {
     console.warn('PromiseAjax was disabled.');
     return null;
   }
@@ -152,45 +163,26 @@ wap.core.net.PromiseAjax.prototype.send = function(method, url, queryParam, form
       }
     }
   });
-  // TODO application related codes should be moved to application side.
-  // approve flow set sid
-  if (!uri.getParameterValue('sid')) {
-    // set serviceId[sid] in query param.
-    var currentUri = new goog.Uri(window.location.href);
-    var sid = currentUri.getParameterValue('sid');
-    if (!!sid && (!goog.isDefAndNotNull(opt_appParam) || opt_appParam.useSid())) {
-      uri.setParameterValue('sid', sid);
-    }
-    var appId = currentUri.getParameterValue('appId');
-    if (!!appId && (!goog.isDefAndNotNull(opt_appParam) || opt_appParam.useAppId())) {
-      uri.setParameterValue('appId', appId);
-    }
-  }
 
   // append default headers and custom headers
-  var header = wap.core.util.object.extend({}, this.headers_, opt_headers || {});
-
-  header['X-WINDOW-ID'] = wap.core.net.getWindowId();
-  if (method === 'POST') {
-    header['X-CSRF-TOKEN'] = wap.core.net.getCsrfToken();
-  }
-  header[wap.core.net.PromiseAjax.ajaxRequestTypeHeader_] = wap.core.net.PromiseAjax.ajaxRequestTypeValue_;
+  var header = plaintext.util.object.extend({}, this.headers_, opt_headers || {});
+  header[plaintext.net.PromiseAjax.ajaxRequestTypeHeader_] = plaintext.net.PromiseAjax.ajaxRequestTypeValue_;
   var body = null;
 
   // request body and header
   if (method === 'POST' || method === 'PUT') {
     if (sendingObject) {
-      body = wap.core.util.json.stringify(sendingObject);
-      header['Content-Type'] = wap.core.net.PromiseAjax.SendingTypes.JSON;
+      body = JSON.stringify(sendingObject);
+      header['Content-Type'] = plaintext.net.PromiseAjax.SendingTypes.JSON;
     } else {
-      body = wap.core.util.object.objectToFormString(formParam);
-      header['Content-Type'] = wap.core.net.PromiseAjax.SendingTypes.FORM;
+      body = plaintext.net.objectToFormString_(formParam);
+      header['Content-Type'] = plaintext.net.PromiseAjax.SendingTypes.FORM;
     }
   }
 
-  var xhrId = '' + (++wap.core.net.PromiseAjax.xhrId_);
+  var xhrId = '' + (++plaintext.net.PromiseAjax.xhrId_);
   // sending
-  var request = new wap.core.net.PromiseAjax.Request(this, xhrId);
+  var request = new plaintext.net.PromiseAjax.Request(this, xhrId);
   // opt_maxRetries should be 0
   this.xhrManager_
     .send(xhrId, uri.toString(), method, body, header, 0, goog.bind(request.processResponse_, request), 0);
@@ -201,9 +193,27 @@ wap.core.net.PromiseAjax.prototype.send = function(method, url, queryParam, form
 };
 
 /**
+ * @private
+ * @param {Object|string} object
+ * @return {string}
+ */
+plaintext.net.objectToFormString_ = function(object) {
+  if (goog.isString(object)) {
+    return object;
+  }
+  var sb = [];
+  for (var i in object) {
+    if (typeof(object[i]) !== 'function') {
+      sb.push(encodeURIComponent(i) + '=' + encodeURIComponent(object[i]));
+    }
+  }
+  return sb.join('&');
+};
+
+/**
  * abort all ajax requests.
  */
-wap.core.net.PromiseAjax.prototype.abortAll = function() {
+plaintext.net.PromiseAjax.prototype.abortAll = function() {
   // only pending ajax request will be aborted.
   // pendingMap_ will be cleared automatically.
   var ajaxRequests = goog.object.getValues(this.pendingMap_);
@@ -215,37 +225,37 @@ wap.core.net.PromiseAjax.prototype.abortAll = function() {
 /**
  * @override
  */
-wap.core.net.PromiseAjax.prototype.disposeInternal = function() {
+plaintext.net.PromiseAjax.prototype.disposeInternal = function() {
   this.abortAll();
   this.xhrManager_.dispose();
   this.xhrManager_ = null;
   this.scope_ = null;
 
-  wap.core.net.PromiseAjax.superClass_.disposeInternal.call(this);
+  plaintext.net.PromiseAjax.superClass_.disposeInternal.call(this);
 };
 
 /**
  * @private
  * @type {boolean}
  */
-wap.core.net.PromiseAjax.disabled_ = false;
+plaintext.net.PromiseAjax.disabled_ = false;
 
 /**
  * disable all ajax request.
  */
-wap.core.net.PromiseAjax.disableAll = function() {
-  wap.core.net.PromiseAjax.disabled_ = true;
+plaintext.net.PromiseAjax.disableAll = function() {
+  plaintext.net.PromiseAjax.disabled_ = true;
 };
 
 /**
  * @constructor
- * @param {wap.core.net.PromiseAjax} ajax
+ * @param {plaintext.net.PromiseAjax} ajax
  * @param {string} xhrId
  */
-wap.core.net.PromiseAjax.Request = function(ajax, xhrId) {
+plaintext.net.PromiseAjax.Request = function(ajax, xhrId) {
   /**
    * @private
-   * @type {wap.core.net.PromiseAjax}
+   * @type {plaintext.net.PromiseAjax}
    */
   this.ajax_ = ajax;
 
@@ -275,7 +285,7 @@ wap.core.net.PromiseAjax.Request = function(ajax, xhrId) {
 
   /**
    * @private
-   * @type {string|wap.core.net.Response}
+   * @type {string|plaintext.net.Response}
    */
   this.response_ = null;
 
@@ -290,7 +300,7 @@ wap.core.net.PromiseAjax.Request = function(ajax, xhrId) {
  * @private
  * @param {goog.events.Event} e
  */
-wap.core.net.PromiseAjax.Request.prototype.processResponse_ = function(e) {
+plaintext.net.PromiseAjax.Request.prototype.processResponse_ = function(e) {
   this.isAborted_ = false;
   this.isPending_ = false;
   // remove from pending map
@@ -300,14 +310,13 @@ wap.core.net.PromiseAjax.Request.prototype.processResponse_ = function(e) {
     (e.target);
   if (xhr.isSuccess()) {
     this.noError_ = true;
-    this.response_ = new wap.core.net.Response(xhr.getResponseText(), xhr.getAllResponseHeaders(), xhr.getStatus(),
-      xhr
-      .getStatusText(), xhr.getLastUri());
+    this.response_ = new plaintext.net.Response(xhr.getResponseText(), xhr.getAllResponseHeaders(), xhr.getStatus(),
+      xhr.getStatusText(), xhr.getLastUri());
   } else {
     this.noError_ = false;
 
-    var errorHandler = wap.core.events.GlobalErrorHandler.getInstance();
-    errorHandler.dispatchEvent(new wap.core.events.Event(wap.core.events.GlobalErrorHandler.EventType.AJAX_ERROR,
+    var errorHandler = plaintext.events.GlobalErrorHandler.getInstance();
+    errorHandler.dispatchEvent(new plaintext.events.Event(plaintext.events.GlobalErrorHandler.EventType.AJAX_ERROR,
       errorHandler, {
         'xhr': xhr,
         'ajax': this.ajax_
@@ -326,14 +335,14 @@ wap.core.net.PromiseAjax.Request.prototype.processResponse_ = function(e) {
         if (window.navigator.userAgent.toLowerCase().indexOf('webview') >= 0) {
           message = xhr.getResponseText();
         } else {
-          wap.core.net.PromiseAjax.disableAll();
+          plaintext.net.PromiseAjax.disableAll();
         }
         break;
       default:
         message = xhr.getResponseText();
         break;
     }
-    this.response_ = new wap.core.net.Response(message, xhr.getAllResponseHeaders(), xhr.getStatus(), xhr
+    this.response_ = new plaintext.net.Response(message, xhr.getAllResponseHeaders(), xhr.getStatus(), xhr
       .getStatusText(), xhr.getLastUri());
   }
 
@@ -353,7 +362,7 @@ wap.core.net.PromiseAjax.Request.prototype.processResponse_ = function(e) {
  * @param {Object} opt_scope
  * @param {boolean} opt_callOnAbort
  */
-wap.core.net.PromiseAjax.Request.prototype.addCallback = function(func, opt_scope, opt_callOnAbort) {
+plaintext.net.PromiseAjax.Request.prototype.addCallback = function(func, opt_scope, opt_callOnAbort) {
   func = goog.isFunction(func) ? func : goog.nullFunction;
   var scope = opt_scope || this.ajax_.scope_;
   if (this.isPending_) {
@@ -371,7 +380,7 @@ wap.core.net.PromiseAjax.Request.prototype.addCallback = function(func, opt_scop
 /**
  * Abort the ajax request.
  */
-wap.core.net.PromiseAjax.Request.prototype.abort = function() {
+plaintext.net.PromiseAjax.Request.prototype.abort = function() {
   if (this.isAborted_ || !this.isPending_) {
     return;
   }
@@ -400,7 +409,7 @@ wap.core.net.PromiseAjax.Request.prototype.abort = function() {
  * Get a Promise style result.
  * @return {goog.Promise}
  */
-wap.core.net.PromiseAjax.Request.prototype.getResult = function() {
+plaintext.net.PromiseAjax.Request.prototype.getResult = function() {
   if (this.isAborted_) {
     return goog.Promise.reject('Ajax request has been aborted.');
   }
@@ -422,7 +431,7 @@ wap.core.net.PromiseAjax.Request.prototype.getResult = function() {
  * @return {Object|string|undefined}
  * @deprecated Use the api of Response directly: response.getResponseJson('while(1)') .
  */
-wap.core.net.PromiseAjax.Request.prototype.extractResponseValue_ = function(xhr) {
+plaintext.net.PromiseAjax.Request.prototype.extractResponseValue_ = function(xhr) {
   throw 'Use the api of Response directly: response.getResponseJson(\'while(1)\') .';
 };
 
@@ -432,7 +441,7 @@ wap.core.net.PromiseAjax.Request.prototype.extractResponseValue_ = function(xhr)
  * @param {boolean} useSid send request with currentUrl sid
  * @param {boolean} useAppId send request with currentUrl appId
  */
-wap.core.net.PromiseAjax.ApplicationParameter = function(useSid, useAppId) {
+plaintext.net.PromiseAjax.ApplicationParameter = function(useSid, useAppId) {
   this.useSid_ = useSid;
   this.useAppId_ = useAppId;
 };
@@ -440,12 +449,12 @@ wap.core.net.PromiseAjax.ApplicationParameter = function(useSid, useAppId) {
 /**
  * @return {boolean}
  */
-wap.core.net.PromiseAjax.ApplicationParameter.prototype.useSid = function() {
+plaintext.net.PromiseAjax.ApplicationParameter.prototype.useSid = function() {
   return this.useSid_;
 };
 /**
  * @return {boolean}
  */
-wap.core.net.PromiseAjax.ApplicationParameter.prototype.useAppId = function() {
+plaintext.net.PromiseAjax.ApplicationParameter.prototype.useAppId = function() {
   return this.useAppId_;
 };

@@ -108,6 +108,10 @@ plaintext.View.REGISTER = {
   }
 };
 
+/**
+ * temporary docs
+ * @return {Object}
+ */
 plaintext.View.RENDERS = {
   'component-render-datepicker-enus': function(element, obj) {
     obj = obj || {};
@@ -121,8 +125,7 @@ plaintext.View.RENDERS = {
 /**
  * @type {Array}
  */
-plaintext.View.metaKeyList = ['label', 'hint', 'visible', 'readonly', 'disabled', 'required', 'dateType',
-  'maxlength',
+plaintext.View.metaKeyList = ['label', 'hint', 'visible', 'readonly', 'disabled', 'required', 'dateType', 'maxlength',
   'minlength', 'maxdecimal', 'maxval', 'minval', 'maxdate', 'mindate', 'pattern', 'charset', 'enable-chars',
   'disable-chars', 'example', 'validationMsgJson', 'useAutoComplete', 'autoCompleteEntity',
   'autoCompleteConditionFields', 'autoCompleteFetchFields', 'autoCompleteHintFields', 'autoCompleteUrl',
@@ -199,7 +202,7 @@ goog.scope(function() {
    * Returns true if the view has component constructed by constructor for given element.
    * 
    * @param {!Element} element
-   * @param {!Function} constructor
+   * @param {!Function} ctor
    * @return {boolean}
    */
   View.prototype.hasComponent = function(element, ctor) {
@@ -412,6 +415,10 @@ goog.scope(function() {
     return this.componentConstructors_.get(componentJsClass);
   };
 
+  /**
+   * @param {string} componentJsClass JS classname to trigger instanciation of the component.
+   * @return {?Function}
+   */
   View.prototype.getComponentGenerator = function(componentJsClass) {
     return this.componentGenerators_.get(componentJsClass);
   };
@@ -591,8 +598,7 @@ goog.scope(function() {
 
   /**
    * return component instances
-   * 
-   * @return Array of container instances
+   * @return {Array} Array of container instances
    */
   View.prototype.getComponents = function() {
     var arr = [];
@@ -605,7 +611,7 @@ goog.scope(function() {
   /**
    * return specified type component instances
    * 
-   * @param {function} Constructor of instance.
+   * @param {function} instanceType Constructor of instance.
    * @return {Array.<goog.ui.Component>} Array of container instances
    */
   View.prototype.getComponentsByType = function(instanceType) {
@@ -622,7 +628,7 @@ goog.scope(function() {
    * @param {string} componentName The component name registered by plaintext.View.registerComponent
    * @param {object} option Option that used as tag attributes.
    * @param {object} data Value object that used in component.
-   * @param {goog.ui.Component} parantComponent Parent component that this new component will be inserted into
+   * @param {goog.ui.Component} parentComponent Parent component that this new component will be inserted into
    * @return {goog.ui.Component} Newly created component
    */
   View.prototype.insertComponentInto = function(componentName, option, data, parentComponent) {
@@ -644,6 +650,13 @@ goog.scope(function() {
 
   /**
    * Insert a new component to specified element as its child element or sibling.
+   * @param {string} componentName
+   * @param {Object} option
+   * @param {Object} data
+   * @param {goog.ui.Component} toComponent
+   * @param {boolean} asSibling
+   * @return {goog.ui.Component}
+   * @private
    */
   View.prototype.insertComponent_ = function(componentName, option, data, toComponent, asSibling) {
 

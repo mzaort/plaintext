@@ -32,7 +32,7 @@ goog.scope(function() {
 
   /**
    * @param {!K} key
-   * @return boolean true if removed; false if no such key found.
+   * @return {boolean} true if removed; false if no such key found.
    */
   plaintext.util.UidMap.prototype.remove = function(key) {
     var ret = this.containsKey(key);
