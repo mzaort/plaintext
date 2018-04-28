@@ -89,30 +89,30 @@ plaintext.View.ComponentConstructor;
  * @enum {string}
  */
 plaintext.View.Classes = {
-  COMPONENT : 'component',
-  COMPONENT_PREFIX : 'component-',
-  COMPONENT_RENDER_PREFIX : 'component-render-'
+  COMPONENT: 'component',
+  COMPONENT_PREFIX: 'component-',
+  COMPONENT_RENDER_PREFIX: 'component-render-'
 };
 
 /**
  * @enum {Object}
  */
 plaintext.View.REGISTER = {
-  'component-input-button' : {
-    ctor : goog.ui.Button,
-    paramKeys : [ 'content', 'renderer', 'domHelper' ]
+  'component-input-button': {
+    ctor: goog.ui.Button,
+    paramKeys: ['content', 'renderer', 'domHelper']
   },
-  'component-simple-menu' : {
-    ctor : goog.ui.Menu,
-    paramKeys : [ 'domHelper', 'renderer' ]
+  'component-simple-menu': {
+    ctor: goog.ui.Menu,
+    paramKeys: ['domHelper', 'renderer']
   }
 };
 
 plaintext.View.RENDERS = {
-  'component-render-datepicker-enus' : function(element, obj) {
+  'component-render-datepicker-enus': function(element, obj) {
     obj = obj || {};
     var dp_en_US = new goog.ui.DatePicker(obj['date'], goog.i18n.DateTimeSymbols_en_US, obj['domHelper'],
-        obj['renderer']);
+      obj['renderer']);
     dp_en_US.render(element);
     return dp_en_US;
   }
@@ -121,11 +121,13 @@ plaintext.View.RENDERS = {
 /**
  * @type {Array}
  */
-plaintext.View.metaKeyList = [ 'label', 'hint', 'visible', 'readonly', 'disabled', 'required', 'dateType', 'maxlength',
-    'minlength', 'maxdecimal', 'maxval', 'minval', 'maxdate', 'mindate', 'pattern', 'charset', 'enable-chars',
-    'disable-chars', 'example', 'validationMsgJson', 'useAutoComplete', 'autoCompleteEntity',
-    'autoCompleteConditionFields', 'autoCompleteFetchFields', 'autoCompleteHintFields', 'autoCompleteUrl',
-    'divisionList', 'autofocus', 'defaultValue' ];
+plaintext.View.metaKeyList = ['label', 'hint', 'visible', 'readonly', 'disabled', 'required', 'dateType',
+  'maxlength',
+  'minlength', 'maxdecimal', 'maxval', 'minval', 'maxdate', 'mindate', 'pattern', 'charset', 'enable-chars',
+  'disable-chars', 'example', 'validationMsgJson', 'useAutoComplete', 'autoCompleteEntity',
+  'autoCompleteConditionFields', 'autoCompleteFetchFields', 'autoCompleteHintFields', 'autoCompleteUrl',
+  'divisionList', 'autofocus', 'defaultValue'
+];
 
 /**
  * Register a new component.
@@ -216,8 +218,8 @@ goog.scope(function() {
    * @enum {string}
    */
   plaintext.View.EventType = {
-    START_INITIALIZE : goog.events.getUniqueId('view-initialize-start'),
-    FINISH_INITIALIZE : goog.events.getUniqueId('view-initialize-finish')
+    START_INITIALIZE: goog.events.getUniqueId('view-initialize-start'),
+    FINISH_INITIALIZE: goog.events.getUniqueId('view-initialize-finish')
   };
 
   /**
@@ -234,9 +236,9 @@ goog.scope(function() {
     var result = new plaintext.util.UidMap();
     this.componentConstructors_.forEach(function(ctor, name) {
       var elements = goog.array.filter(goog.dom.getElementsByTagNameAndClass(null, name, filterParentElement),
-          function(element) {
-            return !this.hasComponent(element, ctor);
-          }, this);
+        function(element) {
+          return !this.hasComponent(element, ctor);
+        }, this);
       goog.array.forEach(elements, function(element) {
         var id = element.id;
         var param = defaultParams[id] || {};
@@ -244,8 +246,8 @@ goog.scope(function() {
 
         var component = this.assembleComponent(ctor, param);
         component.addOnDisposeCallback(plaintext.View.componentDispose_, {
-          view : this,
-          targetElement : element
+          view: this,
+          targetElement: element
         });
         result.set(element, component);
         this.componentInstances_.set(element, component);
@@ -263,8 +265,8 @@ goog.scope(function() {
         var component = render(element, param);
         var $ele = component.getElement();
         component.addOnDisposeCallback(plaintext.View.componentDispose_, {
-          view : this,
-          targetElement : $ele
+          view: this,
+          targetElement: $ele
         });
         result.set($ele, component);
         this.componentInstances_.set($ele, component);
@@ -342,10 +344,11 @@ goog.scope(function() {
    */
   View.prototype.getLabelsOfElement = function(element) {
     return goog.array.filter(goog.dom.classlist.get(element) || [], function(className) {
-      return (goog.string.startsWith(className, plaintext.View.Classes.COMPONENT_PREFIX) && goog.isDefAndNotNull(this
-          .getComponentBuilder(className)))
-          || (goog.string.startsWith(className, plaintext.View.Classes.COMPONENT_RENDER_PREFIX) && goog
-              .isFunction(View.RENDERS[className]));
+      return (goog.string.startsWith(className, plaintext.View.Classes.COMPONENT_PREFIX) && goog.isDefAndNotNull(
+          this
+          .getComponentBuilder(className))) ||
+        (goog.string.startsWith(className, plaintext.View.Classes.COMPONENT_RENDER_PREFIX) && goog
+          .isFunction(View.RENDERS[className]));
     }, this);
   };
 
@@ -385,8 +388,8 @@ goog.scope(function() {
     if (builder == null) return null;
 
     return {
-      ctor : builder.ctor,
-      wrapper : this.wrapperConstructor_(builder)
+      ctor: builder.ctor,
+      wrapper: this.wrapperConstructor_(builder)
     };
   };
 
@@ -452,8 +455,8 @@ goog.scope(function() {
       }
       if (!parentComponent) {
         decorateList.push({
-          'element' : element,
-          'component' : component
+          'element': element,
+          'component': component
         });
       }
     }, this);
@@ -515,8 +518,8 @@ goog.scope(function() {
       }
       if (!parentComponent || parentComponent === this.getComponent(root)) {
         decorateList.push({
-          'element' : element,
-          'component' : component
+          'element': element,
+          'component': component
         });
       }
     }, this);
@@ -573,8 +576,8 @@ goog.scope(function() {
         // first.
         if (goog.dom.dataset.get(elem, 'lazy') === 'client') {
           lazyComponents.push({
-            'element' : elem,
-            'component' : child
+            'element': elem,
+            'component': child
           });
           return;
         }
@@ -648,7 +651,7 @@ goog.scope(function() {
     goog.asserts.assertString(componentName, 'componentName should be a string');
     var componentName = componentName.toLowerCase().replace(/\./g, '-');
     goog.asserts.assertInstanceof(toComponent, goog.ui.Component,
-        'target component should be a instance of "goog.ui.Component"');
+      'target component should be a instance of "goog.ui.Component"');
     option = option || {};
     data = data || {};
     this.handleComponentOptions_(option, data);
@@ -656,7 +659,7 @@ goog.scope(function() {
     // create element:
     var generator = this.getComponentGenerator(componentName);
     goog.asserts.assertFunction(generator,
-        'This ui component can not be inserted. Please add <?will-insert ?> processing instruction.');
+      'This ui component can not be inserted. Please add <?will-insert ?> processing instruction.');
     var componentDomString = generator(option, data);
     var $componentElement = goog.dom.safeHtmlToNode(componentDomString);
     $componentElement.classList.add(componentName);

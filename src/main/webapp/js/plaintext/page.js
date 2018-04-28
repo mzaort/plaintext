@@ -5,8 +5,7 @@ goog.require('goog.events.EventHandler');
 goog.require('plaintext.View');
 
 /**
- * This class is the base class for all pages, used to initialize all
- * components.
+ * This class is the base class for all pages, used to initialize all components.
  * 
  * @constructor
  * @extends {goog.Disposable}
@@ -48,8 +47,7 @@ goog.scope(function() {
   };
 
   /**
-   * This method will be called by Forneus, to initialize target page. Please do
-   * <em>NOT</em> call it directly.
+   * This method will be called by Forneus, to initialize target page. Please do <em>NOT</em> call it directly.
    */
   Page.prototype.initializeExternal = function() {
     if (this.deferInitializeExternal === true) {
@@ -75,22 +73,19 @@ goog.scope(function() {
    * 
    * @protected
    */
-  Page.prototype.initialize = function() {
-  };
+  Page.prototype.initialize = function() {};
 
   /**
    * Initialize the deferred components.
    * 
    * @protected
    */
-  Page.prototype.deferInitialize = function() {
-  };
+  Page.prototype.deferInitialize = function() {};
 
   /**
    * Listen all events to let each area communicate.
    * 
    * @protected
    */
-  Page.prototype.bindEvents = function() {
-  };
+  Page.prototype.bindEvents = function() {};
 });

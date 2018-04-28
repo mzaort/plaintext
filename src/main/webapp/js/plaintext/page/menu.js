@@ -94,8 +94,9 @@ function startup1() {
   });
 
   function createCheckBoxItem(label, shortcut) {
-    return new goog.ui.CheckBoxMenuItem([ goog.dom.createDom(goog.dom.TagName.DIV, 'goog-menuitem-accel', shortcut),
-        goog.dom.createTextNode(label) ]);
+    return new goog.ui.CheckBoxMenuItem([goog.dom.createDom(goog.dom.TagName.DIV, 'goog-menuitem-accel', shortcut),
+      goog.dom.createTextNode(label)
+    ]);
   }
 
   menu5 = new goog.ui.Menu();

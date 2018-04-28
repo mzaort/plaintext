@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Jasmine Spec Runner</title>
+  <% css.forEach(function(style){ %>
+  <link rel="stylesheet" type="text/css" href="<%= style %>">
+  <% }) %>
+
+  <% with (scripts) { %>
+  <% [].concat(polyfills, jasmine, boot, vendor, helpers, src, reporters).forEach(function(script){ %>
+  <script src="<%= script %>"></script>
+  <%   }) %>
+  <% }; %>
+</head>
+<body>
+<% with (scripts) { %>
+  <% [].concat(specs).forEach(function(script){ %>
+  <script src="<%= script %>"></script>
+  <%   }) %>
+  <% }; %>
+</body>
+</html>

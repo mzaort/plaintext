@@ -17,8 +17,8 @@ function startup1() {
   dp_iso_8601.render(document.getElementById('widget_iso_8601'));
 
   goog.events.listen(dp_iso_8601, goog.ui.DatePicker.Events.CHANGE, function(event) {
-    goog.dom.setTextContent(document.getElementById('label_iso_8601'), event.date ? event.date.toIsoString(true)
-        : 'none');
+    goog.dom.setTextContent(document.getElementById('label_iso_8601'), event.date ? event.date.toIsoString(true) :
+      'none');
   });
 
   goog.dom.setTextContent(document.getElementById('label_iso_8601'), dp_iso_8601.getDate().toIsoString(true));
@@ -29,7 +29,7 @@ function startup1() {
 
   goog.events.listen(dp_custom, goog.ui.DatePicker.Events.CHANGE, function(event) {
     goog.dom
-        .setTextContent(document.getElementById('label_custom'), event.date ? event.date.toIsoString(true) : 'none');
+      .setTextContent(document.getElementById('label_custom'), event.date ? event.date.toIsoString(true) : 'none');
   });
 
   goog.dom.setTextContent(document.getElementById('label_custom'), dp_custom.getDate().toIsoString(true));
@@ -39,10 +39,10 @@ function startup1() {
   var dp_en_US = view.getComponent(goog.dom.getElementByClass('goog-date-picker', goog.dom.getElement('widget_en_US')));
 
   goog.events.listen(dp_en_US, goog.ui.DatePicker.Events.CHANGE,
-      function(event) {
-        goog.dom.setTextContent(document.getElementById('label_en_US'), event.date ? event.date.toIsoString(true)
-            : 'none');
-      });
+    function(event) {
+      goog.dom.setTextContent(document.getElementById('label_en_US'), event.date ? event.date.toIsoString(true) :
+        'none');
+    });
 
   goog.dom.setTextContent(document.getElementById('label_en_US'), dp_en_US.getDate().toIsoString(true));
 
@@ -74,10 +74,10 @@ function startup1() {
   dp_ar_YE.render(document.getElementById('widget_ar_YE'));
 
   goog.events.listen(dp_ar_YE, goog.ui.DatePicker.Events.CHANGE,
-      function(event) {
-        goog.dom.setTextContent(document.getElementById('label_ar_YE'), event.date ? event.date.toIsoString(true)
-            : 'none');
-      });
+    function(event) {
+      goog.dom.setTextContent(document.getElementById('label_ar_YE'), event.date ? event.date.toIsoString(true) :
+        'none');
+    });
 
   goog.dom.setTextContent(document.getElementById('label_ar_YE'), dp_ar_YE.getDate().toIsoString(true));
 
@@ -104,7 +104,7 @@ function startup1() {
   goog.dom.setTextContent(document.getElementById('label_ja'), dp_ja.getDate().toIsoString(true));
 
   // We update all pickers, for all languages
-  var allPickers = [ dp_iso_8601, dp_custom, dp_en_US, dp_de, dp_ml, dp_ar_YE, dp_th, dp_ja ];
+  var allPickers = [dp_iso_8601, dp_custom, dp_en_US, dp_de, dp_ml, dp_ar_YE, dp_th, dp_ja];
 
   function allShowFixedNumWeeks(enabled) {
     for (var i = 0; i < allPickers.length; ++i) {

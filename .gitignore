@@ -3,3 +3,4 @@
 target
 src/test/resources/temp
 node_modules
+deps.js

@@ -113,10 +113,11 @@ function startup1() {
 
   // Create some custom buttons.
   var disabledButton, leftButton, centerButton, rightButton;
-  var customButtons = [ new goog.ui.CustomButton('Button'), new goog.ui.CustomButton('Another Button'),
-      disabledButton = new goog.ui.CustomButton('Disabled Button'), new goog.ui.CustomButton('Yet Another Button'),
-      leftButton = new goog.ui.CustomButton('Left'), centerButton = new goog.ui.CustomButton('Center'),
-      rightButton = new goog.ui.CustomButton('Right'), ];
+  var customButtons = [new goog.ui.CustomButton('Button'), new goog.ui.CustomButton('Another Button'),
+    disabledButton = new goog.ui.CustomButton('Disabled Button'), new goog.ui.CustomButton('Yet Another Button'),
+    leftButton = new goog.ui.CustomButton('Left'), centerButton = new goog.ui.CustomButton('Center'),
+    rightButton = new goog.ui.CustomButton('Right'),
+  ];
   disabledButton.setEnabled(false);
   leftButton.setCollapsed(goog.ui.ButtonSide.END);
   centerButton.setCollapsed(goog.ui.ButtonSide.BOTH);
@@ -132,7 +133,7 @@ function startup1() {
 
   // Decorate some custom buttons.
   var cb2 = [];
-  var decoratedButtons = goog.array.map([ 'foo', 'bar', 'fee', 'btn1', 'btn2', 'btn3' ], goog.dom.getElement);
+  var decoratedButtons = goog.array.map(['foo', 'bar', 'fee', 'btn1', 'btn2', 'btn3'], goog.dom.getElement);
   goog.array.forEach(decoratedButtons, function(element) {
     // Since the elements to be decorated each have the correct "marker" CSS
     // class ("goog-custom-button"), we can use the renderer registry to get
@@ -164,7 +165,7 @@ function startup1() {
 
   // Decorate combined toggle buttons.
   var cb3 = [];
-  var combinedButtons = goog.array.map([ 'btn4', 'btn5', 'btn6' ], goog.dom.getElement);
+  var combinedButtons = goog.array.map(['btn4', 'btn5', 'btn6'], goog.dom.getElement);
   goog.array.forEach(combinedButtons, function(element) {
     var button = goog.ui.decorate(element);
     button.setDispatchTransitionEvents(goog.ui.Component.State.ALL, true);
@@ -174,19 +175,21 @@ function startup1() {
 
   // Use a DIV with a background image as the icon, and a SPAN as the caption.
   var iconbutton1 = new goog.ui.ToggleButton([
-      goog.dom.createDom(goog.dom.TagName.DIV, 'icon insert-image-icon goog-inline-block'),
-      goog.dom.createDom(goog.dom.TagName.SPAN, {
-        'style' : 'vertical-align:middle'
-      }, 'Insert Image') ]);
+    goog.dom.createDom(goog.dom.TagName.DIV, 'icon insert-image-icon goog-inline-block'),
+    goog.dom.createDom(goog.dom.TagName.SPAN, {
+      'style': 'vertical-align:middle'
+    }, 'Insert Image')
+  ]);
   iconbutton1.render(goog.dom.getElement('iconbuttons'));
   goog.events.listen(iconbutton1, EVENTS, logEvent);
 
   // Add a custom style, too.
   var iconbutton2 = new goog.ui.ToggleButton([
-      goog.dom.createDom(goog.dom.TagName.DIV, 'icon highlight-icon goog-inline-block'),
-      goog.dom.createDom(goog.dom.TagName.SPAN, {
-        'style' : 'vertical-align:middle'
-      }, 'Highlight Text') ]);
+    goog.dom.createDom(goog.dom.TagName.DIV, 'icon highlight-icon goog-inline-block'),
+    goog.dom.createDom(goog.dom.TagName.SPAN, {
+      'style': 'vertical-align:middle'
+    }, 'Highlight Text')
+  ]);
   iconbutton2.addClassName('default-button');
   iconbutton2.render(goog.dom.getElement('iconbuttons'));
   goog.events.listen(iconbutton2, EVENTS, logEvent);
